@@ -2,14 +2,22 @@ package org.goumiesland.singleton;
 
 public class DbSingleton {
 
-    private static DbSingleton instance = null;
+    // The instance remains a Singleton through every JVM changes
+    private static volatile DbSingleton instance = null;
 
-    private DbSingleton() {}
+    private DbSingleton() {
+        // Avoids the reflection class and reinstanciation from anywhere
+        // https://www.geeksforgeeks.org/reflection-in-java/
+        if (instance != null)
+            throw new RuntimeException("Use getInstance() method to create");
+    }
 
     public static DbSingleton getInstance() {
-        // Not thread safe but substantial performance improvement
-        if(instance == null)
-            instance = new DbSingleton();
+        if (instance == null)
+            synchronized (DbSingleton.class) {
+                if (instance == null)
+                    instance = new DbSingleton();
+            }
 
         return instance;
     }
