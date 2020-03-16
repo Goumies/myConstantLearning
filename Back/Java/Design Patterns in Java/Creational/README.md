@@ -32,6 +32,12 @@ synchronised(MySingleton.class){ ... }
 
 
 ## Builder
+Handles complex constructors (many arguments, telescoping constructors)
+No interface required
+Can be a separate class
+Works with legacy code
+
+Fluent design / interface
 
 ## Prototype
 
