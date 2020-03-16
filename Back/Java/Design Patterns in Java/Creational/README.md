@@ -41,6 +41,7 @@ Fluent design / interface
 
 ## Prototype
 
+
 ## Factory
 
 ## AbstractFactory
