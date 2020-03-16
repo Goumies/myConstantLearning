@@ -20,7 +20,7 @@ Forbid any Reflection
 if(instance != null) {
  			throw new RuntimeException("Use getInstance() method to create");
  		}
-``
+```
 
 Make sure to make it threadsafe :
 ```
