@@ -40,7 +40,14 @@ Works with legacy code
 Fluent design / interface
 
 ## Prototype
+Lighter weight construction
+Unique call of new in a single place, the prototype for as many instances as required
+Unique instance every time, copy of itself
+Can help with performance issues in application with a lot of objects
 
+Usually needs to be used with another pattern
+Requires more code if Deep Copy intended (only shallow copies)
+Don't necessarily jump to Factory 
 
 ## Factory
 
