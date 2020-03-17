@@ -67,3 +67,17 @@ Involves more complexity
 Warning, creation takes place in the subclasses
 
 ## AbstractFactory
+Factory of Factories
+Factory of related objects
+Buit through Composition
+Parameterized create method
+Concrete Classes
+Implemented w/ a Factory
+Hides the Factory
+Abstracts Environment
+
+Difficult to implement
+Very problem specific
+Grouping of factory
+Heavy abstraction (general software contracts)
+Framework pattern
