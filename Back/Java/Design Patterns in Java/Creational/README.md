@@ -44,11 +44,26 @@ Lighter weight construction
 Unique call of new in a single place, the prototype for as many instances as required
 Unique instance every time, copy of itself
 Can help with performance issues in application with a lot of objects
+Registry with a Map field and loadItems() in the constructor and createItem() method
+`createItem()` clones the instance stored in the registry
+clone() or genericClone() based on clone() from Cloneable interface
 
 Usually needs to be used with another pattern
 Requires more code if Deep Copy intended (only shallow copies)
 Don't necessarily jump to Factory 
 
 ## Factory
+Exposes a common interface
+Specified by architecture, implemented by user
+Returns various instances, multiple constructors
+Contract driven (abstract class or interface)
+Parameter driven
+Subclasses with `switch` on Enum of types
+Adaptable to environment more easily
+Solves complex creation
+Opposite of a Singleton
+
+Involves more complexity
+Warning, creation takes place in the subclasses
 
 ## AbstractFactory

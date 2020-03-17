@@ -1,0 +1,45 @@
+package org.goumiesland.prototype;
+
+public class MyItem implements Cloneable {
+
+    private String title;
+    private double price;
+    private String url = "";
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "MyItem{" +
+                "title='" + title + '\'' +
+                ", price=" + price +
+                ", url='" + url + '\'' +
+                '}';
+    }
+
+    protected <T> T genericClone() throws CloneNotSupportedException {
+        return (T) super.clone();
+    }
+}
