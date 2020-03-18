@@ -12,6 +12,18 @@ Don't complicate
 Don't add functionality
 
 ## Bridge
+Designed upfront
+Abstraction and implementation can vary independently
+Complex but provides flexibility
+Design for uncertainty
+More than composition
+
+Increases complexity
+Conceptually difficult to plan
+Can be confusing
+
+Inheritance + Composition
+Absctract Class + Interface through composition
 
 ## Composite
 
