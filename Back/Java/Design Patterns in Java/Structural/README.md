@@ -23,7 +23,7 @@ Conceptually difficult to plan
 Can be confusing
 
 Inheritance + Composition
-Absctract Class + Interface through composition
+Abstract Class + Interface through composition
 
 ## Composite
 
