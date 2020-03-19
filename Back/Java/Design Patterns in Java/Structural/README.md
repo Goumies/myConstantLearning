@@ -38,6 +38,23 @@ Implementation can be costly
 Composite (hierarchy) != Composition (one object containing aanother)
 
 ## Decorator
+Hierarchical pattern building functionality at each level
+While using composition from similar data types
+Inheritance based
+Alternative to subclassing
+Constructor requires instance from hierarchy
+Modifies behavior of the contained entity (adds)
+Doesn't change the concrete class / object
+
+```
+Sandwich sandwich = new DressingDecorator(new MeatDecorator(new SimpleSandwich()));
+
+```
+
+New class for every feature added
+Multiple little objects
+Confused with inheritance
+Can be complex for clients
 
 ## Facade
 
