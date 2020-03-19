@@ -70,5 +70,22 @@ Overused like the Singleton
 Works with composites
 
 ## Flyweight
+Minimizes memory use by sharing data with similarly typed objects
+Optimization pattern
+Immutable objects
+Large number of similar objects
+All primitive with wrapper => Integer, Boolean
+
+Examples :
+java.lang.String
+
+Pattern of patterns :
+Utilizes a Factory to retrieve flyweight objects after they've been created 
+Encompasses Creation and Structure
+
+Complex pattern
+Premature optimization
+Designed upfront
+Used a lot by the core API (String, Integer, Boolean...)
 
 ## Proxy
