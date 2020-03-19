@@ -55,6 +55,7 @@ New class for every feature added
 Multiple little objects
 Confused with inheritance
 Can be complex for clients
+Runtime
 
 ## Facade (pronounced in french)
 Simplify interface or client usage (main goal)
@@ -89,3 +90,30 @@ Designed upfront
 Used a lot by the core API (String, Integer, Boolean...)
 
 ## Proxy
+Interface to something else
+Interface by wrapping it with a class
+Can add functionality
+Proxy called to access the object
+Security, Simplicity, Remote, Cost
+
+Examples :
+java.lang.reflect.Proxy
+java.lang.reflect.InvocationHandler
+java.rmi.*
+
+```
+public class SecurityProxy implements InvocationHandler {}
+```
+```
+public static Object newInstance(Object obj) {
+    // Wrapping the object with a proxy
+    return java.lang.reflect.Proxy.newProxyInstance(obj.getClass().getClassLoader(), obj
+            .getClass().getInterfaces(), new SecurityProxy(obj));
+}
+```
++ invoke() overridden method
+
+Only one proxy per object, even if you want it to improve security or access remote object
+Can add functionality, but it's main purpose
+Sets a compile time
+Used by DIJ/IOC Frameworks
