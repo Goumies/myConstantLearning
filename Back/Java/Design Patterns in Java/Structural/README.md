@@ -56,7 +56,18 @@ Multiple little objects
 Confused with inheritance
 Can be complex for clients
 
-## Facade
+## Facade (pronounced in french)
+Simplify interface or client usage (main goal)
+Reduce dependencies on outside code
+Usually a refactoring pattern
+Composition in its design
+Typically encompasses full lifecycle
+Encompasses an entire API / package
+Easy to implement
+
+Should think about API design
+Overused like the Singleton
+Works with composites
 
 ## Flyweight
 
