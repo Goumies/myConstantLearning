@@ -26,6 +26,9 @@ Inheritance + Composition
 Abstract Class + Interface through composition
 
 ## Composite
+Tree structured, with Component (abstract class) as the root
+Leaf or Composite, same operations
+Composite knows about child objects and what it can do with it
 
 ## Decorator
 
