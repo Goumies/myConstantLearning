@@ -18,8 +18,11 @@ Complex but provides flexibility
 Design for uncertainty
 More than composition
 
+Example : JDBC
+
 Increases complexity
 Conceptually difficult to plan
+Expects changes from abstraction and implementation
 Can be confusing
 
 Inheritance + Composition
@@ -45,11 +48,17 @@ Alternative to subclassing
 Constructor requires instance from hierarchy
 Modifies behavior of the contained entity (adds)
 Doesn't change the concrete class / object
+Also called a Wrapper
+
+Adding behavior through creation = Structural Pattern
 
 ```
 Sandwich sandwich = new DressingDecorator(new MeatDecorator(new SimpleSandwich()));
 
 ```
+
+Example :
+java.io.InputStream
 
 New class for every feature added
 Multiple little objects
@@ -80,6 +89,7 @@ All primitive with wrapper => Integer, Boolean
 Examples :
 java.lang.String
 
+Good option when caching is needed
 Pattern of patterns :
 Utilizes a Factory to retrieve flyweight objects after they've been created 
 Encompasses Creation and Structure
