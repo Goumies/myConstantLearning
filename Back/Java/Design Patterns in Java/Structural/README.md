@@ -29,6 +29,13 @@ Abstract Class + Interface through composition
 Tree structured, with Component (abstract class) as the root
 Leaf or Composite, same operations
 Composite knows about child objects and what it can do with it
+Unity between objects
+Generalizes a hierarchical structure
+Easier for the clients, everything handled the same way
+
+Can overly simplify system, harder to restrict
+Implementation can be costly
+Composite (hierarchy) != Composition (one object containing aanother)
 
 ## Decorator
 
