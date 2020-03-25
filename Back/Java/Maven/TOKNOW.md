@@ -159,3 +159,11 @@ Configuration
     Builds our Manifest file
 
 Already configured by default based on the packaging type defined in the pom
+________________________________________________________
+
+# Source plugin
+Package source code so it can be distributed inside the IDE or make some more code intensive javadoc
+Tied to the package phase of our Build lifecycle
+    Frequently overridden to later phase a lot 
+    => install or deploy phase to avoid slowing the build down
+    
