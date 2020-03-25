@@ -151,3 +151,11 @@ Memory      Set the Min and Max memory
 source/target directories
 ________________________________________________________
 
+# Jar Plugin
+Package
+Tied to the package phase of our Build lifecycle
+Configuration
+    Sets includes/excludes
+    Builds our Manifest file
+
+Already configured by default based on the packaging type defined in the pom
