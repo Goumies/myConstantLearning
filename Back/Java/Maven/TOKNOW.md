@@ -125,3 +125,29 @@ Available to tie our goals to :
 `deploy`                Copies package to remote repo
 
 ________________________________________________________
+
+# Compiler Plugin
+Plugin used to to compile the source and test code in different phases
+Invokes javac and does a little more :
+    Sets the classpath with the dependencies from the application
+    Builds the classpath based on what the dependencies are and their classification of scope
+    Defaults to older version of Java (1.7 regardless of the installed JDK)
+    
+Customizable with the configuration section, required since 1.8
+
+```xml
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <release>11</release>
+            </configuration>
+        </plugin>
+```
+
+fork        Spin off on its on thread
+Memory      Set the Min and Max memory
+source/target directories
+________________________________________________________
+
