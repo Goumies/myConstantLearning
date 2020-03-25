@@ -163,7 +163,16 @@ ________________________________________________________
 
 # Source plugin
 Package source code so it can be distributed inside the IDE or make some more code intensive javadoc
+And attached it to a dedicated jar file
 Tied to the package phase of our Build lifecycle
     Frequently overridden to later phase a lot 
     => install or deploy phase to avoid slowing the build down
-    
+________________________________________________________
+
+# Javadoc plugin
+Package javadocs and attached it to a dedicated jar file
+Package phase
+    Frequently overridden to later phase a lot 
+    => install or deploy phase to avoid slowing the build down
+Defaults
+    Many customization options
