@@ -1,6 +1,6 @@
 # Maven : Structure
 
-## Goals (commands)
+## Goals (= plugins, = commands)
 `clean`       Deletes `/target` and its generated sources\
 `compile`     Compiles all the source code and copy .properties file and generated skeletons (like web services) to `/classes`
 `package`     Runs `compile`, runs unit tests and package that up, based on the type defined in pom.xml
@@ -12,6 +12,8 @@
 Stores artifact using info <groupId>/<artifactId>/<version>
 
 `<finalName>helloMavenWorld</finalName>`
+
+________________________________________________________
 
 # Maven : Dependencies
 
@@ -65,7 +67,9 @@ system          /!\ Never use it /!\
                 
 import          dependency management through several poms
 
-## Repositories (HTTP locations)
+________________________________________________________
+
+# Repositories (HTTP locations)
 ### Local Repository
 Maven storage
 
@@ -93,3 +97,31 @@ Usually separated repositories
 ## Releases / Snapshots
 Release process a little bit more work
 Better separate non Production related files from releases
+
+________________________________________________________
+
+# Plugins
+Maven uses it to build and package applications
+As well as downloading and storing artifacts
+
+## Goals
+Default goals = plugins = defined in Super pom
+Super pom = Inheritance
+    = pom (Project Object Model) from which the effective pom inherits its goals
+    
+Goals can be edited in the effective pom
+    = very common
+    
+## Phases
+Available to tie our goals to :
+`validate`              validates project and structure (every required info)
+`compile`               compiles any source in the project
+`Test`                  compiles testing code, tests the compiled code
+`package`               packages the code in the specified package type
+--- newer phase to maven
+`integration-test`      deploys and runs integration tests
+`verify`                runs checks to verify integrity
+`install`               installs package in local repo
+`deploy`                Copies package to remote repo
+
+________________________________________________________
