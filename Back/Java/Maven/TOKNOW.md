@@ -19,4 +19,48 @@ List what we need thanks to <groupId>/<artifactId>/<version>
 
 ## Versions
 Release number of the artifact we want to use
-All internal developments should start with SNAPSHOT
+All internal developments should end with SNAPSHOT
+
+SNAPSHOT                    the only specific naming convention = development in progress
+Release                     no specific naming convention\
+myapp-1.0-SNAPSHOT.jar      
+myapp-1.0-M1.jar            M1 = milestone release
+myapp-1.0-RC1.jar           RC1 = release candidate
+myapp-1.0-RELEASE.jar       RELEASE
+myapp-1.0-Final.jar
+
+/!\ The build of a SNAPSHOT project will attempt to update every SNAPSHOT type dependency in the local repository
+
+## Types
+Packaging types
+    pom, -jar, war, ear,- maven-plugin
+    - - = glorified ZIP files
+
+Dependency Pom
+    dependency from a pom package
+
+## Transitive dependencies
+One of the reasons why people started using Maven
+Dependencies required by the dependencies we need in our project
+
+In case of conflict, the newer version is preferred
+
+## Scopes (6)
+compile         Default scope, all resources available everywhere in the app 
+provided        Like compile, the artifact will be available during the entire build cycle
+                => XML APIs, Servlet API, no servlet in the final artifact 
+                = provided by the container that we are deploying our app to
+                
+runtime         needed for execution for dynamically loaded at runtime items 
+                => Driver Manager resource bundled with the application using JDBC to connect to DB
+                
+runtime != provided
+
+test            test compilation and execution phase only
+                => JUnit or testNg jars
+                
+system          /!\ Never use it /!\
+                = hard-coding a path to a jar in a system
+                = exists to tie existing projects to Maven build
+                
+import          dependency management through several poms
