@@ -64,3 +64,32 @@ system          /!\ Never use it /!\
                 = exists to tie existing projects to Maven build
                 
 import          dependency management through several poms
+
+## Repositories (HTTP locations)
+### Local Repository
+Maven storage
+
+Super pom.xml in the Maven installation /!\ Never edit it /!\
+    Default location repo.maven.apache.org (all the open-source projects)
+    Ways to safely overwrite Super pom.xml = global parent project file our through the project pom.xml
+
+Multiple repositories allowed and often encouraged
+Corporate Repository is encouraged
+    => Nexus (+++ for from scratch project) or Artifactory
+    
+## Dependency Repository
+Dependencies download
+Releases and / or snapshots
+Separated repositories
+
+`<repository>`
+
+## Plugin Repository
+Plugins download from Corporate repository
+Usually separated repositories
+
+`<pluginRepository>`
+
+## Releases / Snapshots
+Release process a little bit more work
+Better separate non Production related files from releases

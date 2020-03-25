@@ -29,7 +29,25 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.12.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.2.0.BUILD-SNAPSHOT</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spring-snapshot</id>
+            <url>https://repo.spring.io/libs-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
