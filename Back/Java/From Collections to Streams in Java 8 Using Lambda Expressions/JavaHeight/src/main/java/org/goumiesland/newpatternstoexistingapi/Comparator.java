@@ -4,9 +4,7 @@ import java.util.function.Function;
 
 @FunctionalInterface
 public interface Comparator<T> {
-    // Since it's a Comparator, this method has to be implemented
-    // according to this pattern
-    // (first, second) -> -1;
+    // Abstract method to implement
     int compare(T first, T second);
 
     // U, because in a static method
