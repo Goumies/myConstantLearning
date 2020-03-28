@@ -34,6 +34,9 @@ All introduced in Java 8\
 Default and Static methods's purpose it's to add new functionality to existing interfaces
 And assure compatibility with existing code
 
+____________________________
+# Writing data processing Functions with Lambdas in Java 8
+
 ## Functional interfaces
 ### How to define a type for lambda expressions
 
@@ -179,3 +182,220 @@ IntPredicate
 IntFunction
 IntToDoubleFunction
 ...
+
+____________________________
+# Data Processing using Lambdas and the Collection Framework
+
+New methods in the Collection API
+## Iterable, Collection, List
+On Iterable
+```java
+    import org.goumiesland.newpatternstoexistingapi.Person;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.function.Consumer;
+    import java.util.function.Predicate;
+
+    public interface Iterable {
+        void forEach(Consumer<? super E> consumer);
+    }
+
+    public interface Collection {
+        boolean removeIf(Predicate<? super E> filter);
+    }
+
+    public interface List {
+        boolean replaceAll(UnaryOperator<? super E> operator);
+    }
+
+    public interface List {
+        boolean sort(Comparator<? super E> comparator);
+    }
+
+    class Main{
+        public static void main(String[] args){
+            Person firstPerson = new Person("Neo", "Dertal", 26);
+            Person secondPerson = new Person("Malicia", "Mice", 18);
+            Person thirdPerson = new Person("Ethel", "Rice", 24);
+            
+            List<Person> people = new ArrayList<>();
+            people.add(firstPerson);
+            people.add(secondPerson);
+            people.add(thirdPerson);
+    
+            people.forEach(System.out::println);
+            people.removeIf(person -> person.getAge() < 20);
+
+            List<String> names = new ArrayList();
+                    names.add( "Alberta");
+                    names.add("Fatoumata");
+                    names.add("Debora");
+                    names.replaceAll(String::toUpperCase);
+                    System.out.println(names);
+        }
+    }
+```
+
+## Map
+```java
+    import org.goumiesland.newpatternstoexistingapi.Person;
+    import java.util.*;
+    public interface Map {
+        void forEach(BiConsumer<? super K, ? super V> consumer);
+    }
+
+   class Main{
+        public static void main(String[] args){
+            Map<String, List<Person>> map = new HashMap<>();
+            Person firstPerson = new Person("Neo", "Dertal", 26);
+            Person secondPerson = new Person("Malicia", "Mice", 18);
+            Person thirdPerson = new Person("Ethel", "Rice", 24);
+            
+            List<Person> people = new ArrayList<>();
+                        people.add(firstPerson);
+                        people.add(secondPerson);
+                        people.add(thirdPerson);
+
+            map.put("Paris", people);
+            map.put("Beijin", Collections.EMPTY_LIST);
+            map.put("Kinshasa", people.removeIf(person -> person.getAge() > 20));
+
+            map.forEach(
+                (city, list) ->
+                    System.out.println(city + " : " + list.size() + " people")
+            );
+        }
+    }
+```
+
+New version of the get()
+```java
+    import java.util.*;
+    import java.util.function.BiFunction;
+    public interface Map {
+        V getOrDefault(Object key, V defaultValue);
+        V putIfAbsent(K key, V defaultValue);
+        
+        V replace(K key, V newValue);
+        boolean replace(K key, V existingValue, V newValue);
+    }
+```
+
+Complete remapping of a map :
+        a BiFunction takes 2 parameters and returns a value.
+        The returned value will replace the existing one
+```java
+    import java.util.*;
+    import java.util.function.BiFunction;
+    public interface Map {
+        void replaceAll(BiFunction<? super K, ? super V, ? extends V> function);
+}
+```
+
+* NEW * Checks the match between existing kv pair and the one passed
+    Then it removes both existing key AND value.
+    If one item doesn't match, the existing one stays in the map.
+    Before Java 8, it only removed the key
+```java
+    import java.util.*;
+    import java.util.function.BiFunction;
+    public interface Map {
+        void remove(Object key, Object newValue);
+    }
+```
+
+A new family of methods : compute*()
+3 new methods beginning with "compute". +++ They all return the value :
+    that has just been computed
+    or that was in the map before
+Computes a new value from :
+     The key passes as a parameter, that may not be in the map
+     The value that may be associated with that key, or null
+     The lambda that will compute the remapping
+     /!\ Check for null as a returned value
+```java
+    import java.util.*;
+    import java.util.function.BiFunction;
+    public interface Map {
+        V compute(
+            K key,
+            BiFunction<? super K, ? super V, ? extends V> remapping);
+}
+```
+
+If absent, computes a new value from :
+     The key passes as a parameter, that should not be in the map
+     The lambda to compute the mapping from the key  
+```java
+    import java.util.*;
+    import java.util.function.BiFunction;
+    public interface Map {
+        V computeIfAbsent(
+            K key,
+            Function<? super K, ? extends V> mapping);
+    }
+```
+If present, computes a new value from :
+     The key passes as a parameter
+     The existing value
+     The lambda that will compute the remapping
+```java
+    import java.util.*;
+    import java.util.function.BiFunction;
+    public interface Map {
+        V computeIfPresent(
+            K key,
+            BiFunction<? super K, ? super V, ? extends V> remapping);
+    }
+```
+
+merge()
+key value to be merged in the existing map
++ a BiFunction that takes a pair of values
+    If the passed key is not i the map : adds the kv pair to the map
+    If the key is present :
+        merge the existing value withe the passed value using the lambda
+        note that the remapping takes a pair of values and return a new value
+```java
+    import java.util.*;
+    import java.util.function.BiFunction;
+    public interface Map {
+        V merge(
+            K key, V newValue,
+            BiFunction<? super V, ? super V, ? extends V> remapping);
+    }
+```
+
+```java
+   import org.goumiesland.newpatternstoexistingapi.Person;
+    class Main{
+        public static void main(String[] args){
+            Map<String, List<Person>> map = new HashMap<>();
+            Person firstPerson = new Person("Neo", "Dertal", 26);
+            Person secondPerson = new Person("Malicia", "Mice", 18);
+            Person thirdPerson = new Person("Ethel", "Rice", 24);
+            
+            List<Person> people = new ArrayList<>();
+                        people.add(firstPerson);
+                        people.add(secondPerson);
+                        people.add(thirdPerson);
+
+            map.put("Paris", people);
+            map.put("Beijin", Collections.EMPTY_LIST);
+            map.put("Kinshasa", people.removeIf(person -> person.getAge() > 20));
+
+            System.out.println(map.getOrDefault("Milan", Collections.EMPTY_LIST));
+            map.putIfAbsent("London", Collections.EMPTY_LIST);
+            map.get("London").add(secondPerson);
+            System.out.println(map.getOrDefault("London", Collections.EMPTY_LIST));
+
+            Map<String, List<Person>> map1 = new HashMap<>();
+            Map<String, List<Person>> map2 = new HashMap<>();
+            map2.forEach(
+            
+);        
+        }
+    }
+```
+
+## Patterns, examples

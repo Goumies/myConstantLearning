@@ -1,4 +1,4 @@
-package org.goumiesland.dataprocessing;
+package org.goumiesland.dataprocessingwithfunctionalinterfaces;
 
 @FunctionalInterface
 public interface Predicate<T> {

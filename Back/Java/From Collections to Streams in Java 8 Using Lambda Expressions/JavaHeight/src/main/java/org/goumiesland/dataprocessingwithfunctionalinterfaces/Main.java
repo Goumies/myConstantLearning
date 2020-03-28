@@ -1,4 +1,4 @@
-package org.goumiesland.dataprocessing;
+package org.goumiesland.dataprocessingwithfunctionalinterfaces;
 
 public class Main {
     public static void main(String[] args) {
