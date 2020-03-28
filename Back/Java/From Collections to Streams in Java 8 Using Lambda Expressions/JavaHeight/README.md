@@ -397,5 +397,3 @@ key value to be merged in the existing map
         }
     }
 ```
-
-## Patterns, examples
