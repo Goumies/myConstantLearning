@@ -1,0 +1,45 @@
+# Implementing Map Filter Reduce Using Lambdas and Collections
+
+## Introduction to the map /filter / reduce algorithm
+
+## A simple example
+### Map / Filter / Reduce on a classical case
+Before -> Iterator pattern (until java 7)
+Now -> Map / Filter / Reduce
+
+Parallelization made easy (associativity)
+=> sum
+
+To calculate the average, we have to compute the sum first,
+then the average.
+
+/!\ The reduction step must be taken care of.
+In case of non associative lambda, the result would be false.
+Plus, with parallelization, we might get a different result
+at every run (same data, different result,
+because we don't know the JVM will divide the data :
+fork / join framework). 
+
+## Focus on the reduction step
+According the type of operation / reduction, 
+the identity / neutral element differs 
+(cF [Identity Alement, Wiki](https://en.wikipedia.org/wiki/Identity_element))
+=> Addition -> 0
+   Multiplication -> 1
+   Concatenation -> "" (Strings), [] (Lists)
+   Max / Min -> None. Solution : first element of a list
+   
+Associative reductions can be paralleled => sum, min, max, first element
+
+2 problems of the reduction step :
+- associativity
+- reduction operation without identity element
+/!\ This step is tricky to design and cann easily be messed up.
+Especially, there is nothing to prevent it (no testing solution)
+
+## How to implement it in the JDK
+New concept introduced by the JDK : Optional
+An optional = a wrapper type that may be empty (!= Integer / Float...)
+
+## How can we design an API to implement map / filter / reduce
+The Stream API was especially created to implement the map / filter / reduce pattern
