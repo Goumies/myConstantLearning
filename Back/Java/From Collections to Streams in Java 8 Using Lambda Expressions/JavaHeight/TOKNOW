@@ -43,3 +43,70 @@ An optional = a wrapper type that may be empty (!= Integer / Float...)
 
 ## How can we design an API to implement map / filter / reduce
 The Stream API was especially created to implement the map / filter / reduce pattern
+
+# The Stream API
+## How to build Streams, first patterns
+
+## What is a Stream
+Technically, a stream is a typed interface that extend BaseStream (a purely technical interface)
+Also, 3 other streams :
+IntStream, LongStream, DoubleStream
+
+Stream, new concept in Java 8 in which we can put anything we want
+*** Important ***
+Streams do not hold any data
+    They pull the data they process from a source (a collection, or something else)
+    Very light weight
+Streams does not modify the data they process
+    Because we want to process tha data in parallel with no visibility or synchronization issues
+    (Leading to bad performances)
+The source may be unbounded
+    A stream can process as many data that we want / need
+    = it's not finite
+    But most of the time, it only means that the size of tis source is not know a build time
+    => 1 text file : known size, unknown number of elements inside (text lines)
+        + elements might not be accessible
+***
+
+## Patterns to build streams (connect to data)
+    `list.stream()`
+Static methods of the Stream interface :
+    `Stream.empty()` 
+    `Stream.of("one")`
+    `Stream.of("one", "two", "three")`
+    `Stream.generate(() -> "one");`
+        = Stream.generate(aSupplier)
+        = a constant stream
+    `Stream.iterate("+", s -> s + "+");`
+        = generates a stream after 1st element passed as 1st parameter
+            and a unary operator and it will never stop => ++++...
+        = a growing stream
+Static methods in other classes :
+    `ThreadLocalRandom.current().ints();`
+        = a random stream
+        = ints() = new method
+    `IntStream stream = "hello".chars();`
+        = a stream on the letters of a string
+    ```
+    Stream<String> words =
+        Pattern.compile("[^\\p{javaLetter}]")
+               .splitAsStream(book);
+    ```
+        = a stream on a regular expression
+    `Stream<String> lines = Files.lines(path);`
+        = a stream on the lines of a text file
+The StreamBuilder pattern :
+    `Stream.Builder<String> builder = Stream.builder();`
+        = Build of the Sream.Builder
+        `builder.add("one").add("two").add("three");`
+            = add data by chaining the add() method
+            `builder.accept("four");`
+                = or by calling accept(), but this method returns void
+    `Stream<String> stream = builder.build();`
+        = then build the stream
+    `stream.forEach(System.out::println);`
+        = and use the stream
+    /!\ A built stream throw an exception on add() or accept() call
+    
+## First streams patterns
+## Simple reductions
