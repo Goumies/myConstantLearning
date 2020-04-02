@@ -109,4 +109,36 @@ The StreamBuilder pattern :
     /!\ A built stream throw an exception on add() or accept() call
     
 ## First streams patterns
+map / filter / reduce in action
+    Print ages
+    ```
+        persons.stream()                        // Stream<Person>
+               .map(Person::getAge)             // Stream<Integer>
+               .filter(age -> age > 20)         // Stream<Integer>
+               .forEach(System.out::println)    // Stream<Integer>
+    ```
+    Print persons themselves
+    ```
+        persons.stream()                        // Stream<Person>
+               .peek(System.out::println)       // Stream<Person>
+               .filter(age -> age > 20)         // Stream<Person>
+               .forEach(System.out::println)    // Stream<Person>
+    ```
+    /!\ peek() = intermediate operation used for logging purposes
+        Not to be used in production
+        forEach() = terminal operation = required to trigger the processing of a Stream
+
+A intermediate operation returns a Stream
+A terminal operation something else or void
+
+Selecting ranges of data in a Stream
+skip and limit
+    ```
+    persons.stream()
+           .skip(2)                     // Skips 2 elements
+           .limit(3)                    // Processes 3 elements only
+           .filter(age -> age > 20)     // Evaluates the predicate on those 3 elements
+           .forEach(System.out::println)    // trigeers the computation
+    ```
+
 ## Simple reductions
