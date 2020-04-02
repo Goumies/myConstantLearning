@@ -142,3 +142,92 @@ skip and limit
     ```
 
 ## Simple reductions
+match, find, count, reduce
+
+3 types of matchers : 
+    anyMatch()
+    allMatch()
+    noneMatch()
+= terminal operations returning a boolean
+= short-circuiting terminal operations
+
+    ```
+        persons.stream()
+               .anyMatch(person -> person.getAge() > 20)
+    ```
+= returns true if at least 1 element matches the predicate
+
+    ```
+        persons.stream()
+               .allMatch(person -> person.getAge() > 20)
+    ```
+= returns true if all the elements match the predicate
+
+    ```
+        persons.stream()
+               .noneMatch(person -> person.getAge() > 20)
+    ```
+= returns true if no element matches the predicate
+
+2 types of find reduction :
+    findFirst()
+    findAny()
+They might have nothing to return :
+    If the Stream is empty
+    Or if there is no value that matches the predicate
+They both return an Optional, that can be empty
+
+    ```
+        Optional<Person> opt =
+            persons.stream()
+                   .findFirst(person -> person.getAge() > 20)
+    ```
+= returns the first person, if any, wrapped in an Optional
+    = the first means the stream has an order, if not then any person is returned
+
+    ```
+        Optional<Person> opt =
+            persons.stream()
+                   .findAny(person -> person.getAge() > 20)
+    ```
+= returns any person, if it exists, wrapped in an Optional
+
+3 types of reduce reduction
+If no identity element is provided, then an Optional is returned
+Associativity is assumed for the reduction function, but not enforced
+[1]
+
+    ```
+        int sumOfAges =
+            persons.stream()
+                   .reduce(0, (p1, p2) -> p1.getAge() + p2.getAge())
+    ```
+    
+    ```
+        int maxOfAges =
+            persons.stream()
+                   .reduce(0, (p1, p2) -> Integer.max(p1.getAge(), p2.getAge()))
+    ```
+= 0 is the identity element of the ax reduction among positive integers
+[2]
+    ```
+        Optional<Integer> opt =
+            persons.stream()
+                   .reduce((p1, p2) -> Integer.max(p1.getAge(), p2.getAge()))
+    ```
+= reduce() without a identity element, returns an Optional
+
+[3]
+    ```
+        List<Integer> ages =
+            persons.stream()
+                   .reduce(
+                        new ArrayList<Integer>(),
+                        (list, p) -> { list.add(p.getAge()); return list;},
+                        (list1, list2) -> { list1.add(list2); return list1;},
+                    )
+    ```
+= reduce() used in parallel operations
+= identity
+  accumulator
+  combiner
