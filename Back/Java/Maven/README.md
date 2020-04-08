@@ -31,6 +31,11 @@ IDE and Standalone (command line)
 
 Preferred method to work with build tools like Jenkins (CI)
 
+Maven configure the classpath of the IDE, by adding all the project dependencies
+--> tells the JVM where the required libraries are
+(More about [Classpath](https://stackoverflow.com/questions/21983858/classpaths-in-ides))
+([Setting the Classpath - java 8](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html))
+
 ### Ant VS Maven
 Ant developed to replace Make, a not cross-platform build tool
 

@@ -14,3 +14,6 @@
 
 ## From Collections to Streams in Java 8 Using Lambda Expressions
 [Pluralsight course](https://app.pluralsight.com/library/courses/java-8-lambda-expressions-collections-streams/table-of-contents)
+
+## Programming with Dates and Times in Java 8
+[Pluralsight course](https://app.pluralsight.com/library/courses/java8-dates-times-programming/table-of-contents)

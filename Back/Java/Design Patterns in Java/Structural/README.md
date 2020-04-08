@@ -40,7 +40,7 @@ Can overly simplify system, harder to restrict
 Implementation can be costly
 Composite (hierarchy) != Composition (one object containing aanother)
 
-## Decorator
+## Decorator (SimpleSandwich)
 Hierarchical pattern building functionality at each level
 While using composition from similar data types
 Inheritance based
@@ -57,6 +57,8 @@ Sandwich sandwich = new DressingDecorator(new MeatDecorator(new SimpleSandwich()
 
 ```
 
+Utilizes Composition and Inheritance
+
 Example :
 java.io.InputStream
 
@@ -66,7 +68,7 @@ Confused with inheritance
 Can be complex for clients
 Runtime
 
-## Facade (pronounced in french)
+## Facade (pronounced in french) ()
 Simplify interface or client usage (main goal)
 Reduce dependencies on outside code
 Usually a refactoring pattern
@@ -79,7 +81,7 @@ Should think about API design
 Overused like the Singleton
 Works with composites
 
-## Flyweight
+## Flyweight (Inventory)
 Minimizes memory use by sharing data with similarly typed objects
 Optimization pattern
 Immutable objects
@@ -100,6 +102,7 @@ Designed upfront
 Used a lot by the core API (String, Integer, Boolean...)
 
 ## Proxy
+Interface based
 Interface to something else
 Interface by wrapping it with a class
 Can add functionality
@@ -124,6 +127,6 @@ public static Object newInstance(Object obj) {
 + invoke() overridden method
 
 Only one proxy per object, even if you want it to improve security or access remote object
-Can add functionality, but it's main purpose
+Can add functionality, but not its main purpose
 Sets a compile time
 Used by DIJ/IOC Frameworks

@@ -90,7 +90,7 @@ The Stream API
 
 43 functional interfaces defined, in 4 categories :
     Consumers
-    Supplier
+    Suppliers
     Functions
     Predicates
 

@@ -14,7 +14,7 @@ public class MyRegistry {
         T newItem = null;
 
         try {
-            newItem = (T) items.get(type).genericClone();
+            newItem = items.get(type).genericClone();
         }
         catch (CloneNotSupportedException e){
             e.printStackTrace();

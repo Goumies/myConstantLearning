@@ -1,6 +1,6 @@
 # How objects are created ?
 
-## Singleton
+## Singleton (DB / connection instance)
 One private constructor method - no args
 No interface (private property)
 
@@ -12,14 +12,15 @@ To use wisely, too many Singletons slow the application
 
 Lazy load it
 ```
-if(instance == null)
+// public static MySingleton getInstance() {
+        if(instance == null)
 ```
 
 Forbid any Reflection
 ```
 if(instance != null) {
- 			throw new RuntimeException("Use getInstance() method to create");
- 		}
+    throw new RuntimeException("Use getInstance() method to create");
+}
 ```
 
 Make sure to make it threadsafe :
@@ -30,8 +31,11 @@ Make sure to make it threadsafe :
 synchronised(MySingleton.class){ ... }
 ```
 
+* volatile : [Réf José Paumard](http://blog.paumard.org/2011/05/06/synchronisation-et-volatilite/)
+             [Réf autre](http://www.touilleur-express.fr/2010/12/09/quelle-est-la-difference-entre-volatile-et-synchronized/)
 
-## Builder
+
+## Builder (aReference().withItemName("myItem").withPrice(34.5).withDescription("Excellent Item).build())
 Handles complex constructors (many arguments, telescoping constructors)
 No interface required
 Can be a separate class
@@ -69,7 +73,7 @@ Warning, creation takes place in the subclasses
 ## AbstractFactory
 Factory of Factories
 Factory of related objects
-Buit through Composition
+Built through Composition
 Parameterized create method
 Concrete Classes
 Implemented w/ a Factory
