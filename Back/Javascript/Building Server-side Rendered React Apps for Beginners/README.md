@@ -16,13 +16,15 @@ Next.js, SSR React Framework
     Create React functional component
     Pass props to a component
     Convert functional to class component
-    Using JSX (Javascript XML) files and Next.js as build system
+    Using JSX* (Javascript XML) files and Next.js as build system
         JSX Preprocessor
             JSX (Browserify) > Bundle (Webpack) > JS (Babel)
     Building a server-side rendered digital clock
         /!\ HTML Mismatch error
         (cF [screenshot](Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/HTML mismatch error.png))
         --> Important new static method coming : getInitialProps (Next.js)
+        
+* JSX : special markup language compiled in Javascript by React
         
 ## How server-side rendered HTML must sync with client-side Javascript
 
@@ -32,3 +34,85 @@ json-server : for dev time, place to get REST data from
               no need to run it on production time
               
 ## Difference between client and server-side routing
+
+## Model-View-Intent Architecture (CSR apps)
+=> elm, cycle.js
+
+3 components :
+    Model (Unique Source of Truth)
+        Single object that completely describes the state of the UI
+    View
+        Function transforming the Model (input) into the UI (output)
+    Intent (processed on the Model)
+        User's action that will be applied to the Model which will be updated
+        
+---
+## React Fundamentals
+## Components
+Function components where possible :
+    More concise
+    Encourages better design
+
+### NB : All React components must act like pure functions with respect to their props - React documentation
+
+### Component Lifecycle (useful when writing a component to wrap an imperative API => JQuery plugin)
+-Will- method happens immediately prior to the action => Mount
+-Did- method happens immediately after to the action => Update
+#### Mounting
+    constructor > componentWillMount > render > componentDidMount 
+#### Updating
+    componentWillReceiveProps > shouldComponentUpdate > componentWillUpdate > render > componentDidUpdate 
+
+## State
+Alternative component data container
+State = local + mutable data within the component
+setState notifies React that the state has changed and that the component needs to be re-rendered
+    merges previous state with the state change
+State changes are bashed
+
+## Prop Validation
+PropTypes (RunTime validation)
+
+Props equal `true` by default.
+
+```javascript
+import PropTypes from 'prop-types';
+
+function MyComponent(props){
+    return <h1>{props.a} + {props.b} = {props.a + props.b}</h1>
+}
+
+MyComponent.PropTypes = {
+    a: PropTypes.number.isRequired,
+    b: PropTypes.number.isRequired,
+};
+
+// Throws an error at runtime, won't prevent it
+ReactDOM.render(<MyComponent a={"a"} b={2}  />,
+    document.getElementById('root')
+
+);
+```
+
+TypeScript and Flow (Compile Time validation)
+Better than PropTypes
+
+```typescript jsx
+import React from './src/fundamentals/Building a server-side rendered digital clock/MyApp/node_modules/react';
+import ReactDOM from './src/fundamentals/Building a server-side rendered digital clock/MyApp/node_modules/react-dom';
+
+interface MyComponentProps {
+    a: number;
+    b: number;
+}
+
+function MyComponent(props: MyComponentProps) {
+    return <h1>{props.a} + {props.b} = {props.a + props.b}</h1>;
+}
+
+ReactDOM.render(<MyComponent a={"a"} b={2}  />,
+    document.getElementById('root')
+);
+```
+
+---
