@@ -1,0 +1,39 @@
+{
+  "ast": null,
+  "code": "import _classCallCheck from \"@babel/runtime/helpers/esm/classCallCheck\";\nimport _createClass from \"@babel/runtime/helpers/esm/createClass\";\nimport _inherits from \"@babel/runtime/helpers/esm/inherits\";\nimport _possibleConstructorReturn from \"@babel/runtime/helpers/esm/possibleConstructorReturn\";\nimport _getPrototypeOf from \"@babel/runtime/helpers/esm/getPrototypeOf\";\nvar _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/DigitalClock.js\";\nvar __jsx = React.createElement;\n\nfunction _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }\n\nimport React, { Component } from 'react';\nimport './DigitalClock.css';\n\nvar DigitalClock = /*#__PURE__*/function (_Component) {\n  _inherits(DigitalClock, _Component);\n\n  var _super = _createSuper(DigitalClock);\n\n  function DigitalClock() {\n    _classCallCheck(this, DigitalClock);\n\n    return _super.apply(this, arguments);\n  }\n\n  _createClass(DigitalClock, [{\n    key: \"render\",\n    value: function render() {\n      var date = new Date();\n      console.log(this.props.time.toLocaleString());\n      var h = date.getHours();\n      var m = date.getMinutes();\n      var s = (date.getSeconds() + date.getMilliseconds() / 1000.0).toFixed(3);\n      var session = \"AM\";\n\n      if (h == 0) {\n        h = 12;\n      }\n\n      if (h > 12) {\n        h = h - 12;\n        session = \"PM\";\n      }\n\n      h = h < 10 ? \"0\" + h : h;\n      m = m < 10 ? \"0\" + m : m;\n      s = s < 10 ? \"0\" + s : s;\n      var time = h + \":\" + m + \":\" + s + \" \" + session;\n      return __jsx(\"div\", {\n        className: \"clock\",\n        __self: this,\n        __source: {\n          fileName: _jsxFileName,\n          lineNumber: 26,\n          columnNumber: 13\n        }\n      }, time);\n    }\n  }]);\n\n  return DigitalClock;\n}(Component);\n\nDigitalClock.propTypes = {};\nDigitalClock.defaultProps = {};\nexport default DigitalClock;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/DigitalClock.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "DigitalClock",
+      "date",
+      "Date",
+      "console",
+      "log",
+      "props",
+      "time",
+      "toLocaleString",
+      "h",
+      "getHours",
+      "m",
+      "getMinutes",
+      "s",
+      "getSeconds",
+      "getMilliseconds",
+      "toFixed",
+      "session",
+      "propTypes",
+      "defaultProps"
+    ],
+    "mappings": ";;;;;;;;;;;;AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAO,oBAAP;;IAEMC,Y;;;;;;;;;;;;;6BACO;AACL,UAAMC,IAAI,GAAG,IAAIC,IAAJ,EAAb;AACAC,MAAAA,OAAO,CAACC,GAAR,CAAY,KAAKC,KAAL,CAAWC,IAAX,CAAgBC,cAAhB,EAAZ;AAEA,UAAIC,CAAC,GAAGP,IAAI,CAACQ,QAAL,EAAR;AACA,UAAIC,CAAC,GAAGT,IAAI,CAACU,UAAL,EAAR;AACA,UAAIC,CAAC,GAAG,CAACX,IAAI,CAACY,UAAL,KAAqBZ,IAAI,CAACa,eAAL,KAAyB,MAA/C,EAAwDC,OAAxD,CAAgE,CAAhE,CAAR;AACA,UAAIC,OAAO,GAAG,IAAd;;AACA,UAAIR,CAAC,IAAI,CAAT,EAAY;AACRA,QAAAA,CAAC,GAAG,EAAJ;AACH;;AACD,UAAIA,CAAC,GAAG,EAAR,EAAY;AACRA,QAAAA,CAAC,GAAGA,CAAC,GAAG,EAAR;AACAQ,QAAAA,OAAO,GAAG,IAAV;AACH;;AACDR,MAAAA,CAAC,GAAIA,CAAC,GAAG,EAAL,GAAW,MAAMA,CAAjB,GAAqBA,CAAzB;AACAE,MAAAA,CAAC,GAAIA,CAAC,GAAG,EAAL,GAAW,MAAMA,CAAjB,GAAqBA,CAAzB;AACAE,MAAAA,CAAC,GAAIA,CAAC,GAAG,EAAL,GAAW,MAAMA,CAAjB,GAAqBA,CAAzB;AAEA,UAAMN,IAAI,GAAGE,CAAC,GAAG,GAAJ,GAAUE,CAAV,GAAc,GAAd,GAAoBE,CAApB,GAAwB,GAAxB,GAA8BI,OAA3C;AACA,aACI;AAAK,QAAA,SAAS,EAAC,OAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,SAAwBV,IAAxB,CADJ;AAGH;;;;EAxBsBP,S;;AA2B3BC,YAAY,CAACiB,SAAb,GAAyB,EAAzB;AACAjB,YAAY,CAACkB,YAAb,GAA4B,EAA5B;AAEA,eAAelB,YAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport './DigitalClock.css';\n\nclass DigitalClock extends Component {\n    render() {\n        const date = new Date();\n        console.log(this.props.time.toLocaleString())\n\n        let h = date.getHours();\n        let m = date.getMinutes();\n        let s = (date.getSeconds() + (date.getMilliseconds() / 1000.0)).toFixed(3);\n        let session = \"AM\";\n        if (h == 0) {\n            h = 12;\n        }\n        if (h > 12) {\n            h = h - 12;\n            session = \"PM\";\n        }\n        h = (h < 10) ? \"0\" + h : h;\n        m = (m < 10) ? \"0\" + m : m;\n        s = (s < 10) ? \"0\" + s : s;\n\n        const time = h + \":\" + m + \":\" + s + \" \" + session;\n        return (\n            <div className=\"clock\">{time}</div>\n        );\n    }\n}\n\nDigitalClock.propTypes = {};\nDigitalClock.defaultProps = {};\n\nexport default DigitalClock;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

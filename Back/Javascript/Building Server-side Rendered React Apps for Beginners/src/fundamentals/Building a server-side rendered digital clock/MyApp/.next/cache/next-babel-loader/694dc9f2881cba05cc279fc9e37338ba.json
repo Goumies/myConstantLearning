@@ -1,0 +1,39 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/DigitalClock.js\";\nvar __jsx = React.createElement;\nimport React, { Component } from 'react';\nimport './DigitalClock.css';\n\nclass DigitalClock extends Component {\n  render() {\n    console.log(this.props.time);\n    const date = new Date(this.props.time);\n    let h = date.getHours();\n    let m = date.getMinutes();\n    let s = (date.getSeconds() + date.getMilliseconds() / 1000.0).toFixed(3);\n    let session = \"AM\";\n\n    if (h == 0) {\n      h = 12;\n    }\n\n    if (h > 12) {\n      h = h - 12;\n      session = \"PM\";\n    }\n\n    h = h < 10 ? \"0\" + h : h;\n    m = m < 10 ? \"0\" + m : m;\n    s = s < 10 ? \"0\" + s : s;\n    const time = h + \":\" + m + \":\" + s + \" \" + session;\n    return __jsx(\"div\", {\n      className: \"clock\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 26,\n        columnNumber: 13\n      }\n    }, time);\n  }\n\n}\n\nDigitalClock.propTypes = {};\nDigitalClock.defaultProps = {};\nexport default DigitalClock;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/DigitalClock.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "DigitalClock",
+      "render",
+      "console",
+      "log",
+      "props",
+      "time",
+      "date",
+      "Date",
+      "h",
+      "getHours",
+      "m",
+      "getMinutes",
+      "s",
+      "getSeconds",
+      "getMilliseconds",
+      "toFixed",
+      "session",
+      "propTypes",
+      "defaultProps"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAO,oBAAP;;AAEA,MAAMC,YAAN,SAA2BD,SAA3B,CAAqC;AACjCE,EAAAA,MAAM,GAAG;AACLC,IAAAA,OAAO,CAACC,GAAR,CAAY,KAAKC,KAAL,CAAWC,IAAvB;AACA,UAAMC,IAAI,GAAG,IAAIC,IAAJ,CAAS,KAAKH,KAAL,CAAWC,IAApB,CAAb;AAEA,QAAIG,CAAC,GAAGF,IAAI,CAACG,QAAL,EAAR;AACA,QAAIC,CAAC,GAAGJ,IAAI,CAACK,UAAL,EAAR;AACA,QAAIC,CAAC,GAAG,CAACN,IAAI,CAACO,UAAL,KAAqBP,IAAI,CAACQ,eAAL,KAAyB,MAA/C,EAAwDC,OAAxD,CAAgE,CAAhE,CAAR;AACA,QAAIC,OAAO,GAAG,IAAd;;AACA,QAAIR,CAAC,IAAI,CAAT,EAAY;AACRA,MAAAA,CAAC,GAAG,EAAJ;AACH;;AACD,QAAIA,CAAC,GAAG,EAAR,EAAY;AACRA,MAAAA,CAAC,GAAGA,CAAC,GAAG,EAAR;AACAQ,MAAAA,OAAO,GAAG,IAAV;AACH;;AACDR,IAAAA,CAAC,GAAIA,CAAC,GAAG,EAAL,GAAW,MAAMA,CAAjB,GAAqBA,CAAzB;AACAE,IAAAA,CAAC,GAAIA,CAAC,GAAG,EAAL,GAAW,MAAMA,CAAjB,GAAqBA,CAAzB;AACAE,IAAAA,CAAC,GAAIA,CAAC,GAAG,EAAL,GAAW,MAAMA,CAAjB,GAAqBA,CAAzB;AAEA,UAAMP,IAAI,GAAGG,CAAC,GAAG,GAAJ,GAAUE,CAAV,GAAc,GAAd,GAAoBE,CAApB,GAAwB,GAAxB,GAA8BI,OAA3C;AACA,WACI;AAAK,MAAA,SAAS,EAAC,OAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OAAwBX,IAAxB,CADJ;AAGH;;AAxBgC;;AA2BrCL,YAAY,CAACiB,SAAb,GAAyB,EAAzB;AACAjB,YAAY,CAACkB,YAAb,GAA4B,EAA5B;AAEA,eAAelB,YAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport './DigitalClock.css';\n\nclass DigitalClock extends Component {\n    render() {\n        console.log(this.props.time)\n        const date = new Date(this.props.time);\n\n        let h = date.getHours();\n        let m = date.getMinutes();\n        let s = (date.getSeconds() + (date.getMilliseconds() / 1000.0)).toFixed(3);\n        let session = \"AM\";\n        if (h == 0) {\n            h = 12;\n        }\n        if (h > 12) {\n            h = h - 12;\n            session = \"PM\";\n        }\n        h = (h < 10) ? \"0\" + h : h;\n        m = (m < 10) ? \"0\" + m : m;\n        s = (s < 10) ? \"0\" + s : s;\n\n        const time = h + \":\" + m + \":\" + s + \" \" + session;\n        return (\n            <div className=\"clock\">{time}</div>\n        );\n    }\n}\n\nDigitalClock.propTypes = {};\nDigitalClock.defaultProps = {};\n\nexport default DigitalClock;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

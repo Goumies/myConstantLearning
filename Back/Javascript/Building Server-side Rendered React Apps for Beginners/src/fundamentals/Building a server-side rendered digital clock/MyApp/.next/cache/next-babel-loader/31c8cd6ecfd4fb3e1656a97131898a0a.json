@@ -1,0 +1,37 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/index.js\";\nvar __jsx = React.createElement;\nimport React, { Component } from 'react';\nimport DigitalClock from \"../src/DigitalClock\";\n\nclass Index extends Component {\n  static async getInitialProps() {\n    return {\n      time: new Date().toISOString()\n    };\n  }\n\n  constructor(props) {\n    super(props);\n    this.state = {\n      time: props.time\n    };\n  }\n\n  tick() {\n    // replacing with new state\n    this.setState(() => {\n      return {\n        time: new Date().toISOString()\n      };\n    });\n  } // Once a class component is loaded and ready\n\n\n  componentDidMount() {\n    this.interval = setInterval(() => this.tick(), 1000);\n  } // If the component is removed from the page, the timer is cleared\n  // to avoid a memory leak with a 'dangling' timer\n\n\n  componentWillUnmount() {\n    clearInterval(this.interval);\n  }\n\n  render() {\n    return __jsx(DigitalClock, {\n      time: this.state.time,\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 40,\n        columnNumber: 16\n      }\n    });\n  }\n\n}\n\nexport default Index;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/index.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "DigitalClock",
+      "Index",
+      "getInitialProps",
+      "time",
+      "Date",
+      "toISOString",
+      "constructor",
+      "props",
+      "state",
+      "tick",
+      "setState",
+      "componentDidMount",
+      "interval",
+      "setInterval",
+      "componentWillUnmount",
+      "clearInterval",
+      "render"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,YAAP,MAAyB,qBAAzB;;AAEA,MAAMC,KAAN,SAAoBF,SAApB,CAA8B;AAE1B,eAAaG,eAAb,GAA+B;AAC3B,WAAQ;AACJC,MAAAA,IAAI,EAAE,IAAIC,IAAJ,GAAWC,WAAX;AADF,KAAR;AAGH;;AAEDC,EAAAA,WAAW,CAACC,KAAD,EAAQ;AACf,UAAMA,KAAN;AACA,SAAKC,KAAL,GAAa;AACTL,MAAAA,IAAI,EAAEI,KAAK,CAACJ;AADH,KAAb;AAGH;;AAEDM,EAAAA,IAAI,GAAG;AACH;AACA,SAAKC,QAAL,CAAc,MAAM;AAChB,aAAQ;AACJP,QAAAA,IAAI,EAAE,IAAIC,IAAJ,GAAWC,WAAX;AADF,OAAR;AAGH,KAJD;AAKH,GAtByB,CAwB1B;;;AACAM,EAAAA,iBAAiB,GAAE;AACf,SAAKC,QAAL,GAAgBC,WAAW,CAAC,MAAM,KAAKJ,IAAL,EAAP,EAAoB,IAApB,CAA3B;AACH,GA3ByB,CA6B1B;AACA;;;AACAK,EAAAA,oBAAoB,GAAG;AACnBC,IAAAA,aAAa,CAAC,KAAKH,QAAN,CAAb;AACH;;AAEDI,EAAAA,MAAM,GAAG;AACL,WAAO,MAAC,YAAD;AAAc,MAAA,IAAI,EAAE,KAAKR,KAAL,CAAWL,IAA/B;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,MAAP;AACH;;AArCyB;;AAwC9B,eAAeF,KAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport DigitalClock from \"../src/DigitalClock\";\n\nclass Index extends Component {\n\n    static async getInitialProps() {\n        return ({\n            time: new Date().toISOString()\n        });\n    }\n\n    constructor(props) {\n        super(props);\n        this.state = {\n            time: props.time\n        }\n    }\n\n    tick() {\n        // replacing with new state\n        this.setState(() => {\n            return ({\n                time: new Date().toISOString()\n            })\n        })\n    }\n\n    // Once a class component is loaded and ready\n    componentDidMount(){\n        this.interval = setInterval(() => this.tick(), 1000);\n    }\n\n    // If the component is removed from the page, the timer is cleared\n    // to avoid a memory leak with a 'dangling' timer\n    componentWillUnmount() {\n        clearInterval(this.interval);\n    }\n\n    render() {\n        return <DigitalClock time={this.state.time}></DigitalClock>\n    }\n}\n\nexport default Index;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

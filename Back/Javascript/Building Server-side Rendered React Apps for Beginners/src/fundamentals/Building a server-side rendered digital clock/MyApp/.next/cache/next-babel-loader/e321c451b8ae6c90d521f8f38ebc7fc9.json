@@ -1,0 +1,47 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/index.js\";\nvar __jsx = React.createElement;\nimport React, { Component } from 'react';\nimport DigitalClock from \"../src/DigitalClock\";\n\nclass Index extends Component {\n  // Next framework runs getInitialProps()\n  // before the component construction\n  static async getInitialProps() {\n    let promise = axios.get('http://localhost:4000/speakers').then(response => {\n      return {\n        hasErrored: false,\n        speakerData: response.data\n      };\n    }).catch(error => {\n      return {\n        hasErrored: true,\n        message: error.message\n      };\n    });\n    return promise;\n  } // getInitialProps() returns then\n\n\n  constructor(props) {\n    super(props);\n    console.log('Index:constructor called');\n    this.state = {\n      hasErrored: props.hasErrored,\n      message: props.message,\n      speakerData: props.speakerData\n    };\n  } // Once a class component is loaded and ready\n\n\n  componentDidMount() {\n    this.interval = setInterval(() => this.tick(), 1000);\n  } // If the component is removed from the page, the timer is cleared\n  // to avoid a memory leak with a 'dangling' timer\n\n\n  componentWillUnmount() {\n    clearInterval(this.interval);\n  }\n\n  render() {\n    return __jsx(DigitalClock, {\n      time: this.state.time,\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 48,\n        columnNumber: 16\n      }\n    });\n  }\n\n}\n\nexport default Index;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/index.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "DigitalClock",
+      "Index",
+      "getInitialProps",
+      "promise",
+      "axios",
+      "get",
+      "then",
+      "response",
+      "hasErrored",
+      "speakerData",
+      "data",
+      "catch",
+      "error",
+      "message",
+      "constructor",
+      "props",
+      "console",
+      "log",
+      "state",
+      "componentDidMount",
+      "interval",
+      "setInterval",
+      "tick",
+      "componentWillUnmount",
+      "clearInterval",
+      "render",
+      "time"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,YAAP,MAAyB,qBAAzB;;AAEA,MAAMC,KAAN,SAAoBF,SAApB,CAA8B;AAE1B;AACA;AACA,eAAaG,eAAb,GAA+B;AAC3B,QAAIC,OAAO,GAAGC,KAAK,CAACC,GAAN,CAAU,gCAAV,EACTC,IADS,CACJC,QAAQ,IAAI;AACd,aAAO;AACHC,QAAAA,UAAU,EAAE,KADT;AAEHC,QAAAA,WAAW,EAAEF,QAAQ,CAACG;AAFnB,OAAP;AAIH,KANS,EAOTC,KAPS,CAOHC,KAAK,IAAI;AACZ,aAAO;AACHJ,QAAAA,UAAU,EAAE,IADT;AAEHK,QAAAA,OAAO,EAAED,KAAK,CAACC;AAFZ,OAAP;AAIH,KAZS,CAAd;AAaA,WAAOV,OAAP;AACH,GAnByB,CAqB1B;;;AACAW,EAAAA,WAAW,CAACC,KAAD,EAAQ;AACf,UAAMA,KAAN;AACAC,IAAAA,OAAO,CAACC,GAAR,CAAY,0BAAZ;AACA,SAAKC,KAAL,GAAa;AACTV,MAAAA,UAAU,EAAEO,KAAK,CAACP,UADT;AAETK,MAAAA,OAAO,EAAEE,KAAK,CAACF,OAFN;AAGTJ,MAAAA,WAAW,EAAEM,KAAK,CAACN;AAHV,KAAb;AAKH,GA9ByB,CAgC1B;;;AACAU,EAAAA,iBAAiB,GAAE;AACf,SAAKC,QAAL,GAAgBC,WAAW,CAAC,MAAM,KAAKC,IAAL,EAAP,EAAoB,IAApB,CAA3B;AACH,GAnCyB,CAqC1B;AACA;;;AACAC,EAAAA,oBAAoB,GAAG;AACnBC,IAAAA,aAAa,CAAC,KAAKJ,QAAN,CAAb;AACH;;AAEDK,EAAAA,MAAM,GAAG;AACL,WAAO,MAAC,YAAD;AAAc,MAAA,IAAI,EAAE,KAAKP,KAAL,CAAWQ,IAA/B;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,MAAP;AACH;;AA7CyB;;AAgD9B,eAAezB,KAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport DigitalClock from \"../src/DigitalClock\";\n\nclass Index extends Component {\n\n    // Next framework runs getInitialProps()\n    // before the component construction\n    static async getInitialProps() {\n        let promise = axios.get('http://localhost:4000/speakers')\n            .then(response => {\n                return {\n                    hasErrored: false,\n                    speakerData: response.data\n                }\n            })\n            .catch(error => {\n                return {\n                    hasErrored: true,\n                    message: error.message\n                }\n            });\n        return promise;\n    }\n\n    // getInitialProps() returns then\n    constructor(props) {\n        super(props);\n        console.log('Index:constructor called');\n        this.state = {\n            hasErrored: props.hasErrored,\n            message: props.message,\n            speakerData: props.speakerData\n        }\n    }\n\n    // Once a class component is loaded and ready\n    componentDidMount(){\n        this.interval = setInterval(() => this.tick(), 1000);\n    }\n\n    // If the component is removed from the page, the timer is cleared\n    // to avoid a memory leak with a 'dangling' timer\n    componentWillUnmount() {\n        clearInterval(this.interval);\n    }\n\n    render() {\n        return <DigitalClock time={this.state.time}></DigitalClock>\n    }\n}\n\nexport default Index;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
