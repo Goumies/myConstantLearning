@@ -1,0 +1,24 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React, { Component } from 'react';\n\nclass Index extends Component {\n  // Next framework runs getInitialProps()\n  // before the component construction\n  static async getInitialProps() {\n    return {};\n  }\n\n  render() {\n    return __jsx(\"div\", null, __jsx(\"div\", {\n      className: \"container\"\n    }, __jsx(\"div\", {\n      className: \"row\"\n    }, __jsx(\"div\", {\n      className: \"col margintopbottom\"\n    }, __jsx(\"h2\", null, \"Home\"), __jsx(\"h6\", {\n      className: \"margintopbottom20\"\n    }, \"Silicon Valley Code Camp is a community event where developers learn from fellow developers.\")))));\n  }\n\n}\n\nIndex.defaultTypes = {};\nexport default Index;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/index.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "Index",
+      "getInitialProps",
+      "render",
+      "defaultTypes"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;;AAEA,MAAMC,KAAN,SAAoBD,SAApB,CAA8B;AAE1B;AACA;AACA,eAAaE,eAAb,GAA+B;AAC3B,WAAO,EAAP;AACH;;AAEDC,EAAAA,MAAM,GAAG;AACL,WACI,mBAEI;AAAK,MAAA,SAAS,EAAC;AAAf,OACI;AAAK,MAAA,SAAS,EAAC;AAAf,OACI;AAAK,MAAA,SAAS,EAAC;AAAf,OACI,yBADJ,EAEI;AAAI,MAAA,SAAS,EAAC;AAAd,sGAFJ,CADJ,CADJ,CAFJ,CADJ;AAiBH;;AA1ByB;;AA8B9BF,KAAK,CAACG,YAAN,GAAqB,EAArB;AAEA,eAAeH,KAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\n\nclass Index extends Component {\n\n    // Next framework runs getInitialProps()\n    // before the component construction\n    static async getInitialProps() {\n        return {};\n    }\n\n    render() {\n        return (\n            <div>\n\n                <div className=\"container\">\n                    <div className=\"row\">\n                        <div className=\"col margintopbottom\">\n                            <h2>Home</h2>\n                            <h6 className=\"margintopbottom20\">\n                                Silicon Valley Code Camp is a community event where\n                                developers learn from fellow developers.\n                            </h6>\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n        )\n    }\n}\n\nIndex.propTypes = {};\nIndex.defaultTypes = {};\n\nexport default Index;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

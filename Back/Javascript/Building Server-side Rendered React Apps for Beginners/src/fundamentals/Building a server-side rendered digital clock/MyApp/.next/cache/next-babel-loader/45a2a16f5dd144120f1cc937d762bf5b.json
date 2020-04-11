@@ -1,0 +1,44 @@
+{
+  "ast": null,
+  "code": "import _regeneratorRuntime from \"@babel/runtime/regenerator\";\nimport _classCallCheck from \"@babel/runtime/helpers/esm/classCallCheck\";\nimport _createClass from \"@babel/runtime/helpers/esm/createClass\";\nimport _inherits from \"@babel/runtime/helpers/esm/inherits\";\nimport _possibleConstructorReturn from \"@babel/runtime/helpers/esm/possibleConstructorReturn\";\nimport _getPrototypeOf from \"@babel/runtime/helpers/esm/getPrototypeOf\";\nvar __jsx = React.createElement;\n\nfunction _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }\n\nimport React, { Component } from 'react';\nimport axios from \"axios\";\n\nvar Speaker = /*#__PURE__*/function (_Component) {\n  _inherits(Speaker, _Component);\n\n  var _super = _createSuper(Speaker);\n\n  function Speaker() {\n    _classCallCheck(this, Speaker);\n\n    return _super.apply(this, arguments);\n  }\n\n  _createClass(Speaker, [{\n    key: \"render\",\n    value: function render() {\n      return __jsx(\"div\", {\n        className: \"container\"\n      }, __jsx(\"div\", {\n        className: \"row\"\n      }, __jsx(\"h2\", {\n        className: \"margintopbottom20\"\n      }, this.props.speakerDataOne.firstName, \" \", this.props.speakerDataOne.lastName), __jsx(\"p\", {\n        className: \"margintopbottom20\"\n      }, this.props.speakerDataOne.bio)));\n    }\n  }], [{\n    key: \"GetSpeakerUrl\",\n    value: function GetSpeakerUrl() {\n      if (false) {\n        return process.env.RESTURL_SPEAKER_PROD || publicRuntimeConfig.RESTURL_SPEAKER_PROD;\n      } else {\n        return process.env.RESTURL_SPEAKER_DEV;\n      }\n    }\n  }, {\n    key: \"getInitialProps\",\n    value: function getInitialProps(_ref) {\n      var query, promise;\n      return _regeneratorRuntime.async(function getInitialProps$(_context) {\n        while (1) {\n          switch (_context.prev = _context.next) {\n            case 0:\n              query = _ref.query;\n              promise = axios.get(\"\".concat(Speaker.GetSpeakerUrl(), \"/\").concat(query.speakerId)).then(function (response) {\n                return {\n                  hasErrored: false,\n                  speakerDataOne: response.data\n                };\n              })[\"catch\"](function (error) {\n                return {\n                  hasErrored: true,\n                  message: error.message\n                };\n              });\n              return _context.abrupt(\"return\", promise);\n\n            case 3:\n            case \"end\":\n              return _context.stop();\n          }\n        }\n      }, null, null, null, Promise);\n    }\n  }]);\n\n  return Speaker;\n}(Component);\n\nSpeaker.defaultProps = {};\nexport default Speaker;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "axios",
+      "Speaker",
+      "props",
+      "speakerDataOne",
+      "firstName",
+      "lastName",
+      "bio",
+      "process",
+      "env",
+      "RESTURL_SPEAKER_PROD",
+      "publicRuntimeConfig",
+      "RESTURL_SPEAKER_DEV",
+      "query",
+      "promise",
+      "get",
+      "GetSpeakerUrl",
+      "speakerId",
+      "then",
+      "response",
+      "hasErrored",
+      "data",
+      "error",
+      "message",
+      "defaultProps"
+    ],
+    "mappings": ";;;;;;;;;;;;AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,KAAP,MAAkB,OAAlB;;IAEMC,O;;;;;;;;;;;;;6BA6BO;AACL,aACI;AAAK,QAAA,SAAS,EAAC;AAAf,SACI;AAAK,QAAA,SAAS,EAAC;AAAf,SACI;AAAI,QAAA,SAAS,EAAC;AAAd,SAAmC,KAAKC,KAAL,CAAWC,cAAX,CAA0BC,SAA7D,OAAyE,KAAKF,KAAL,CAAWC,cAAX,CAA0BE,QAAnG,CADJ,EAEI;AAAG,QAAA,SAAS,EAAC;AAAb,SAAkC,KAAKH,KAAL,CAAWC,cAAX,CAA0BG,GAA5D,CAFJ,CADJ,CADJ;AAQH;;;oCApCsB;AACnB,iBAA2C;AACvC,eAAOC,OAAO,CAACC,GAAR,CAAYC,oBAAZ,IACAC,mBAAmB,CAACD,oBAD3B;AAEH,OAHD,MAGO;AACH,eAAOF,OAAO,CAACC,GAAR,CAAYG,mBAAnB;AACH;AACJ;;;;;;;;;AAE6BC,cAAAA,K,QAAAA,K;AAEtBC,cAAAA,O,GAAUb,KAAK,CACnBc,GADc,WACPb,OAAO,CAACc,aAAR,EADO,cACoBH,KAAK,CAACI,SAD1B,GAETC,IAFS,CAEJ,UAAAC,QAAQ,EAAI;AACd,uBAAO;AACHC,kBAAAA,UAAU,EAAE,KADT;AAEHhB,kBAAAA,cAAc,EAAEe,QAAQ,CAACE;AAFtB,iBAAP;AAIH,eAPS,WAOD,UAAAC,KAAK,EAAI;AACd,uBAAO;AACHF,kBAAAA,UAAU,EAAE,IADT;AAEHG,kBAAAA,OAAO,EAAED,KAAK,CAACC;AAFZ,iBAAP;AAIH,eAZS,C;+CAaPT,O;;;;;;;;;;;;EA1BOd,S;;AA0CtBE,OAAO,CAACsB,YAAR,GAAuB,EAAvB;AAEA,eAAetB,OAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport axios from \"axios\";\n\nclass Speaker extends Component {\n\n    static GetSpeakerUrl() {\n        if (process.env.NODE_ENV === \"production\") {\n            return process.env.RESTURL_SPEAKER_PROD\n                || publicRuntimeConfig.RESTURL_SPEAKER_PROD;\n        } else {\n            return process.env.RESTURL_SPEAKER_DEV;\n        }\n    }\n\n    static async getInitialProps({query}) {\n\n        var promise = axios.\n        get(`${Speaker.GetSpeakerUrl()}/${query.speakerId}`)\n            .then(response => {\n                return {\n                    hasErrored: false,\n                    speakerDataOne: response.data\n                };\n            }).catch(error => {\n                return {\n                    hasErrored: true,\n                    message: error.message\n                }\n            });\n        return promise;\n    }\n\n    render() {\n        return (\n            <div className='container'>\n                <div className=\"row\">\n                    <h2 className='margintopbottom20'>{this.props.speakerDataOne.firstName} {this.props.speakerDataOne.lastName}</h2>\n                    <p className='margintopbottom20'>{this.props.speakerDataOne.bio}</p>\n                </div>\n            </div>\n        );\n    }\n}\n\nSpeaker.propTypes = {};\nSpeaker.defaultProps = {};\n\nexport default Speaker;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -106,17 +106,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/config */ "next/config");
+/* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_config__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+const {
+  serverRuntimeConfig,
+  publicRuntimeConfig
+} = next_config__WEBPACK_IMPORTED_MODULE_2___default()();
+
 class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  // query = option for URL parameter
+  static GetSpeakerUrl() {
+    if (false) {} else {
+      return "http://localhost:4000/speakers";
+    }
+  }
+
   static async getInitialProps({
     query
   }) {
-    var promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(`http://localhost:4000/speakers/${query.speakerId}`).then(response => {
+    var promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(`${Speaker.GetSpeakerUrl()}/${query.speakerId}`).then(response => {
       return {
         hasErrored: false,
         speakerDataOne: response.data
@@ -136,7 +148,7 @@ class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25,
+        lineNumber: 37,
         columnNumber: 13
       }
     }, __jsx("div", {
@@ -144,7 +156,7 @@ class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26,
+        lineNumber: 38,
         columnNumber: 17
       }
     }, __jsx("h2", {
@@ -152,7 +164,7 @@ class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27,
+        lineNumber: 39,
         columnNumber: 21
       }
     }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
@@ -160,7 +172,7 @@ class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 28,
+        lineNumber: 40,
         columnNumber: 21
       }
     }, this.props.speakerDataOne.bio)));
@@ -174,7 +186,7 @@ Speaker.defaultProps = {};
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!********************************!*\
   !*** multi ./pages/speaker.js ***!
   \********************************/
@@ -194,6 +206,17 @@ module.exports = __webpack_require__(/*! /Users/romyalula/IdeaProjects/Goumies/m
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
+
+/***/ }),
+
+/***/ "next/config":
+/*!******************************!*\
+  !*** external "next/config" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/config");
 
 /***/ }),
 

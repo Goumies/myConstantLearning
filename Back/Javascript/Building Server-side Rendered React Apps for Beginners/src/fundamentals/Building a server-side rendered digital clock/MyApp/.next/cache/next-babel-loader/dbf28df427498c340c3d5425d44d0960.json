@@ -1,0 +1,53 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React, { Component } from 'react';\nimport axios from 'axios';\nimport SpeakerCard from \"../src/SpeakerCard\";\nimport getConfig from 'next/config';\nconst {\n  serverRuntimeConfig,\n  publicRuntimeConfig\n} = getConfig();\n\nclass Speakers extends Component {\n  static GetSpeakerURL() {\n    if (false) return process.env.RESTURL_SPEAKERS_PROD || publicRuntimeConfig.RESTURL_SPEAKERS_PROD;\n    return process.env.RESTURL_SPEAKERS_DEV;\n  } // Next framework runs getInitialProps()\n  // before the component construction\n\n\n  static async getInitialProps() {\n    let promise = axios.get(Speakers.GetSpeakerURL()).then(response => {\n      return {\n        hasErrored: false,\n        speakerData: response.data\n      };\n    }).catch(error => {\n      return {\n        hasErrored: true,\n        message: error.message\n      };\n    });\n    return promise;\n  } // getInitialProps() returns then\n\n\n  constructor(props) {\n    super(props);\n    console.log('Speakers:constructor called');\n    this.state = {\n      hasErrored: props.hasErrored,\n      message: props.message,\n      speakerData: props.speakerData\n    };\n  } // Once a class component is loaded and ready\n\n\n  componentDidMount() {} // If the component is removed from the page, the timer is cleared\n  // to avoid a memory leak with a 'dangling' timer\n\n\n  componentWillUnmount() {}\n\n  render() {\n    return __jsx(\"div\", {\n      className: \"container\"\n    }, __jsx(\"div\", {\n      className: \"row\"\n    }, __jsx(\"div\", {\n      className: \"card-deck\"\n    }, this.state.speakerData.map(speaker => {\n      return __jsx(\"div\", {\n        className: \"card col-4 cardmin margintopbottom20\",\n        key: speaker.id\n      }, __jsx(SpeakerCard, {\n        speaker: speaker\n      }));\n    }))));\n  }\n\n}\n\nexport default Speakers;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speakers.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "axios",
+      "SpeakerCard",
+      "getConfig",
+      "serverRuntimeConfig",
+      "publicRuntimeConfig",
+      "Speakers",
+      "GetSpeakerURL",
+      "process",
+      "env",
+      "RESTURL_SPEAKERS_PROD",
+      "RESTURL_SPEAKERS_DEV",
+      "getInitialProps",
+      "promise",
+      "get",
+      "then",
+      "response",
+      "hasErrored",
+      "speakerData",
+      "data",
+      "catch",
+      "error",
+      "message",
+      "constructor",
+      "props",
+      "console",
+      "log",
+      "state",
+      "componentDidMount",
+      "componentWillUnmount",
+      "render",
+      "map",
+      "speaker",
+      "id"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,KAAP,MAAkB,OAAlB;AACA,OAAOC,WAAP,MAAwB,oBAAxB;AAEA,OAAOC,SAAP,MAAsB,aAAtB;AACA,MAAM;AAACC,EAAAA,mBAAD;AAAsBC,EAAAA;AAAtB,IAA6CF,SAAS,EAA5D;;AAEA,MAAMG,QAAN,SAAuBN,SAAvB,CAAiC;AAE7B,SAAOO,aAAP,GAAuB;AACnB,eACI,OAAOC,OAAO,CAACC,GAAR,CAAYC,qBAAZ,IACJL,mBAAmB,CAACK,qBADvB;AAEJ,WAAOF,OAAO,CAACC,GAAR,CAAYE,oBAAnB;AACH,GAP4B,CAS7B;AACA;;;AACA,eAAaC,eAAb,GAA+B;AAC3B,QAAIC,OAAO,GAAGZ,KAAK,CAACa,GAAN,CAAUR,QAAQ,CAACC,aAAT,EAAV,EACTQ,IADS,CACJC,QAAQ,IAAI;AACd,aAAO;AACHC,QAAAA,UAAU,EAAE,KADT;AAEHC,QAAAA,WAAW,EAAEF,QAAQ,CAACG;AAFnB,OAAP;AAIH,KANS,EAOTC,KAPS,CAOHC,KAAK,IAAI;AACZ,aAAO;AACHJ,QAAAA,UAAU,EAAE,IADT;AAEHK,QAAAA,OAAO,EAAED,KAAK,CAACC;AAFZ,OAAP;AAIH,KAZS,CAAd;AAaA,WAAOT,OAAP;AACH,GA1B4B,CA4B7B;;;AACAU,EAAAA,WAAW,CAACC,KAAD,EAAQ;AACf,UAAMA,KAAN;AACAC,IAAAA,OAAO,CAACC,GAAR,CAAY,6BAAZ;AACA,SAAKC,KAAL,GAAa;AACTV,MAAAA,UAAU,EAAEO,KAAK,CAACP,UADT;AAETK,MAAAA,OAAO,EAAEE,KAAK,CAACF,OAFN;AAGTJ,MAAAA,WAAW,EAAEM,KAAK,CAACN;AAHV,KAAb;AAKH,GArC4B,CAuC7B;;;AACAU,EAAAA,iBAAiB,GAAG,CACnB,CAzC4B,CA2C7B;AACA;;;AACAC,EAAAA,oBAAoB,GAAG,CACtB;;AAEDC,EAAAA,MAAM,GAAG;AACL,WACI;AAAK,MAAA,SAAS,EAAC;AAAf,OACI;AAAK,MAAA,SAAS,EAAC;AAAf,OACI;AAAK,MAAA,SAAS,EAAC;AAAf,OACK,KAAKH,KAAL,CAAWT,WAAX,CAAuBa,GAAvB,CAA4BC,OAAD,IAAa;AACrC,aAAO;AAAK,QAAA,SAAS,EAAC,sCAAf;AAAsD,QAAA,GAAG,EAAEA,OAAO,CAACC;AAAnE,SACH,MAAC,WAAD;AAAa,QAAA,OAAO,EAAED;AAAtB,QADG,CAAP;AAEO,KAHV,CADL,CADJ,CADJ,CADJ;AAaH;;AA9D4B;;AAiEjC,eAAe1B,QAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport axios from 'axios';\nimport SpeakerCard from \"../src/SpeakerCard\";\n\nimport getConfig from 'next/config';\nconst {serverRuntimeConfig, publicRuntimeConfig} = getConfig();\n\nclass Speakers extends Component {\n\n    static GetSpeakerURL() {\n        if(process.env.NODE_ENV === 'production')\n            return process.env.RESTURL_SPEAKERS_PROD\n            || publicRuntimeConfig.RESTURL_SPEAKERS_PROD;\n        return process.env.RESTURL_SPEAKERS_DEV;\n    }\n\n    // Next framework runs getInitialProps()\n    // before the component construction\n    static async getInitialProps() {\n        let promise = axios.get(Speakers.GetSpeakerURL())\n            .then(response => {\n                return {\n                    hasErrored: false,\n                    speakerData: response.data\n                }\n            })\n            .catch(error => {\n                return {\n                    hasErrored: true,\n                    message: error.message\n                }\n            });\n        return promise;\n    }\n\n    // getInitialProps() returns then\n    constructor(props) {\n        super(props);\n        console.log('Speakers:constructor called');\n        this.state = {\n            hasErrored: props.hasErrored,\n            message: props.message,\n            speakerData: props.speakerData\n        }\n    }\n\n    // Once a class component is loaded and ready\n    componentDidMount() {\n    }\n\n    // If the component is removed from the page, the timer is cleared\n    // to avoid a memory leak with a 'dangling' timer\n    componentWillUnmount() {\n    }\n\n    render() {\n        return (\n            <div className=\"container\">\n                <div className=\"row\">\n                    <div className=\"card-deck\">\n                        {this.state.speakerData.map((speaker) => {\n                            return <div className=\"card col-4 cardmin margintopbottom20\" key={speaker.id}>\n                                <SpeakerCard speaker={speaker}/>\n                            </div>}\n                        )}\n                    </div>\n                </div>\n            </div>\n        )\n    }\n}\n\nexport default Speakers;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

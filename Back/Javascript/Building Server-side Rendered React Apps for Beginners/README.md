@@ -32,6 +32,7 @@ Next.js, SSR React Framework
 axios : node lib that lets us process REST calls easily
 json-server : for dev time, place to get REST data from
               no need to run it on production time
+              /!\ Always run `npm run json-server`. (localhost:4000)
               
 ## Difference between client and server-side routing
 
@@ -73,9 +74,9 @@ json-server : for dev time, place to get REST data from
     implements page layouts
     = hook to surround the component created normally in /pages
     with our own components => Headers Menus...
-    = good place to put bootstrap CSS imports
+    = good place to manage Security tokens
     
-Client-side Routing
+## Client-side Routing
  next Link element
     Without URL parameters : string
     ```javascript jsx
@@ -100,6 +101,41 @@ Client-side Routing
     The browser History API is used to set the URL to the 'as' value.
     After the Link route is used, the redirection takes the value of 'as' 
     
+`npm run dev` = next launches an Express Web server => server.js
+
+## Server-side Routing
+`node server.js` = node launches an Express Web server => server.js
+    
+    ```javascript
+        const server = express();
+        
+            server.get('/speaker/:speakerId', (req, res) => {
+                const actualPage = '/speaker';
+                const queryParams = {speakerId: req.params.speakerId};
+                app.render(req, res, actualPage, queryParams);
+            });
+    ```
+    
+## Deploying your app to a Node server and Production
+### Learn about using environmental variables
+    Add configuration management
+    
+    
+    Manager production setting
+    
+    
+    Set REST URLs
+    
+    
+    /!\ `npm run dev` always sets process.env.NODE_ENV to "development
+           = next overwrites the value of NODE_ENV
+           So we must run `node server.js` to be in production
+    
+
+### Build a Docker Image out of your Node web app
+### Run Docker Image locally
+### Publish Docker Image locally to a public URL on a cloud host
+
 ---
 ## React Fundamentals
 ## Components

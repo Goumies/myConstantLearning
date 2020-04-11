@@ -2,12 +2,23 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import SpeakerCard from "../src/SpeakerCard";
 
+import getConfig from 'next/config';
+
+const {serverRuntimeConfig, publicRuntimeConfig} = getConfig();
+
 class Speakers extends Component {
+
+    static GetSpeakerURL() {
+        if (process.env.NODE_ENV === 'production')
+            return process.env.RESTURL_SPEAKERS_PROD
+                || publicRuntimeConfig.RESTURL_SPEAKERS_PROD;
+        return process.env.RESTURL_SPEAKERS_DEV;
+    }
 
     // Next framework runs getInitialProps()
     // before the component construction
     static async getInitialProps() {
-        let promise = axios.get('http://localhost:4000/speakers')
+        let promise = axios.get(Speakers.GetSpeakerURL())
             .then(response => {
                 return {
                     hasErrored: false,
@@ -48,10 +59,11 @@ class Speakers extends Component {
             <div className="container">
                 <div className="row">
                     <div className="card-deck">
-                        {this.state.speakerData.map((speaker) =>
-                            <div className="card col-4 cardmin margintopbottom20" key={speaker.id}>
+                        {this.state.speakerData.map((speaker) => {
+                            return <div className="card col-4 cardmin margintopbottom20" key={speaker.id}>
                                 <SpeakerCard speaker={speaker}/>
                             </div>
+                        }
                         )}
                     </div>
                 </div>

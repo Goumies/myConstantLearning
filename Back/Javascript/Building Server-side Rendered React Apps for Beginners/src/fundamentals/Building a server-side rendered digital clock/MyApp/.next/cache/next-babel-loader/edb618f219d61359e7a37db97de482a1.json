@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React, { Component } from \"react\";\nimport Link from 'next/link';\n\nclass SpeakerCard extends Component {\n  render() {\n    return __jsx(\"div\", null, __jsx(\"img\", {\n      className: \"card-img-top\",\n      src: `/speakers/Speaker-${this.props.speaker.id}.jpg`\n    }), __jsx(\"div\", {\n      className: \"card-body\"\n    }, __jsx(Link, {\n      href: {\n        pathname: '/speaker',\n        query: {\n          speakerId: this.props.speaker.id\n        }\n      },\n      as: `speaker/${this.props.speaker.id}`\n    }, __jsx(\"a\", {\n      className: \"btn btn-lg btn-block btn-outline-primary\"\n    }, \"Details\")), __jsx(\"h4\", {\n      className: \"card-title\"\n    }, this.props.speaker.userFirstName, \" \", this.props.speaker.userLastName, \" \"), __jsx(\"p\", {\n      className: \"card-text\"\n    }, this.props.speaker.bioShort)));\n  }\n\n}\n\nexport default SpeakerCard;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/SpeakerCard.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "Link",
+      "SpeakerCard",
+      "render",
+      "props",
+      "speaker",
+      "id",
+      "pathname",
+      "query",
+      "speakerId",
+      "userFirstName",
+      "userLastName",
+      "bioShort"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,IAAP,MAAiB,WAAjB;;AAEA,MAAMC,WAAN,SAA0BF,SAA1B,CAAoC;AAEhCG,EAAAA,MAAM,GAAG;AACL,WACI,mBACI;AAAK,MAAA,SAAS,EAAC,cAAf;AAA8B,MAAA,GAAG,EAAG,qBAAoB,KAAKC,KAAL,CAAWC,OAAX,CAAmBC,EAAG;AAA9E,MADJ,EAEI;AAAK,MAAA,SAAS,EAAC;AAAf,OACI,MAAC,IAAD;AACI,MAAA,IAAI,EAAE;AACFC,QAAAA,QAAQ,EAAE,UADR;AACoBC,QAAAA,KAAK,EACvB;AACIC,UAAAA,SAAS,EAAE,KAAKL,KAAL,CAAWC,OAAX,CAAmBC;AADlC;AAFF,OADV;AAOI,MAAA,EAAE,EAAG,WAAU,KAAKF,KAAL,CAAWC,OAAX,CAAmBC,EAAG;AAPzC,OAQI;AAAG,MAAA,SAAS,EAAC;AAAb,iBARJ,CADJ,EAaI;AAAI,MAAA,SAAS,EAAC;AAAd,OAA4B,KAAKF,KAAL,CAAWC,OAAX,CAAmBK,aAA/C,OAA+D,KAAKN,KAAL,CAAWC,OAAX,CAAmBM,YAAlF,MAbJ,EAcI;AAAG,MAAA,SAAS,EAAC;AAAb,OAA0B,KAAKP,KAAL,CAAWC,OAAX,CAAmBO,QAA7C,CAdJ,CAFJ,CADJ;AAqBH;;AAxB+B;;AA2BpC,eAAeV,WAAf",
+    "sourcesContent": [
+      "import React, {Component} from \"react\";\nimport Link from 'next/link';\n\nclass SpeakerCard extends Component {\n\n    render() {\n        return (\n            <div>\n                <img className=\"card-img-top\" src={`/speakers/Speaker-${this.props.speaker.id}.jpg`}/>\n                <div className=\"card-body\">\n                    <Link\n                        href={{\n                            pathname: '/speaker', query:\n                                {\n                                    speakerId: this.props.speaker.id\n                                }\n                        }}\n                        as={`speaker/${this.props.speaker.id}`}>\n                        <a className=\"btn btn-lg btn-block btn-outline-primary\">\n                            Details\n                        </a>\n                    </Link>\n                    <h4 className=\"card-title\">{this.props.speaker.userFirstName} {this.props.speaker.userLastName} </h4>\n                    <p className=\"card-text\">{this.props.speaker.bioShort}</p>\n                </div>\n            </div>\n        );\n    }\n}\n\nexport default SpeakerCard;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

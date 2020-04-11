@@ -22,11 +22,15 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/sessions": [
+    "/next/dist/pages/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
     "/speaker": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/speakers": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

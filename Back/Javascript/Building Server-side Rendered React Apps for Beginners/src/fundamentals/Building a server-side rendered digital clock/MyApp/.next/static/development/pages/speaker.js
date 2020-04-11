@@ -2035,6 +2035,33 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/next/dist/next-server/lib/runtime-config.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/next/dist/next-server/lib/runtime-config.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var runtimeConfig;
+
+exports["default"] = function () {
+  return runtimeConfig;
+};
+
+function setConfig(configValue) {
+  runtimeConfig = configValue;
+}
+
+exports.setConfig = setConfig;
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -3001,6 +3028,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/config */ "./node_modules/next/dist/next-server/lib/runtime-config.js");
+/* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_config__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -3016,6 +3045,11 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+
+
+var _getConfig = next_config__WEBPACK_IMPORTED_MODULE_8___default()(),
+    serverRuntimeConfig = _getConfig.serverRuntimeConfig,
+    publicRuntimeConfig = _getConfig.publicRuntimeConfig;
 
 var Speaker = /*#__PURE__*/function (_Component) {
   Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(Speaker, _Component);
@@ -3036,7 +3070,7 @@ var Speaker = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 25,
+          lineNumber: 37,
           columnNumber: 13
         }
       }, __jsx("div", {
@@ -3044,7 +3078,7 @@ var Speaker = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26,
+          lineNumber: 38,
           columnNumber: 17
         }
       }, __jsx("h2", {
@@ -3052,7 +3086,7 @@ var Speaker = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27,
+          lineNumber: 39,
           columnNumber: 21
         }
       }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
@@ -3060,14 +3094,20 @@ var Speaker = /*#__PURE__*/function (_Component) {
         __self: this,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28,
+          lineNumber: 40,
           columnNumber: 21
         }
       }, this.props.speakerDataOne.bio)));
     }
   }], [{
+    key: "GetSpeakerUrl",
+    value: function GetSpeakerUrl() {
+      if (false) {} else {
+        return "http://localhost:4000/speakers";
+      }
+    }
+  }, {
     key: "getInitialProps",
-    // query = option for URL parameter
     value: function getInitialProps(_ref) {
       var query, promise;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getInitialProps$(_context) {
@@ -3075,7 +3115,7 @@ var Speaker = /*#__PURE__*/function (_Component) {
           switch (_context.prev = _context.next) {
             case 0:
               query = _ref.query;
-              promise = axios__WEBPACK_IMPORTED_MODULE_7___default.a.get("http://localhost:4000/speakers/".concat(query.speakerId)).then(function (response) {
+              promise = axios__WEBPACK_IMPORTED_MODULE_7___default.a.get("".concat(Speaker.GetSpeakerUrl(), "/").concat(query.speakerId)).then(function (response) {
                 return {
                   hasErrored: false,
                   speakerDataOne: response.data
@@ -3106,7 +3146,7 @@ Speaker.defaultProps = {};
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -3129,5 +3169,5 @@ module.exports = dll_2adc2403d89adc16ead0;
 
 /***/ })
 
-},[[4,"static/runtime/webpack.js"]]]);
+},[[5,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=speaker.js.map

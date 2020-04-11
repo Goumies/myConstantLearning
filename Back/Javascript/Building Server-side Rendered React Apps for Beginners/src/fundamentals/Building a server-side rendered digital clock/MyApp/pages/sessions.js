@@ -3,8 +3,17 @@ import axios from "axios";
 import SessionCard from "../src/SessionCard";
 
 class Sessions extends Component {
+    static GetSessionsUrl() {
+        if (process.env.NODE_ENV === "production") {
+            return process.env.RESTURL_SESSIONS_PROD
+                || publicRuntimeConfig.RESTURL_SESSIONS_PROD;
+        } else {
+            return process.env.RESTURL_SESSIONS_DEV;
+        }
+    }
+
     static async getInitialProps() {
-        let promise = axios.get('http://localhost:4000/sessions')
+        var promise = axios.get(Sessions.GetSessionsUrl())
             .then(response => {
                 return {
                     hasErrored: false,

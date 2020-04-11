@@ -1,0 +1,20 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React from 'react';\nexport default function Footer() {\n  return __jsx(\"div\", {\n    className: \"jumbotron text-center\"\n  }, __jsx(\"h7\", null, __jsx(\"b\", null, \"Silicon Valley Code Camp 2018\"), \" is Hosted by PayPal in San Jose at their Town Hall location. 2121 North First Street. \", __jsx(\"b\", null, \"October 13-14 2018\")));\n}",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Footer.js"
+    ],
+    "names": [
+      "React",
+      "Footer"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,MAAkB,OAAlB;AAEA,eAAe,SAASC,MAAT,GAAkB;AAC7B,SACI;AAAK,IAAA,SAAS,EAAC;AAAf,KACI,kBAAI,iDAAJ,6FAC0D,sCAD1D,CADJ,CADJ;AAMH",
+    "sourcesContent": [
+      "import React from 'react';\n\nexport default function Footer() {\n    return (\n        <div className=\"jumbotron text-center\">\n            <h7><b>Silicon Valley Code Camp 2018</b> is Hosted by PayPal in San Jose\n                at their Town Hall location. 2121 North First Street. <b>October 13-14 2018</b></h7>\n        </div>\n    );\n}\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

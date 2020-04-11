@@ -1,0 +1,26 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React from 'react';\nimport App from 'next/app';\nimport { Layout } from \"../src/Layout\";\nexport default class MyApp extends App {\n  render() {\n    const {\n      Component,\n      pageProps\n    } = this.props;\n    return __jsx(Layout, null, __jsx(Component, pageProps));\n  }\n\n}",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/_app.js"
+    ],
+    "names": [
+      "React",
+      "App",
+      "Layout",
+      "MyApp",
+      "render",
+      "Component",
+      "pageProps",
+      "props"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,MAAkB,OAAlB;AACA,OAAOC,GAAP,MAAgB,UAAhB;AACA,SAAQC,MAAR,QAAqB,eAArB;AAEA,eAAe,MAAMC,KAAN,SAAoBF,GAApB,CAAwB;AACnCG,EAAAA,MAAM,GAAG;AACL,UAAM;AAACC,MAAAA,SAAD;AAAYC,MAAAA;AAAZ,QAAyB,KAAKC,KAApC;AACA,WACI,MAAC,MAAD,QACI,MAAC,SAAD,EAAeD,SAAf,CADJ,CADJ;AAKH;;AARkC",
+    "sourcesContent": [
+      "import React from 'react';\nimport App from 'next/app';\nimport {Layout} from \"../src/Layout\";\n\nexport default class MyApp extends App {\n    render() {\n        const {Component, pageProps} = this.props\n        return (\n            <Layout>\n                <Component {...pageProps} />\n            </Layout>\n        );\n    }\n}"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
