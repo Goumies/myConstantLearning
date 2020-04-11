@@ -1,0 +1,26 @@
+{
+  "ast": null,
+  "code": "import _classCallCheck from \"@babel/runtime/helpers/esm/classCallCheck\";\nimport _createClass from \"@babel/runtime/helpers/esm/createClass\";\nimport _inherits from \"@babel/runtime/helpers/esm/inherits\";\nimport _possibleConstructorReturn from \"@babel/runtime/helpers/esm/possibleConstructorReturn\";\nimport _getPrototypeOf from \"@babel/runtime/helpers/esm/getPrototypeOf\";\nvar _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Layout.js\";\nvar __jsx = React.createElement;\n\nfunction _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }\n\nimport React from 'react';\nimport 'bootstrap/dist/css/bootstrap.min.css';\nimport '../css/site.css';\nimport Header from \"./Header\";\nimport Menu from \"./Menu\";\nimport Footer from \"./Footer\";\n\nvar Layout = /*#__PURE__*/function (_React$Component) {\n  _inherits(Layout, _React$Component);\n\n  var _super = _createSuper(Layout);\n\n  function Layout() {\n    _classCallCheck(this, Layout);\n\n    return _super.apply(this, arguments);\n  }\n\n  _createClass(Layout, [{\n    key: \"render\",\n    value: function render() {\n      var children = this.props.children;\n      return __jsx(React.Fragment, null, __jsx(Header, {\n        __self: this,\n        __source: {\n          fileName: _jsxFileName,\n          lineNumber: 14,\n          columnNumber: 17\n        }\n      }), __jsx(Menu, {\n        __self: this,\n        __source: {\n          fileName: _jsxFileName,\n          lineNumber: 15,\n          columnNumber: 17\n        }\n      }), children, __jsx(Footer, {\n        __self: this,\n        __source: {\n          fileName: _jsxFileName,\n          lineNumber: 17,\n          columnNumber: 17\n        }\n      }));\n    }\n  }]);\n\n  return Layout;\n}(React.Component);\n\nexport { Layout as default };",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Layout.js"
+    ],
+    "names": [
+      "React",
+      "Header",
+      "Menu",
+      "Footer",
+      "Layout",
+      "children",
+      "props",
+      "Component"
+    ],
+    "mappings": ";;;;;;;;;;;;AAAA,OAAOA,KAAP,MAAkB,OAAlB;AAEA,OAAO,sCAAP;AACA,OAAO,iBAAP;AACA,OAAOC,MAAP,MAAmB,UAAnB;AACA,OAAOC,IAAP,MAAiB,QAAjB;AACA,OAAOC,MAAP,MAAmB,UAAnB;;IAEqBC,M;;;;;;;;;;;;;6BACR;AAAA,UACEC,QADF,GACc,KAAKC,KADnB,CACED,QADF;AAEL,aACI,4BACI,MAAC,MAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,QADJ,EAEI,MAAC,IAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,QAFJ,EAGKA,QAHL,EAII,MAAC,MAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,QAJJ,CADJ;AAQH;;;;EAX+BL,KAAK,CAACO,S;;SAArBH,M",
+    "sourcesContent": [
+      "import React from 'react';\n\nimport 'bootstrap/dist/css/bootstrap.min.css';\nimport '../css/site.css';\nimport Header from \"./Header\";\nimport Menu from \"./Menu\";\nimport Footer from \"./Footer\";\n\nexport default class Layout extends React.Component {\n    render() {\n        const {children} = this.props\n        return (\n            <>\n                <Header />\n                <Menu />\n                {children}\n                <Footer />\n            </>\n        );\n    }\n}"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

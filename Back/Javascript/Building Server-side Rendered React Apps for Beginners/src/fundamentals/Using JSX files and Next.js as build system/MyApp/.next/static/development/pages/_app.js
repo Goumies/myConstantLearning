@@ -441,7 +441,7 @@
     /***/
     "./node_modules/@babel/runtime/regenerator/index.js":
     /*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  !*** ./node_modules/@babel/runtime/regenerator/speakers.js ***!
   \**********************************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {
@@ -455,7 +455,7 @@
     /***/
     "./node_modules/native-url/dist/index.js":
     /*!***********************************************!*\
-  !*** ./node_modules/native-url/dist/index.js ***!
+  !*** ./node_modules/native-url/dist/speakers.js ***!
   \***********************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {
@@ -538,7 +538,7 @@
         exports.parse = f, exports.format = o, exports.resolve = d, exports.resolveObject = function (e, t) {
             return f(d(e, t))
         };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=speakers.js.map
 
 
         /***/
@@ -2435,7 +2435,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     /***/
     "./node_modules/querystring-es3/index.js":
     /*!***********************************************!*\
-  !*** ./node_modules/querystring-es3/index.js ***!
+  !*** ./node_modules/querystring-es3/speakers.js ***!
   \***********************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {
@@ -2705,7 +2705,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     /***/
     "./node_modules/react-is/index.js":
     /*!****************************************!*\
-  !*** ./node_modules/react-is/index.js ***!
+  !*** ./node_modules/react-is/speakers.js ***!
   \****************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {
@@ -2725,7 +2725,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     /***/
     "./node_modules/react/index.js":
     /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.js from dll-reference dll_2adc2403d89adc16ead0 ***!
+  !*** delegated ./node_modules/react/speakers.js from dll-reference dll_2adc2403d89adc16ead0 ***!
   \*******************************************************************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {

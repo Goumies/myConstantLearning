@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"], {
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/speakers.js"], {
 
     /***/
     "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
@@ -257,11 +257,11 @@
 
 
         (window.__NEXT_P = window.__NEXT_P || []).push(["/", function () {
-            var mod = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
+            var mod = __webpack_require__(/*! ./pages/speakers.js */ "./pages/index.js")
             if (true) {
-                module.hot.accept(/*! ./pages/index.js */ "./pages/index.js", function () {
+                module.hot.accept(/*! ./pages/speakers.js */ "./pages/index.js", function () {
                     if (!next.router.components["/"]) return
-                    var updatedPage = __webpack_require__(/*! ./pages/index.js */ "./pages/index.js")
+                    var updatedPage = __webpack_require__(/*! ./pages/speakers.js */ "./pages/index.js")
                     next.router.update("/", updatedPage)
                 })
             }
@@ -275,7 +275,7 @@
     /***/
     "./node_modules/react/index.js":
     /*!*******************************************************************************************!*\
-      !*** delegated ./node_modules/react/index.js from dll-reference dll_2adc2403d89adc16ead0 ***!
+      !*** delegated ./node_modules/react/speakers.js from dll-reference dll_2adc2403d89adc16ead0 ***!
       \*******************************************************************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {
@@ -288,7 +288,7 @@
     /***/
     "./pages/index.js":
     /*!************************!*\
-      !*** ./pages/index.js ***!
+      !*** ./pages/speakers.js ***!
       \************************/
     /*! exports provided: default */
     /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -311,7 +311,7 @@
         var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 
 
-        var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Using JSX files and Next.js as build system/MyApp/pages/index.js";
+        var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Using JSX files and Next.js as build system/MyApp/pages/speakers.js";
 
         var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
 
@@ -438,4 +438,4 @@
     })
 
 }, [[1, "static/runtime/webpack.js"]]]);
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=speakers.js.map

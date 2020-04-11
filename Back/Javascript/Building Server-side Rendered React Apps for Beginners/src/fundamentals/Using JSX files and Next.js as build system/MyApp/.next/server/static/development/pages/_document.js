@@ -1086,7 +1086,7 @@ module.exports =
 
             function getPageFile(page, buildId) {
                 if (page === '/') {
-                    return buildId ? `/index.${buildId}.js` : '/index.js';
+                    return buildId ? `/index.${buildId}.js` : '/speakers.js';
                 }
 
                 return buildId ? `${page}.${buildId}.js` : `${page}.js`;

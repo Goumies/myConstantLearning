@@ -1699,7 +1699,7 @@ var dll_2adc2403d89adc16ead0 =
 
                             {
                                 // In DEV, include code for a common special case:
-                                // prefer "folder/index.js" instead of just "index.js".
+                                // prefer "folder/speakers.js" instead of just "speakers.js".
                                 if (/^index\./.test(fileName)) {
                                     var match = path.match(BEFORE_SLASH_RE);
 
@@ -25544,7 +25544,7 @@ var dll_2adc2403d89adc16ead0 =
 
         /***/ "./node_modules/react-dom/index.js":
         /*!*****************************************!*\
-  !*** ./node_modules/react-dom/index.js ***!
+  !*** ./node_modules/react-dom/speakers.js ***!
   \*****************************************/
         /*! no static exports found */
         /*! all exports used */
@@ -25699,7 +25699,7 @@ var dll_2adc2403d89adc16ead0 =
 
                             {
                                 // In DEV, include code for a common special case:
-                                // prefer "folder/index.js" instead of just "index.js".
+                                // prefer "folder/speakers.js" instead of just "speakers.js".
                                 if (/^index\./.test(fileName)) {
                                     var match = path.match(BEFORE_SLASH_RE);
 
@@ -26712,7 +26712,7 @@ var dll_2adc2403d89adc16ead0 =
                      * Generate a key string that identifies a component within a set.
                      *
                      * @param {*} component A component that could contain a manual key.
-                     * @param {number} index Index that is used if a manual key is not provided.
+                     * @param {number} index Speakers that is used if a manual key is not provided.
                      * @return {string}
                      */
 
@@ -27557,7 +27557,7 @@ var dll_2adc2403d89adc16ead0 =
 
         /***/ "./node_modules/react/index.js":
         /*!*************************************!*\
-  !*** ./node_modules/react/index.js ***!
+  !*** ./node_modules/react/speakers.js ***!
   \*************************************/
         /*! no static exports found */
         /*! all exports used */
@@ -28825,7 +28825,7 @@ var dll_2adc2403d89adc16ead0 =
 
         /***/ "./node_modules/scheduler/index.js":
         /*!*****************************************!*\
-  !*** ./node_modules/scheduler/index.js ***!
+  !*** ./node_modules/scheduler/speakers.js ***!
   \*****************************************/
         /*! no static exports found */
         /*! all exports used */

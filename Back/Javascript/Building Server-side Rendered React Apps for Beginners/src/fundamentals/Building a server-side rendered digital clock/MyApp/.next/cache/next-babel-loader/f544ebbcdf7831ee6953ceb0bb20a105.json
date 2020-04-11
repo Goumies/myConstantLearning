@@ -1,0 +1,21 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Header.js\";\nvar __jsx = React.createElement;\nimport React from 'react';\nimport ReactDOM from 'react-dom';\n\nfunction Header() {\n  return __jsx(\"div\", {\n    className: \"jumbotron\",\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 6,\n      columnNumber: 9\n    }\n  }, __jsx(\"div\", {\n    className: \"row\",\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 7,\n      columnNumber: 13\n    }\n  }, __jsx(\"div\", {\n    className: \"col-12 col-sm-4 text-center\",\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 8,\n      columnNumber: 17\n    }\n  }, __jsx(\"h6\", {\n    className: \"text-uppercase\",\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 9,\n      columnNumber: 21\n    }\n  }, \"October 13-14\\xA0\\xA02018\"), __jsx(\"h6\", {\n    className: \"text-uppercase\",\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 10,\n      columnNumber: 21\n    }\n  }, \"San Jose, California\")), __jsx(\"div\", {\n    className: \"col-12 col-sm-8 text-lg-right\",\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 12,\n      columnNumber: 17\n    }\n  }, __jsx(\"div\", {\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 13,\n      columnNumber: 21\n    }\n  }, __jsx(\"img\", {\n    src: \"/SVCClogo.png\",\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 13,\n      columnNumber: 26\n    }\n  })), __jsx(\"h2\", {\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 14,\n      columnNumber: 21\n    }\n  }, \"Silicon Valley Code Camp 2018\"))));\n}\n\nexport default Header;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Header.js"
+    ],
+    "names": [
+      "React",
+      "ReactDOM",
+      "Header"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,MAAkB,OAAlB;AACA,OAAOC,QAAP,MAAqB,WAArB;;AAEA,SAASC,MAAT,GAAkB;AACd,SACI;AAAK,IAAA,SAAS,EAAC,WAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KACI;AAAK,IAAA,SAAS,EAAC,KAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KACI;AAAK,IAAA,SAAS,EAAC,6BAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KACI;AAAI,IAAA,SAAS,EAAC,gBAAd;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,iCADJ,EAEI;AAAI,IAAA,SAAS,EAAC,gBAAd;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,4BAFJ,CADJ,EAKI;AAAK,IAAA,SAAS,EAAC,+BAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KACI;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KAAK;AAAK,IAAA,GAAG,EAAC,eAAT;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,IAAL,CADJ,EAEI;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qCAFJ,CALJ,CADJ,CADJ;AAcH;;AAED,eAAeA,MAAf",
+    "sourcesContent": [
+      "import React from 'react';\nimport ReactDOM from 'react-dom';\n\nfunction Header() {\n    return (\n        <div className=\"jumbotron\">\n            <div className=\"row\">\n                <div className=\"col-12 col-sm-4 text-center\">\n                    <h6 className=\"text-uppercase\">October 13-14&nbsp;&nbsp;2018</h6>\n                    <h6 className=\"text-uppercase\">San Jose, California</h6>\n                </div>\n                <div className=\"col-12 col-sm-8 text-lg-right\">\n                    <div><img src='/SVCClogo.png'/></div>\n                    <h2>Silicon Valley Code Camp 2018</h2>\n                </div>\n            </div>\n        </div>\n    );\n}\n\nexport default Header;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

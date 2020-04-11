@@ -918,7 +918,7 @@
     /***/
     "./node_modules/react/index.js":
     /*!*******************************************************************************************!*\
-      !*** delegated ./node_modules/react/index.js from dll-reference dll_2adc2403d89adc16ead0 ***!
+      !*** delegated ./node_modules/react/speakers.js from dll-reference dll_2adc2403d89adc16ead0 ***!
       \*******************************************************************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {

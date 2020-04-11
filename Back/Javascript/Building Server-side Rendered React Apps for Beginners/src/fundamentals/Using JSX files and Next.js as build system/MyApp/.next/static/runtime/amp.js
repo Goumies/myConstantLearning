@@ -20,7 +20,7 @@
 
     /***/ "./node_modules/@babel/runtime/regenerator/index.js":
     /*!**********************************************************!*\
-      !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+      !*** ./node_modules/@babel/runtime/regenerator/speakers.js ***!
       \**********************************************************/
     /*! no static exports found */
     /***/ (function (module, exports, __webpack_require__) {

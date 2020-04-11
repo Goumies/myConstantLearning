@@ -103,43 +103,27 @@
 /******/ 						var update = JSON.parse(request.responseText);
 /******/ 					} catch (e) {
 /******/ 						reject(e);
+/******/ 						return;
+/******/ 					}
+/******/ 					resolve(update);
+/******/ 				}
+/******/ 			};
+/******/ 		});
+/******/ 	}
 /******/
-                        return;
-                        /******/
-                    }
-                    /******/
-                    resolve(update);
-                    /******/
-                }
-                /******/
-            };
-            /******/
-        });
-        /******/
-    }
-
-    /******/
-    /******/
-    var hotApplyOnUpdate = true;
-    /******/ 	// eslint-disable-next-line no-unused-vars
-    /******/
-    var hotCurrentHash = "135fde6a8c6681b4be88";
-    /******/
-    var hotRequestTimeout = 10000;
-    /******/
-    var hotCurrentModuleData = {};
-    /******/
-    var hotCurrentChildModule;
-    /******/ 	// eslint-disable-next-line no-unused-vars
-    /******/
-    var hotCurrentParents = [];
-    /******/ 	// eslint-disable-next-line no-unused-vars
-    /******/
-    var hotCurrentParentsTemp = [];
-    /******/
-    /******/ 	// eslint-disable-next-line no-unused-vars
-    /******/
-    function hotCreateRequire(moduleId) {
+/******/ 	var hotApplyOnUpdate = true;
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentHash = "6240b61be72f65df3ff2";
+/******/ 	var hotRequestTimeout = 10000;
+/******/ 	var hotCurrentModuleData = {};
+/******/ 	var hotCurrentChildModule;
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentParents = [];
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	var hotCurrentParentsTemp = [];
+/******/
+/******/ 	// eslint-disable-next-line no-unused-vars
+/******/ 	function hotCreateRequire(moduleId) {
 /******/ 		var me = installedModules[moduleId];
 /******/ 		if (!me) return __webpack_require__;
 /******/ 		var fn = function(request) {

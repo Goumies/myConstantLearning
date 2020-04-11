@@ -51,6 +51,29 @@ json-server : for dev time, place to get REST data from
     bootstrap recommend using meta tag with a named viewport to the header section of every pages
     = _documents.js = next dedicated files
     = only rendered during a SSR render
+
+/!\ In newer versions, /static has been replaced by /public
+    Here is the correct way to point to assets
+    `<img src='/SVCClogo.png' />`
+
+/pages
+    file name = URL route
+    So for effective routing, always name file with lower case
+    Component = PascalCase
+    files for specific SSR pages
+
+/src
+    Standard React components
+
+/!\ Every component server-side rendered must contains 
+    `static async getInitialProps() {...}`
+    to be effectively rendered
+    
+/pages/_app.js
+    implements page layouts
+    = hook to surround the component created normally in /pages
+    with our own components => Headers Menus...
+    = good place to put bootstrap CSS imports
     
 ---
 ## React Fundamentals

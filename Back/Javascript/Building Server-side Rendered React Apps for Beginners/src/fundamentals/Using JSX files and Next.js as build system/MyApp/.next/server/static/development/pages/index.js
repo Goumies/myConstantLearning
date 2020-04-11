@@ -153,7 +153,7 @@ module.exports =
 
         /***/ "./pages/index.js":
         /*!************************!*\
-          !*** ./pages/index.js ***!
+          !*** ./pages/speakers.js ***!
           \************************/
         /*! exports provided: default */
         /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -164,7 +164,7 @@ module.exports =
             var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
             /* harmony import */
             var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-            var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Using JSX files and Next.js as build system/MyApp/pages/index.js";
+            var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Using JSX files and Next.js as build system/MyApp/pages/speakers.js";
 
             var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -218,12 +218,12 @@ module.exports =
 
         /***/ 3:
         /*!******************************!*\
-          !*** multi ./pages/index.js ***!
+          !*** multi ./pages/speakers.js ***!
           \******************************/
         /*! no static exports found */
         /***/ (function (module, exports, __webpack_require__) {
 
-            module.exports = __webpack_require__(/*! /Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Using JSX files and Next.js as build system/MyApp/pages/index.js */"./pages/index.js");
+            module.exports = __webpack_require__(/*! /Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Using JSX files and Next.js as build system/MyApp/pages/speakers.js */"./pages/index.js");
 
 
             /***/
@@ -243,4 +243,4 @@ module.exports =
 
         /******/
     });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=speakers.js.map
