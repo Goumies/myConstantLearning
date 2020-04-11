@@ -46,6 +46,12 @@ json-server : for dev time, place to get REST data from
     Intent (processed on the Model)
         User's action that will be applied to the Model which will be updated
         
+## Extending your SSR App to the real World
+/pages/_documents.js
+    bootstrap recommend using meta tag with a named viewport to the header section of every pages
+    = _documents.js = next dedicated files
+    = only rendered during a SSR render
+    
 ---
 ## React Fundamentals
 ## Components
