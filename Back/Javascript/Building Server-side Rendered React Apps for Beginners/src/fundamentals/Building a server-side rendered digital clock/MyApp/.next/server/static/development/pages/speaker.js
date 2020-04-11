@@ -88,15 +88,15 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/speakers.js":
-/*!***************************!*\
-  !*** ./pages/speakers.js ***!
-  \***************************/
+/***/ "./pages/speaker.js":
+/*!**************************!*\
+  !*** ./pages/speaker.js ***!
+  \**************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -106,21 +106,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _src_SpeakerCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../src/SpeakerCard */ "./src/SpeakerCard.js");
-var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speakers.js";
+var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
-class Speakers extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  // Next framework runs getInitialProps()
-  // before the component construction
-  static async getInitialProps() {
-    let promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('http://localhost:4000/speakers').then(response => {
+class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  // query = option for URL parameter
+  static async getInitialProps({
+    query
+  }) {
+    var promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(`http://localhost:4000/speakers/${query.speakerId}`).then(response => {
       return {
         hasErrored: false,
-        speakerData: response.data
+        speakerDataOne: response.data
       };
     }).catch(error => {
       return {
@@ -129,25 +128,7 @@ class Speakers extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       };
     });
     return promise;
-  } // getInitialProps() returns then
-
-
-  constructor(props) {
-    super(props);
-    console.log('Speakers:constructor called');
-    this.state = {
-      hasErrored: props.hasErrored,
-      message: props.message,
-      speakerData: props.speakerData
-    };
-  } // Once a class component is loaded and ready
-
-
-  componentDidMount() {} // If the component is removed from the page, the timer is cleared
-  // to avoid a memory leak with a 'dangling' timer
-
-
-  componentWillUnmount() {}
+  }
 
   render() {
     return __jsx("div", {
@@ -155,7 +136,7 @@ class Speakers extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 48,
+        lineNumber: 25,
         columnNumber: 13
       }
     }, __jsx("div", {
@@ -163,117 +144,44 @@ class Speakers extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 49,
+        lineNumber: 26,
         columnNumber: 17
       }
-    }, __jsx("div", {
-      className: "card-deck",
+    }, __jsx("h2", {
+      className: "margintopbottom20",
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 50,
+        lineNumber: 27,
         columnNumber: 21
       }
-    }, this.state.speakerData.map(speaker => __jsx("div", {
-      className: "card col-4 cardmin margintopbottom20",
-      key: speaker.id,
+    }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
+      className: "margintopbottom20",
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 52,
-        columnNumber: 29
+        lineNumber: 28,
+        columnNumber: 21
       }
-    }, __jsx(_src_SpeakerCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      speaker: speaker,
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 53,
-        columnNumber: 33
-      }
-    }))))));
+    }, this.props.speakerDataOne.bio)));
   }
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Speakers);
+Speaker.propTypes = {};
+Speaker.defaultProps = {};
+/* harmony default export */ __webpack_exports__["default"] = (Speaker);
 
 /***/ }),
 
-/***/ "./src/SpeakerCard.js":
-/*!****************************!*\
-  !*** ./src/SpeakerCard.js ***!
-  \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/SpeakerCard.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-class SpeakerCard extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  render() {
-    return __jsx("div", {
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 7,
-        columnNumber: 13
-      }
-    }, __jsx("img", {
-      className: "card-img-top",
-      src: `/speakers/Speaker-${this.props.speaker.id}.jpg`,
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 8,
-        columnNumber: 17
-      }
-    }), __jsx("div", {
-      className: "card-body",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 9,
-        columnNumber: 17
-      }
-    }, __jsx("h4", {
-      className: "card-title",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 10,
-        columnNumber: 21
-      }
-    }, this.props.speaker.userFirstName, " ", this.props.speaker.userLastName, " "), __jsx("p", {
-      className: "card-text",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 11,
-        columnNumber: 21
-      }
-    }, this.props.speaker.bioShort)));
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (SpeakerCard);
-
-/***/ }),
-
-/***/ 3:
-/*!*********************************!*\
-  !*** multi ./pages/speakers.js ***!
-  \*********************************/
+/***/ 4:
+/*!********************************!*\
+  !*** multi ./pages/speaker.js ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speakers.js */"./pages/speakers.js");
+module.exports = __webpack_require__(/*! /Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js */"./pages/speaker.js");
 
 
 /***/ }),
@@ -301,4 +209,4 @@ module.exports = require("react");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=speakers.js.map
+//# sourceMappingURL=speaker.js.map

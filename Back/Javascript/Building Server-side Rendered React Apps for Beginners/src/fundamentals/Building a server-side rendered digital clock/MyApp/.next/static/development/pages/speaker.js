@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/speakers.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/speaker.js"],{
 
 /***/ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
 /*!**************************************************************************!*\
@@ -2012,21 +2012,21 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeakers&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeakers.js!./":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeakers&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeakers.js ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js!./":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/speakers", function() {
-      var mod = __webpack_require__(/*! ./pages/speakers.js */ "./pages/speakers.js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/speaker", function() {
+      var mod = __webpack_require__(/*! ./pages/speaker.js */ "./pages/speaker.js")
       if(true) {
-        module.hot.accept(/*! ./pages/speakers.js */ "./pages/speakers.js", function() {
-          if(!next.router.components["/speakers"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/speakers.js */ "./pages/speakers.js")
-          next.router.update("/speakers", updatedPage)
+        module.hot.accept(/*! ./pages/speaker.js */ "./pages/speaker.js", function() {
+          if(!next.router.components["/speaker"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/speaker.js */ "./pages/speaker.js")
+          next.router.update("/speaker", updatedPage)
         })
       }
       return mod
@@ -2981,10 +2981,10 @@ try {
 
 /***/ }),
 
-/***/ "./pages/speakers.js":
-/*!***************************!*\
-  !*** ./pages/speakers.js ***!
-  \***************************/
+/***/ "./pages/speaker.js":
+/*!**************************!*\
+  !*** ./pages/speaker.js ***!
+  \**************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3001,14 +3001,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _src_SpeakerCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../src/SpeakerCard */ "./src/SpeakerCard.js");
 
 
 
 
 
 
-var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speakers.js";
+var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement;
 
 function _createSuper(Derived) { return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
@@ -3018,26 +3017,68 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+var Speaker = /*#__PURE__*/function (_Component) {
+  Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(Speaker, _Component);
 
-var Speakers = /*#__PURE__*/function (_Component) {
-  Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(Speakers, _Component);
+  var _super = _createSuper(Speaker);
 
-  var _super = _createSuper(Speakers);
+  function Speaker() {
+    Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, Speaker);
 
-  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Speakers, null, [{
+    return _super.apply(this, arguments);
+  }
+
+  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Speaker, [{
+    key: "render",
+    value: function render() {
+      return __jsx("div", {
+        className: "container",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 25,
+          columnNumber: 13
+        }
+      }, __jsx("div", {
+        className: "row",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26,
+          columnNumber: 17
+        }
+      }, __jsx("h2", {
+        className: "margintopbottom20",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27,
+          columnNumber: 21
+        }
+      }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
+        className: "margintopbottom20",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 28,
+          columnNumber: 21
+        }
+      }, this.props.speakerDataOne.bio)));
+    }
+  }], [{
     key: "getInitialProps",
-    // Next framework runs getInitialProps()
-    // before the component construction
-    value: function getInitialProps() {
-      var promise;
+    // query = option for URL parameter
+    value: function getInitialProps(_ref) {
+      var query, promise;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getInitialProps$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              promise = axios__WEBPACK_IMPORTED_MODULE_7___default.a.get('http://localhost:4000/speakers').then(function (response) {
+              query = _ref.query;
+              promise = axios__WEBPACK_IMPORTED_MODULE_7___default.a.get("http://localhost:4000/speakers/".concat(query.speakerId)).then(function (response) {
                 return {
                   hasErrored: false,
-                  speakerData: response.data
+                  speakerDataOne: response.data
                 };
               })["catch"](function (error) {
                 return {
@@ -3047,202 +3088,32 @@ var Speakers = /*#__PURE__*/function (_Component) {
               });
               return _context.abrupt("return", promise);
 
-            case 2:
+            case 3:
             case "end":
               return _context.stop();
           }
         }
       }, null, null, null, Promise);
-    } // getInitialProps() returns then
-
-  }]);
-
-  function Speakers(props) {
-    var _this;
-
-    Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, Speakers);
-
-    _this = _super.call(this, props);
-    console.log('Speakers:constructor called');
-    _this.state = {
-      hasErrored: props.hasErrored,
-      message: props.message,
-      speakerData: props.speakerData
-    };
-    return _this;
-  } // Once a class component is loaded and ready
-
-
-  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Speakers, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {} // If the component is removed from the page, the timer is cleared
-    // to avoid a memory leak with a 'dangling' timer
-
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {}
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return __jsx("div", {
-        className: "container",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 48,
-          columnNumber: 13
-        }
-      }, __jsx("div", {
-        className: "row",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 49,
-          columnNumber: 17
-        }
-      }, __jsx("div", {
-        className: "card-deck",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 50,
-          columnNumber: 21
-        }
-      }, this.state.speakerData.map(function (speaker) {
-        return __jsx("div", {
-          className: "card col-4 cardmin margintopbottom20",
-          key: speaker.id,
-          __self: _this2,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 52,
-            columnNumber: 29
-          }
-        }, __jsx(_src_SpeakerCard__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          speaker: speaker,
-          __self: _this2,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 53,
-            columnNumber: 33
-          }
-        }));
-      }))));
     }
   }]);
 
-  return Speakers;
+  return Speaker;
 }(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Speakers);
+Speaker.propTypes = {};
+Speaker.defaultProps = {};
+/* harmony default export */ __webpack_exports__["default"] = (Speaker);
 
 /***/ }),
 
-/***/ "./src/SpeakerCard.js":
-/*!****************************!*\
-  !*** ./src/SpeakerCard.js ***!
-  \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
-
-var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/SpeakerCard.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
-
-function _createSuper(Derived) { return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-var SpeakerCard = /*#__PURE__*/function (_Component) {
-  Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(SpeakerCard, _Component);
-
-  var _super = _createSuper(SpeakerCard);
-
-  function SpeakerCard() {
-    Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, SpeakerCard);
-
-    return _super.apply(this, arguments);
-  }
-
-  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(SpeakerCard, [{
-    key: "render",
-    value: function render() {
-      return __jsx("div", {
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 7,
-          columnNumber: 13
-        }
-      }, __jsx("img", {
-        className: "card-img-top",
-        src: "/speakers/Speaker-".concat(this.props.speaker.id, ".jpg"),
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 8,
-          columnNumber: 17
-        }
-      }), __jsx("div", {
-        className: "card-body",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 9,
-          columnNumber: 17
-        }
-      }, __jsx("h4", {
-        className: "card-title",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10,
-          columnNumber: 21
-        }
-      }, this.props.speaker.userFirstName, " ", this.props.speaker.userLastName, " "), __jsx("p", {
-        className: "card-text",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 11,
-          columnNumber: 21
-        }
-      }, this.props.speaker.bioShort)));
-    }
-  }]);
-
-  return SpeakerCard;
-}(react__WEBPACK_IMPORTED_MODULE_5__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (SpeakerCard);
-
-/***/ }),
-
-/***/ 3:
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fspeakers&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeakers.js ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ 4:
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fspeakers&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeakers.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeakers&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeakers.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js!./");
 
 
 /***/ }),
@@ -3258,5 +3129,5 @@ module.exports = dll_2adc2403d89adc16ead0;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=speakers.js.map
+},[[4,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=speaker.js.map

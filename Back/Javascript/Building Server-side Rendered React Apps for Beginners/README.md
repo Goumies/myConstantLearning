@@ -75,6 +75,31 @@ json-server : for dev time, place to get REST data from
     with our own components => Headers Menus...
     = good place to put bootstrap CSS imports
     
+Client-side Routing
+ next Link element
+    Without URL parameters : string
+    ```javascript jsx
+        <Link href='/speakers'>
+            <a className="nav-link" href="#">Speakers</a>
+        </Link>
+    ```
+
+    With URL parameters : object
+    ```javascript jsx
+        <Link 
+        href={{
+            pathname: '/speakers', query:
+                {
+                    speakerId: this.props.speaker.id
+                }    
+        }}
+        as={``speaker/${this.props.speker.id}>
+            <a className="nav-link">Details</a>
+        </Link>
+    ```
+    The browser History API is used to set the URL to the 'as' value.
+    After the Link route is used, the redirection takes the value of 'as' 
+    
 ---
 ## React Fundamentals
 ## Components

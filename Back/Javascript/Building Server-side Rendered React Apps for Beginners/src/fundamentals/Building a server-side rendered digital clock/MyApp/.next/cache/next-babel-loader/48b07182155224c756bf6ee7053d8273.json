@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Layout.js\";\nvar __jsx = React.createElement;\nimport React from 'react';\nimport 'bootstrap/dist/css/bootstrap.min.css';\nimport '../css/site.css';\nimport Header from \"./Header\";\nimport Menu from \"./Menu\";\nimport Footer from \"./Footer\";\nexport class Layout extends React.Component {\n  render() {\n    const {\n      children\n    } = this.props;\n    return __jsx(React.Fragment, null, __jsx(Header, {\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 14,\n        columnNumber: 17\n      }\n    }), __jsx(Menu, {\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 15,\n        columnNumber: 17\n      }\n    }), children, __jsx(Footer, {\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 17,\n        columnNumber: 17\n      }\n    }));\n  }\n\n}",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Layout.js"
+    ],
+    "names": [
+      "React",
+      "Header",
+      "Menu",
+      "Footer",
+      "Layout",
+      "Component",
+      "render",
+      "children",
+      "props"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,MAAkB,OAAlB;AAEA,OAAO,sCAAP;AACA,OAAO,iBAAP;AACA,OAAOC,MAAP,MAAmB,UAAnB;AACA,OAAOC,IAAP,MAAiB,QAAjB;AACA,OAAOC,MAAP,MAAmB,UAAnB;AAEA,OAAO,MAAMC,MAAN,SAAqBJ,KAAK,CAACK,SAA3B,CAAqC;AACxCC,EAAAA,MAAM,GAAG;AACL,UAAM;AAACC,MAAAA;AAAD,QAAa,KAAKC,KAAxB;AACA,WACI,4BACI,MAAC,MAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,MADJ,EAEI,MAAC,IAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,MAFJ,EAGKD,QAHL,EAII,MAAC,MAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,MAJJ,CADJ;AAQH;;AAXuC",
+    "sourcesContent": [
+      "import React from 'react';\n\nimport 'bootstrap/dist/css/bootstrap.min.css';\nimport '../css/site.css';\nimport Header from \"./Header\";\nimport Menu from \"./Menu\";\nimport Footer from \"./Footer\";\n\nexport class Layout extends React.Component {\n    render() {\n        const {children} = this.props\n        return (\n            <>\n                <Header/>\n                <Menu/>\n                {children}\n                <Footer/>\n            </>\n        );\n    }\n}"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

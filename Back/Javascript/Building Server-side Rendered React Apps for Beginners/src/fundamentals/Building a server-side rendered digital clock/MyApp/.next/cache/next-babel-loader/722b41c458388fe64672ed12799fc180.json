@@ -1,0 +1,45 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/sessions.js\";\nvar __jsx = React.createElement;\nimport React, { Component } from 'react';\nimport axios from \"axios\";\nimport SessionCard from \"../src/SessionCard\";\n\nclass Sessions extends Component {\n  static async getInitialProps() {\n    let promise = axios.get('http://localhost:4000/sessions').then(response => {\n      return {\n        hasErrored: false,\n        sessionData: response.data\n      };\n    }).catch(error => {\n      return {\n        hasErrored: true,\n        message: error.message\n      };\n    });\n    return promise;\n  }\n\n  constructor(props) {\n    super(props);\n    console.log('Session:constructor called');\n    this.state = {\n      hasErrored: props.hasErrored,\n      message: props.message,\n      sessionData: props.sessionData\n    };\n  }\n\n  render() {\n    return __jsx(\"div\", {\n      className: \"container\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 35,\n        columnNumber: 13\n      }\n    }, __jsx(\"div\", {\n      className: \"row\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 36,\n        columnNumber: 17\n      }\n    }, __jsx(\"div\", {\n      className: \"card-deck\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 37,\n        columnNumber: 21\n      }\n    }, this.state.sessionData.map(session => __jsx(\"div\", {\n      className: \"card col-4 cardmin margintopbottom\",\n      key: session.id,\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 39,\n        columnNumber: 29\n      }\n    }, __jsx(SessionCard, {\n      session: session,\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 40,\n        columnNumber: 33\n      }\n    }))))));\n  }\n\n}\n\nSessions.propTypes = {};\nSessions.defaultProps = {};\nexport default Sessions;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/sessions.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "axios",
+      "SessionCard",
+      "Sessions",
+      "getInitialProps",
+      "promise",
+      "get",
+      "then",
+      "response",
+      "hasErrored",
+      "sessionData",
+      "data",
+      "catch",
+      "error",
+      "message",
+      "constructor",
+      "props",
+      "console",
+      "log",
+      "state",
+      "render",
+      "map",
+      "session",
+      "id",
+      "propTypes",
+      "defaultProps"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,KAAP,MAAkB,OAAlB;AACA,OAAOC,WAAP,MAAwB,oBAAxB;;AAEA,MAAMC,QAAN,SAAuBH,SAAvB,CAAiC;AAC7B,eAAaI,eAAb,GAA+B;AAC3B,QAAIC,OAAO,GAAGJ,KAAK,CAACK,GAAN,CAAU,gCAAV,EACTC,IADS,CACJC,QAAQ,IAAI;AACd,aAAO;AACHC,QAAAA,UAAU,EAAE,KADT;AAEHC,QAAAA,WAAW,EAAEF,QAAQ,CAACG;AAFnB,OAAP;AAIH,KANS,EAOTC,KAPS,CAOHC,KAAK,IAAI;AACZ,aAAO;AACHJ,QAAAA,UAAU,EAAE,IADT;AAEHK,QAAAA,OAAO,EAAED,KAAK,CAACC;AAFZ,OAAP;AAIH,KAZS,CAAd;AAaA,WAAOT,OAAP;AACH;;AAEDU,EAAAA,WAAW,CAACC,KAAD,EAAQ;AACf,UAAMA,KAAN;AACAC,IAAAA,OAAO,CAACC,GAAR,CAAY,4BAAZ;AACA,SAAKC,KAAL,GAAa;AACTV,MAAAA,UAAU,EAAEO,KAAK,CAACP,UADT;AAETK,MAAAA,OAAO,EAAEE,KAAK,CAACF,OAFN;AAGTJ,MAAAA,WAAW,EAAEM,KAAK,CAACN;AAHV,KAAb;AAKH;;AAEDU,EAAAA,MAAM,GAAG;AACL,WACI;AAAK,MAAA,SAAS,EAAC,WAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OACI;AAAK,MAAA,SAAS,EAAC,KAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OACI;AAAK,MAAA,SAAS,EAAC,WAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OACK,KAAKD,KAAL,CAAWT,WAAX,CAAuBW,GAAvB,CAA4BC,OAAD,IACxB;AAAK,MAAA,SAAS,EAAC,oCAAf;AAAoD,MAAA,GAAG,EAAEA,OAAO,CAACC,EAAjE;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OACI,MAAC,WAAD;AAAa,MAAA,OAAO,EAAED,OAAtB;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,MADJ,CADH,CADL,CADJ,CADJ,CADJ;AAaH;;AA1C4B;;AA6CjCnB,QAAQ,CAACqB,SAAT,GAAqB,EAArB;AACArB,QAAQ,CAACsB,YAAT,GAAwB,EAAxB;AAEA,eAAetB,QAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport axios from \"axios\";\nimport SessionCard from \"../src/SessionCard\";\n\nclass Sessions extends Component {\n    static async getInitialProps() {\n        let promise = axios.get('http://localhost:4000/sessions')\n            .then(response => {\n                return {\n                    hasErrored: false,\n                    sessionData: response.data\n                }\n            })\n            .catch(error => {\n                return {\n                    hasErrored: true,\n                    message: error.message\n                }\n            });\n        return promise;\n    }\n\n    constructor(props) {\n        super(props);\n        console.log('Session:constructor called');\n        this.state = {\n            hasErrored: props.hasErrored,\n            message: props.message,\n            sessionData: props.sessionData\n        }\n    }\n\n    render() {\n        return (\n            <div className=\"container\">\n                <div className=\"row\">\n                    <div className=\"card-deck\">\n                        {this.state.sessionData.map((session) =>\n                            <div className=\"card col-4 cardmin margintopbottom\" key={session.id}>\n                                <SessionCard session={session}/>\n                            </div>\n                        )}\n                    </div>\n                </div>\n            </div>\n        );\n    }\n}\n\nSessions.propTypes = {};\nSessions.defaultProps = {};\n\nexport default Sessions;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

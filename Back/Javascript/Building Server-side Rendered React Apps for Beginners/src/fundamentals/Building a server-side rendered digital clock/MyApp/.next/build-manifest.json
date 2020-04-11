@@ -26,7 +26,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/speakers": [
+    "/speaker": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
