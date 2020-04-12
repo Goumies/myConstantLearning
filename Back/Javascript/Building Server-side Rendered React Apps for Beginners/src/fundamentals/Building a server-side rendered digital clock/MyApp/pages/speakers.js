@@ -39,6 +39,7 @@ class Speakers extends Component {
         super(props);
         console.log('Speakers:constructor called');
         this.state = {
+            isLoading: props.isLoading,
             hasErrored: props.hasErrored,
             message: props.message,
             speakerData: props.speakerData
@@ -61,7 +62,8 @@ class Speakers extends Component {
                     <div className="card-deck">
                         {this.state.speakerData.map((speaker) => {
                             return <div className="card col-4 cardmin margintopbottom20" key={speaker.id}>
-                                <SpeakerCard speaker={speaker}/>
+                                <SpeakerCard isLoading={this.state.isLoading}
+                                             speaker={speaker}/>
                             </div>
                         }
                         )}

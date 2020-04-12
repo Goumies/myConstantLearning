@@ -154,6 +154,17 @@ Create a Docker Image and Container
     Cache React pages inside our Node server
     Setup CDN for Code Split JavaScript and images
     Implement placeholder images while wainting for data to download
+    
+## Downsides of SSR
+    Every page landing causes a complex Node invocation
+    High volume sites typically have high page repetition
+    High volume sites must implement caching schemes
+    
+`npm install lru-cache --save` conditional rendering in server.js
+= npm module deleting the least recently used items
+
+CDN = Content Delivery Network
+    
 ---
 ## React Fundamentals
 ## Components

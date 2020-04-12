@@ -33,6 +33,10 @@ class Speaker extends Component {
     }
 
     render() {
+
+        if (this.state.isLoading) {
+            return <div>...isLoading</div>
+        }
         return (
             <div className='container'>
                 <div className="row">

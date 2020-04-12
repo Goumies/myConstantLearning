@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "static/webpack/static/development/pages/speakers.js.5da505c755f1bf8c2c91.hot-update.js",
+  "sources": [
+    "webpack:///./src/SpeakerCard.js"
+  ],
+  "sourcesContent": [
+    "import React, {Component} from \"react\";\nimport Link from 'next/link';\nimport ReactPlaceholder from \"react-placeholder\";\nimport \"react-placeholder/lib/reactPlaceholder.css\";\nimport {\n    TextBlock,\n    MediaBlock,\n    TextRow,\n    RectShape,\n    RoundShape\n} from \"react-placeholder/lib/placeholders\";\n\nclass SpeakerCard extends Component {\n    render() {\n        const awesomePlaceholder1 = <MediaBlock color=\"#E0E0E0\" rows={6} />;\n        return (\n            <ReactPlaceholder\n                showLoadingAnimation\n                delay={5000}\n                ready={!this.props.isLoading}\n                customPlaceholder={awesomePlaceholder1}\n            >\n                <img className=\"card-img-top\" src={`/speakers/Speaker-${this.props.speaker.id}.jpg`}/>\n                <div className=\"card-body\">\n                    <Link\n                        href={{\n                            pathname: '/speaker', query:\n                                {\n                                    speakerId: this.props.speaker.id\n                                }\n                        }}\n                        as={`speaker/${this.props.speaker.id}`}>\n                        <a className=\"btn btn-lg btn-block btn-outline-primary\">\n                            Details\n                        </a>\n                    </Link>\n                    <h4 className=\"card-title\">{this.props.speaker.userFirstName} {this.props.speaker.userLastName} </h4>\n                    <p className=\"card-text\">{this.props.speaker.bioShort}</p>\n                </div>\n            </ReactPlaceholder>\n        );\n    }\n}\n\nexport default SpeakerCard;"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AACA;AACA;AACA;AACA;AACA;AAOA;;;;;;;;;;;;;AACA;AACA;AAAA;AAAA;AAAA;AACA;AAAA;AAEA;AACA;AACA;AACA;AAJA;AAMA;AAAA;AAAA;AACA;AAAA;AAEA;AACA;AAAA;AAEA;AADA;AAFA;AAMA;AAPA;AAQA;AAAA;AAIA;AAAA;AACA;AAAA;AAIA;;;;AA7BA;AACA;AA+BA;;;;A",
+  "sourceRoot": ""
+}

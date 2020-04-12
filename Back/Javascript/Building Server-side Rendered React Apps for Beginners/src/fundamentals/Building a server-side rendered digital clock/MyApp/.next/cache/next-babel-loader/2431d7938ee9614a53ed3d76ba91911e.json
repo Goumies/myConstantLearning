@@ -1,0 +1,40 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React, { Component } from \"react\";\nimport Link from 'next/link';\nimport ReactPlaceholder from \"react-placeholder\";\nimport \"react-placeholder/lib/reactPlaceholder.css\";\nimport { TextBlock, MediaBlock, TextRow, RectShape, RoundShape } from \"react-placeholder/lib/placeholders\";\n\nclass SpeakerCard extends Component {\n  render() {\n    const awesomePlaceholder1 = __jsx(MediaBlock, {\n      color: \"#E0E0E0\",\n      rows: 6\n    });\n\n    return __jsx(ReactPlaceholder, {\n      showLoadingAnimation: true,\n      delay: 500,\n      ready: !this.props.isLoading,\n      customPlaceholder: awesomePlaceholder1\n    }, __jsx(\"img\", {\n      className: \"card-img-top\",\n      src: `/speakers/Speaker-${this.props.speaker.id}.jpg`\n    }), __jsx(\"div\", {\n      className: \"card-body\"\n    }, __jsx(Link, {\n      href: {\n        pathname: '/speaker',\n        query: {\n          speakerId: this.props.speaker.id\n        }\n      },\n      as: `speaker/${this.props.speaker.id}`\n    }, __jsx(\"a\", {\n      className: \"btn btn-lg btn-block btn-outline-primary\"\n    }, \"Details\")), __jsx(\"h4\", {\n      className: \"card-title\"\n    }, this.props.speaker.userFirstName, \" \", this.props.speaker.userLastName, \" \"), __jsx(\"p\", {\n      className: \"card-text\"\n    }, this.props.speaker.bioShort)));\n  }\n\n}\n\nexport default SpeakerCard;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/SpeakerCard.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "Link",
+      "ReactPlaceholder",
+      "TextBlock",
+      "MediaBlock",
+      "TextRow",
+      "RectShape",
+      "RoundShape",
+      "SpeakerCard",
+      "render",
+      "awesomePlaceholder1",
+      "props",
+      "isLoading",
+      "speaker",
+      "id",
+      "pathname",
+      "query",
+      "speakerId",
+      "userFirstName",
+      "userLastName",
+      "bioShort"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,IAAP,MAAiB,WAAjB;AACA,OAAOC,gBAAP,MAA6B,mBAA7B;AACA,OAAO,4CAAP;AACA,SACIC,SADJ,EAEIC,UAFJ,EAGIC,OAHJ,EAIIC,SAJJ,EAKIC,UALJ,QAMO,oCANP;;AAQA,MAAMC,WAAN,SAA0BR,SAA1B,CAAoC;AAChCS,EAAAA,MAAM,GAAG;AACL,UAAMC,mBAAmB,GAAG,MAAC,UAAD;AAAY,MAAA,KAAK,EAAC,SAAlB;AAA4B,MAAA,IAAI,EAAE;AAAlC,MAA5B;;AACA,WACI,MAAC,gBAAD;AACI,MAAA,oBAAoB,MADxB;AAEI,MAAA,KAAK,EAAE,GAFX;AAGI,MAAA,KAAK,EAAE,CAAC,KAAKC,KAAL,CAAWC,SAHvB;AAII,MAAA,iBAAiB,EAAEF;AAJvB,OAMI;AAAK,MAAA,SAAS,EAAC,cAAf;AAA8B,MAAA,GAAG,EAAG,qBAAoB,KAAKC,KAAL,CAAWE,OAAX,CAAmBC,EAAG;AAA9E,MANJ,EAOI;AAAK,MAAA,SAAS,EAAC;AAAf,OACI,MAAC,IAAD;AACI,MAAA,IAAI,EAAE;AACFC,QAAAA,QAAQ,EAAE,UADR;AACoBC,QAAAA,KAAK,EACvB;AACIC,UAAAA,SAAS,EAAE,KAAKN,KAAL,CAAWE,OAAX,CAAmBC;AADlC;AAFF,OADV;AAOI,MAAA,EAAE,EAAG,WAAU,KAAKH,KAAL,CAAWE,OAAX,CAAmBC,EAAG;AAPzC,OAQI;AAAG,MAAA,SAAS,EAAC;AAAb,iBARJ,CADJ,EAaI;AAAI,MAAA,SAAS,EAAC;AAAd,OAA4B,KAAKH,KAAL,CAAWE,OAAX,CAAmBK,aAA/C,OAA+D,KAAKP,KAAL,CAAWE,OAAX,CAAmBM,YAAlF,MAbJ,EAcI;AAAG,MAAA,SAAS,EAAC;AAAb,OAA0B,KAAKR,KAAL,CAAWE,OAAX,CAAmBO,QAA7C,CAdJ,CAPJ,CADJ;AA0BH;;AA7B+B;;AAgCpC,eAAeZ,WAAf",
+    "sourcesContent": [
+      "import React, {Component} from \"react\";\nimport Link from 'next/link';\nimport ReactPlaceholder from \"react-placeholder\";\nimport \"react-placeholder/lib/reactPlaceholder.css\";\nimport {\n    TextBlock,\n    MediaBlock,\n    TextRow,\n    RectShape,\n    RoundShape\n} from \"react-placeholder/lib/placeholders\";\n\nclass SpeakerCard extends Component {\n    render() {\n        const awesomePlaceholder1 = <MediaBlock color=\"#E0E0E0\" rows={6} />;\n        return (\n            <ReactPlaceholder\n                showLoadingAnimation\n                delay={500}\n                ready={!this.props.isLoading}\n                customPlaceholder={awesomePlaceholder1}\n            >\n                <img className=\"card-img-top\" src={`/speakers/Speaker-${this.props.speaker.id}.jpg`}/>\n                <div className=\"card-body\">\n                    <Link\n                        href={{\n                            pathname: '/speaker', query:\n                                {\n                                    speakerId: this.props.speaker.id\n                                }\n                        }}\n                        as={`speaker/${this.props.speaker.id}`}>\n                        <a className=\"btn btn-lg btn-block btn-outline-primary\">\n                            Details\n                        </a>\n                    </Link>\n                    <h4 className=\"card-title\">{this.props.speaker.userFirstName} {this.props.speaker.userLastName} </h4>\n                    <p className=\"card-text\">{this.props.speaker.bioShort}</p>\n                </div>\n            </ReactPlaceholder>\n        );\n    }\n}\n\nexport default SpeakerCard;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

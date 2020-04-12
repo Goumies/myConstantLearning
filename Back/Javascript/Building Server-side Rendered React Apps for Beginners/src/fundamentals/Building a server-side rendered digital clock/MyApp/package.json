@@ -18,11 +18,13 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "dotenv-webpack": "^1.7.0",
+    "lru-cache": "^5.1.1",
     "next": "^9.3.4",
     "next-images": "^1.4.0",
     "path": "^0.12.7",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-placeholder": "^4.0.1"
   },
   "devDependencies": {
     "json-server": "^0.16.1"

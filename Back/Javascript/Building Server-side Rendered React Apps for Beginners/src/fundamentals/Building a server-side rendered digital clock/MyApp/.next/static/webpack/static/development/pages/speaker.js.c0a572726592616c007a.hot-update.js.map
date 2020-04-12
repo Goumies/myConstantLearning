@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "static/webpack/static/development/pages/speaker.js.c0a572726592616c007a.hot-update.js",
+  "sources": [
+    "webpack:///./pages/speaker.js"
+  ],
+  "sourcesContent": [
+    "import React, {Component} from 'react';\nimport axios from \"axios\";\nimport getConfig from 'next/config';\n\nconst {serverRuntimeConfig, publicRuntimeConfig} = getConfig();\n\nclass Speaker extends Component {\n\n    static GetSpeakerUrl() {\n        if (process.env.NODE_ENV === \"production\") {\n            return process.env.RESTURL_SPEAKER_PROD\n                || publicRuntimeConfig.RESTURL_SPEAKER_PROD;\n        } else {\n            return process.env.RESTURL_SPEAKER_DEV;\n        }\n    }\n\n    static async getInitialProps({query}) {\n\n        var promise = axios.get(`${Speaker.GetSpeakerUrl()}/${query.speakerId}`)\n            .then(response => {\n                return {\n                    hasErrored: false,\n                    speakerDataOne: response.data\n                };\n            }).catch(error => {\n                return {\n                    hasErrored: true,\n                    message: error.message\n                }\n            });\n        return promise;\n    }\n\n    render() {\n\n        if(this.state.isLoading){\n            return <div>...isLoading</div>\n        }\n        return (\n            <div className='container'>\n                <div className=\"row\">\n                    <h2 className='margintopbottom20'>{this.props.speakerDataOne.firstName} {this.props.speakerDataOne.lastName}</h2>\n                    <p className='margintopbottom20'>{this.props.speakerDataOne.bio}</p>\n                </div>\n            </div>\n        );\n    }\n}\n\nSpeaker.propTypes = {};\nSpeaker.defaultProps = {};\n\nexport default Speaker;\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AACA;AACA;AACA;AACA;AAAA;AAAA;AACA;AACA;;;;;;;;;;;;;AA4BA;AAEA;AACA;AACA;AACA;AAAA;AACA;AAAA;AACA;AAAA;AACA;AAAA;AACA;AAAA;AAIA;;;AAvCA;AACA,mBAGA;AACA;AACA;AACA;;;;;;;;;AAEA;AAEA;AAEA;AACA;AACA;AAFA;AAIA;AACA;AACA;AACA;AAFA;AAIA;AACA;AACA;;;;;;;;;;;AA1BA;AACA;AA4CA;AAEA;;;;A",
+  "sourceRoot": ""
+}
