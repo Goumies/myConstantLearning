@@ -139,6 +139,7 @@ Create a Docker Image and Container
         docker login
         docker push goumies/svccpsl:latest
 
+        docker run -d -P --name test_sshd svccpsl     
         
     ```
 ### Run Docker Image locally
