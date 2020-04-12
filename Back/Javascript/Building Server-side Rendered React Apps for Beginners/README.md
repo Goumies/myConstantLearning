@@ -119,22 +119,31 @@ json-server : for dev time, place to get REST data from
 ## Deploying your app to a Node server and Production
 ### Learn about using environmental variables
     Add configuration management
-    
-    
     Manager production setting
-    
-    
     Set REST URLs
-    
-    
     /!\ `npm run dev` always sets process.env.NODE_ENV to "development
            = next overwrites the value of NODE_ENV
            So we must run `node server.js` to be in production
     
 
 ### Build a Docker Image out of your Node web app
+[Docker Architecture](https://docs.docker.com/engine/images/architecture.svg)
+Create a Docker Image and Container
+    ```
+        docker-machine start default
+        docker-machine env default
+        -- based on Dokerfile --
+        docker build -t svccpsl .
+        docker images
+        docker tag c28890983dee goumies/svccpsl:latest
+        docker login
+        docker push goumies/svccpsl:latest
+
+        
+    ```
 ### Run Docker Image locally
 ### Publish Docker Image locally to a public URL on a cloud host
+### Push Image from Docker registry to Digital Ocean (big Docker hoster)
 
 ---
 ## React Fundamentals

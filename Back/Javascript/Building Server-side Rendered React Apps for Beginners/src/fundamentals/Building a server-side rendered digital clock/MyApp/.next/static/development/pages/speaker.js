@@ -3036,7 +3036,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement;
 
 function _createSuper(Derived) { return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
@@ -3066,37 +3065,13 @@ var Speaker = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return __jsx("div", {
-        className: "container",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 37,
-          columnNumber: 13
-        }
+        className: "container"
       }, __jsx("div", {
-        className: "row",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 38,
-          columnNumber: 17
-        }
+          className: "row"
       }, __jsx("h2", {
-        className: "margintopbottom20",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 39,
-          columnNumber: 21
-        }
+          className: "margintopbottom20"
       }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
-        className: "margintopbottom20",
-        __self: this,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 40,
-          columnNumber: 21
-        }
+          className: "margintopbottom20"
       }, this.props.speakerDataOne.bio)));
     }
   }], [{
@@ -3137,37 +3112,40 @@ var Speaker = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return Speaker;
+    return Speaker;
 }(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
 
-Speaker.propTypes = {};
-Speaker.defaultProps = {};
-/* harmony default export */ __webpack_exports__["default"] = (Speaker);
+        Speaker.defaultProps = {};
+        /* harmony default export */
+        __webpack_exports__["default"] = (Speaker);
 
-/***/ }),
+        /***/
+    }),
 
-/***/ 5:
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+    /***/ 4:
+    /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+      !*** multi next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js ***!
+      \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js!./");
+        module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js!./");
 
 
-/***/ }),
+        /***/
+    }),
 
 /***/ "dll-reference dll_2adc2403d89adc16ead0":
-/*!*******************************************!*\
-  !*** external "dll_2adc2403d89adc16ead0" ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+    /*!*******************************************!*\
+      !*** external "dll_2adc2403d89adc16ead0" ***!
+      \*******************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports) {
 
-module.exports = dll_2adc2403d89adc16ead0;
+        module.exports = dll_2adc2403d89adc16ead0;
 
-/***/ })
+        /***/
+    })
 
-},[[5,"static/runtime/webpack.js"]]]);
+}, [[4, "static/runtime/webpack.js"]]]);
 //# sourceMappingURL=speaker.js.map

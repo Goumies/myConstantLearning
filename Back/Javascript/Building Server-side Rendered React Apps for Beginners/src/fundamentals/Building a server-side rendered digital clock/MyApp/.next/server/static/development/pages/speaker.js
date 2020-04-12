@@ -78,18 +78,25 @@ module.exports =
 /******/ 			function getModuleExports() { return module; };
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
-/******/ 	};
 /******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
-/******/ })
+    };
+    /******/
+    /******/ 	// Object.prototype.hasOwnProperty.call
+    /******/
+    __webpack_require__.o = function (object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+    };
+    /******/
+    /******/ 	// __webpack_public_path__
+    /******/
+    __webpack_require__.p = "";
+    /******/
+    /******/
+    /******/ 	// Load entry module and return exports
+    /******/
+    return __webpack_require__(__webpack_require__.s = 4);
+    /******/
+})
 /************************************************************************/
 /******/ ({
 
@@ -108,7 +115,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/config */ "next/config");
 /* harmony import */ var next_config__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_config__WEBPACK_IMPORTED_MODULE_2__);
-var _jsxFileName = "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -144,59 +150,37 @@ class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
   render() {
     return __jsx("div", {
-      className: "container",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 37,
-        columnNumber: 13
-      }
+        className: "container"
     }, __jsx("div", {
-      className: "row",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 38,
-        columnNumber: 17
-      }
+        className: "row"
     }, __jsx("h2", {
-      className: "margintopbottom20",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 39,
-        columnNumber: 21
-      }
+        className: "margintopbottom20"
     }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
-      className: "margintopbottom20",
-      __self: this,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 40,
-        columnNumber: 21
-      }
+        className: "margintopbottom20"
     }, this.props.speakerDataOne.bio)));
   }
 
 }
 
-Speaker.propTypes = {};
-Speaker.defaultProps = {};
-/* harmony default export */ __webpack_exports__["default"] = (Speaker);
+            Speaker.defaultProps = {};
+            /* harmony default export */
+            __webpack_exports__["default"] = (Speaker);
 
-/***/ }),
+            /***/
+        }),
 
-/***/ 5:
-/*!********************************!*\
-  !*** multi ./pages/speaker.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+        /***/ 4:
+        /*!********************************!*\
+          !*** multi ./pages/speaker.js ***!
+          \********************************/
+        /*! no static exports found */
+        /***/ (function (module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js */"./pages/speaker.js");
+            module.exports = __webpack_require__(/*! /Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js */"./pages/speaker.js");
 
 
-/***/ }),
+            /***/
+        }),
 
 /***/ "axios":
 /*!************************!*\

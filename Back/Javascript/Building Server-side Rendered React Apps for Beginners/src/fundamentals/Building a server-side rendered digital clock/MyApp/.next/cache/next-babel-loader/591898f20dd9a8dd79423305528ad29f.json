@@ -1,0 +1,50 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js\";\nvar __jsx = React.createElement;\nimport React, { Component } from 'react';\nimport axios from \"axios\";\nimport getConfig from 'next/config';\nconst {\n  serverRuntimeConfig,\n  publicRuntimeConfig\n} = getConfig();\n\nclass Speaker extends Component {\n  static GetSpeakerUrl() {\n    if (false) {\n      return process.env.RESTURL_SPEAKER_PROD || publicRuntimeConfig.RESTURL_SPEAKER_PROD;\n    } else {\n      return process.env.RESTURL_SPEAKER_DEV;\n    }\n  }\n\n  static async getInitialProps({\n    query\n  }) {\n    var promise = axios.get(`${Speaker.GetSpeakerUrl()}/${query.speakerId}`).then(response => {\n      return {\n        hasErrored: false,\n        speakerDataOne: response.data\n      };\n    }).catch(error => {\n      return {\n        hasErrored: true,\n        message: error.message\n      };\n    });\n    return promise;\n  }\n\n  render() {\n    return __jsx(\"div\", {\n      className: \"container\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 38,\n        columnNumber: 13\n      }\n    }, __jsx(\"div\", {\n      className: \"row\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 39,\n        columnNumber: 17\n      }\n    }, __jsx(\"h2\", {\n      className: \"margintopbottom20\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 40,\n        columnNumber: 21\n      }\n    }, this.props.speakerDataOne.firstName, \" \", this.props.speakerDataOne.lastName), __jsx(\"p\", {\n      className: \"margintopbottom20\",\n      __self: this,\n      __source: {\n        fileName: _jsxFileName,\n        lineNumber: 41,\n        columnNumber: 21\n      }\n    }, this.props.speakerDataOne.bio)));\n  }\n\n}\n\nSpeaker.propTypes = {};\nSpeaker.defaultProps = {};\nexport default Speaker;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/pages/speaker.js"
+    ],
+    "names": [
+      "React",
+      "Component",
+      "axios",
+      "getConfig",
+      "serverRuntimeConfig",
+      "publicRuntimeConfig",
+      "Speaker",
+      "GetSpeakerUrl",
+      "process",
+      "env",
+      "RESTURL_SPEAKER_PROD",
+      "RESTURL_SPEAKER_DEV",
+      "getInitialProps",
+      "query",
+      "promise",
+      "get",
+      "speakerId",
+      "then",
+      "response",
+      "hasErrored",
+      "speakerDataOne",
+      "data",
+      "catch",
+      "error",
+      "message",
+      "render",
+      "props",
+      "firstName",
+      "lastName",
+      "bio",
+      "propTypes",
+      "defaultProps"
+    ],
+    "mappings": ";;AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,OAA/B;AACA,OAAOC,KAAP,MAAkB,OAAlB;AACA,OAAOC,SAAP,MAAsB,aAAtB;AAEA,MAAM;AAACC,EAAAA,mBAAD;AAAsBC,EAAAA;AAAtB,IAA6CF,SAAS,EAA5D;;AAEA,MAAMG,OAAN,SAAsBL,SAAtB,CAAgC;AAE5B,SAAOM,aAAP,GAAuB;AACnB,eAA2C;AACvC,aAAOC,OAAO,CAACC,GAAR,CAAYC,oBAAZ,IACAL,mBAAmB,CAACK,oBAD3B;AAEH,KAHD,MAGO;AACH,aAAOF,OAAO,CAACC,GAAR,CAAYE,mBAAnB;AACH;AACJ;;AAED,eAAaC,eAAb,CAA6B;AAACC,IAAAA;AAAD,GAA7B,EAAsC;AAElC,QAAIC,OAAO,GAAGZ,KAAK,CACnBa,GADc,CACT,GAAET,OAAO,CAACC,aAAR,EAAwB,IAAGM,KAAK,CAACG,SAAU,EADpC,EAEbC,IAFa,CAERC,QAAQ,IAAI;AACd,aAAO;AACHC,QAAAA,UAAU,EAAE,KADT;AAEHC,QAAAA,cAAc,EAAEF,QAAQ,CAACG;AAFtB,OAAP;AAIH,KAPa,EAOXC,KAPW,CAOLC,KAAK,IAAI;AACd,aAAO;AACHJ,QAAAA,UAAU,EAAE,IADT;AAEHK,QAAAA,OAAO,EAAED,KAAK,CAACC;AAFZ,OAAP;AAIH,KAZa,CAAd;AAaA,WAAOV,OAAP;AACH;;AAEDW,EAAAA,MAAM,GAAG;AACL,WACI;AAAK,MAAA,SAAS,EAAC,WAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OACI;AAAK,MAAA,SAAS,EAAC,KAAf;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OACI;AAAI,MAAA,SAAS,EAAC,mBAAd;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OAAmC,KAAKC,KAAL,CAAWN,cAAX,CAA0BO,SAA7D,OAAyE,KAAKD,KAAL,CAAWN,cAAX,CAA0BQ,QAAnG,CADJ,EAEI;AAAG,MAAA,SAAS,EAAC,mBAAb;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,OAAkC,KAAKF,KAAL,CAAWN,cAAX,CAA0BS,GAA5D,CAFJ,CADJ,CADJ;AAQH;;AAtC2B;;AAyChCvB,OAAO,CAACwB,SAAR,GAAoB,EAApB;AACAxB,OAAO,CAACyB,YAAR,GAAuB,EAAvB;AAEA,eAAezB,OAAf",
+    "sourcesContent": [
+      "import React, {Component} from 'react';\nimport axios from \"axios\";\nimport getConfig from 'next/config';\n\nconst {serverRuntimeConfig, publicRuntimeConfig} = getConfig();\n\nclass Speaker extends Component {\n\n    static GetSpeakerUrl() {\n        if (process.env.NODE_ENV === \"production\") {\n            return process.env.RESTURL_SPEAKER_PROD\n                || publicRuntimeConfig.RESTURL_SPEAKER_PROD;\n        } else {\n            return process.env.RESTURL_SPEAKER_DEV;\n        }\n    }\n\n    static async getInitialProps({query}) {\n\n        var promise = axios.\n        get(`${Speaker.GetSpeakerUrl()}/${query.speakerId}`)\n        .then(response => {\n            return {\n                hasErrored: false,\n                speakerDataOne: response.data\n            };\n        }).catch(error => {\n            return {\n                hasErrored: true,\n                message: error.message\n            }\n        });\n        return promise;\n    }\n\n    render() {\n        return (\n            <div className='container'>\n                <div className=\"row\">\n                    <h2 className='margintopbottom20'>{this.props.speakerDataOne.firstName} {this.props.speakerDataOne.lastName}</h2>\n                    <p className='margintopbottom20'>{this.props.speakerDataOne.bio}</p>\n                </div>\n            </div>\n        );\n    }\n}\n\nSpeaker.propTypes = {};\nSpeaker.defaultProps = {};\n\nexport default Speaker;\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

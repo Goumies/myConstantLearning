@@ -8,7 +8,7 @@ const {serverRuntimeConfig, publicRuntimeConfig} = getConfig();
 
 class Speakers extends Component {
 
-    static GetSpeakerURL() {
+    static GetSpeakersURL() {
         if (process.env.NODE_ENV === 'production')
             return process.env.RESTURL_SPEAKERS_PROD
                 || publicRuntimeConfig.RESTURL_SPEAKERS_PROD;
@@ -18,7 +18,7 @@ class Speakers extends Component {
     // Next framework runs getInitialProps()
     // before the component construction
     static async getInitialProps() {
-        let promise = axios.get(Speakers.GetSpeakerURL())
+        let promise = axios.get(Speakers.GetSpeakersURL())
             .then(response => {
                 return {
                     hasErrored: false,
