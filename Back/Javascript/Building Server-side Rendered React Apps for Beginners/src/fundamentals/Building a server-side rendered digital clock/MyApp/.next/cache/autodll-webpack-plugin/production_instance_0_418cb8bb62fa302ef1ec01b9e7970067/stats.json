@@ -3,8 +3,8 @@
   "warnings": [],
   "version": "4.42.0",
   "hash": "dc8ac110ce5d8530b237",
-  "time": 3638,
-  "builtAt": 1586643936267,
+  "time": 549,
+  "builtAt": 1586653348403,
   "publicPath": "",
   "outputPath": "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/.next/cache/autodll-webpack-plugin/production_instance_0_418cb8bb62fa302ef1ec01b9e7970067",
   "assetsByChunkName": {

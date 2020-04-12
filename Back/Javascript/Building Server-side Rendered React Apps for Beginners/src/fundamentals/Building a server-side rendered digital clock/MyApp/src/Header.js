@@ -1,4 +1,5 @@
 import React from 'react';
+import svccImg from '../public/SVCClogo.png';
 
 export default function Header() {
     return (
@@ -9,7 +10,7 @@ export default function Header() {
                     <h6 className="text-uppercase">San Jose, California</h6>
                 </div>
                 <div className="col-12 col-sm-8 text-lg-right">
-                    <div><img src='/SVCClogo.png'/></div>
+                    <div><img src={svccImg}/></div>
                     <h2>Silicon Valley Code Camp 2018</h2>
                 </div>
             </div>

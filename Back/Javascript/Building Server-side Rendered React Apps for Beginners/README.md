@@ -139,13 +139,21 @@ Create a Docker Image and Container
         docker login
         docker push goumies/svccpsl:latest
 
-        docker run -d -P --name test_sshd svccpsl     
+        docker run -d -P --name test_sshd svccpsl
+        docker-machine stop default     
         
     ```
 ### Run Docker Image locally
 ### Publish Docker Image locally to a public URL on a cloud host
 ### Push Image from Docker registry to Digital Ocean (big Docker hoster)
 
+## Ensuring your Server-Side app performs
+    Better image handling
+        In case of more 2 webpak plugins, install next-compose-plugins
+        => // next.config.js : withCSS(withImages(...
+    Cache React pages inside our Node server
+    Setup CDN for Code Split JavaScript and images
+    Implement placeholder images while wainting for data to download
 ---
 ## React Fundamentals
 ## Components

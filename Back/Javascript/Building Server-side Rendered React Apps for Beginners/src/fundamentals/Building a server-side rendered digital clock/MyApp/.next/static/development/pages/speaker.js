@@ -3067,7 +3067,7 @@ var Speaker = /*#__PURE__*/function (_Component) {
       return __jsx("div", {
         className: "container"
       }, __jsx("div", {
-          className: "row"
+        className: "row"
       }, __jsx("h2", {
           className: "margintopbottom20"
       }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
@@ -3105,7 +3105,7 @@ var Speaker = /*#__PURE__*/function (_Component) {
 
             case 3:
             case "end":
-              return _context.stop();
+                return _context.stop();
           }
         }
       }, null, null, null, Promise);
@@ -3135,7 +3135,7 @@ var Speaker = /*#__PURE__*/function (_Component) {
         /***/
     }),
 
-/***/ "dll-reference dll_2adc2403d89adc16ead0":
+    /***/ "dll-reference dll_2adc2403d89adc16ead0":
     /*!*******************************************!*\
       !*** external "dll_2adc2403d89adc16ead0" ***!
       \*******************************************/

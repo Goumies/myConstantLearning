@@ -29,7 +29,7 @@
           .querySelectorAll("link[href][rel=stylesheet]")
           .forEach(function(link) {
             if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1586647229240");
+            injectCss(link, link.href.split("?")[0] + "?unix=1586653448321");
           });
       }
     }
@@ -66,7 +66,7 @@
           .querySelectorAll("link[href][rel=stylesheet]")
           .forEach(function(link) {
             if (!link.href.match(prefix) || link.stale) return;
-              injectCss(link, link.href.split("?")[0] + "?unix=1586647229245");
+              injectCss(link, link.href.split("?")[0] + "?unix=1586653448326");
           });
       }
     }

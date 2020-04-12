@@ -21698,7 +21698,7 @@ var dll_2adc2403d89adc16ead0 =
                         }
 
                         if ((executionContext & DiscreteEventContext) !== NoContext && ( // Only updates at user-blocking priority or greater are considered
-                                                                                         // discrete, even inside a discrete event.
+                            // discrete, even inside a discrete event.
                             priorityLevel === UserBlockingPriority$1 || priorityLevel === ImmediatePriority)) {
                             // This is the result of a discrete event. Track the lowest priority
                             // discrete update per root so we can flush them early, if needed.

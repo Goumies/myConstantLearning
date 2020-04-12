@@ -1,0 +1,21 @@
+{
+  "ast": null,
+  "code": "var __jsx = React.createElement;\nimport React from 'react';\nimport svccImg from '../public/SVCClogo.png';\nexport default function Header() {\n  return __jsx(\"div\", {\n    className: \"jumbotron\"\n  }, __jsx(\"div\", {\n    className: \"row\"\n  }, __jsx(\"div\", {\n    className: \"col-12 col-sm-4 text-center\"\n  }, __jsx(\"h6\", {\n    className: \"text-uppercase\"\n  }, \"October 13-14\\xA0\\xA02018\"), __jsx(\"h6\", {\n    className: \"text-uppercase\"\n  }, \"San Jose, California\")), __jsx(\"div\", {\n    className: \"col-12 col-sm-8 text-lg-right\"\n  }, __jsx(\"div\", null, __jsx(\"img\", {\n    src: \"/SVCClogo.png\"\n  })), __jsx(\"h2\", null, \"Silicon Valley Code Camp 2018\"))));\n}",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/romyalula/IdeaProjects/Goumies/myConstantLearning/Back/Javascript/Building Server-side Rendered React Apps for Beginners/src/fundamentals/Building a server-side rendered digital clock/MyApp/src/Header.js"
+    ],
+    "names": [
+      "React",
+      "svccImg",
+      "Header"
+    ],
+    "mappings": ";AAAA,OAAOA,KAAP,MAAkB,OAAlB;AACA,OAAOC,OAAP,MAAoB,wBAApB;AAEA,eAAe,SAASC,MAAT,GAAkB;AAC7B,SACI;AAAK,IAAA,SAAS,EAAC;AAAf,KACI;AAAK,IAAA,SAAS,EAAC;AAAf,KACI;AAAK,IAAA,SAAS,EAAC;AAAf,KACI;AAAI,IAAA,SAAS,EAAC;AAAd,iCADJ,EAEI;AAAI,IAAA,SAAS,EAAC;AAAd,4BAFJ,CADJ,EAKI;AAAK,IAAA,SAAS,EAAC;AAAf,KACI,mBAAK;AAAK,IAAA,GAAG,EAAC;AAAT,IAAL,CADJ,EAEI,kDAFJ,CALJ,CADJ,CADJ;AAcH",
+    "sourcesContent": [
+      "import React from 'react';\nimport svccImg from '../public/SVCClogo.png';\n\nexport default function Header() {\n    return (\n        <div className=\"jumbotron\">\n            <div className=\"row\">\n                <div className=\"col-12 col-sm-4 text-center\">\n                    <h6 className=\"text-uppercase\">October 13-14&nbsp;&nbsp;2018</h6>\n                    <h6 className=\"text-uppercase\">San Jose, California</h6>\n                </div>\n                <div className=\"col-12 col-sm-8 text-lg-right\">\n                    <div><img src='/SVCClogo.png'/></div>\n                    <h2>Silicon Valley Code Camp 2018</h2>\n                </div>\n            </div>\n        </div>\n    );\n}"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

@@ -59,26 +59,46 @@ module.exports =
 /******/ 	// mode & 1: value is a module id, require it
 /******/ 	// mode & 2: merge all properties of value into the ns
 /******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/
+    /******/ 	// mode & 8|1: behave like require
+    /******/
+    __webpack_require__.t = function (value, mode) {
+        /******/
+        if (mode & 1) value = __webpack_require__(value);
+        /******/
+        if (mode & 8) return value;
+        /******/
+        if ((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+        /******/
+        var ns = Object.create(null);
+        /******/
+        __webpack_require__.r(ns);
+        /******/
+        Object.defineProperty(ns, 'default', {enumerable: true, value: value});
+        /******/
+        if (mode & 2 && typeof value != 'string') for (var key in value) __webpack_require__.d(ns, key, function (key) {
+            return value[key];
+        }.bind(null, key));
+        /******/
+        return ns;
+        /******/
+    };
+    /******/
+    /******/ 	// getDefaultExport function for compatibility with non-harmony modules
+    /******/
+    __webpack_require__.n = function (module) {
+        /******/
+        var getter = module && module.__esModule ?
+            /******/            function getDefault() {
+                return module['default'];
+            } :
+            /******/            function getModuleExports() {
+                return module;
+            };
+        /******/
+        __webpack_require__.d(getter, 'a', getter);
+        /******/
+        return getter;
+        /******/
     };
     /******/
     /******/ 	// Object.prototype.hasOwnProperty.call
@@ -182,22 +202,23 @@ class Speaker extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
             /***/
         }),
 
-/***/ "axios":
-/*!************************!*\
-  !*** external "axios" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+        /***/ "axios":
+        /*!************************!*\
+          !*** external "axios" ***!
+          \************************/
+        /*! no static exports found */
+        /***/ (function (module, exports) {
 
-module.exports = require("axios");
+            module.exports = require("axios");
 
-/***/ }),
+            /***/
+        }),
 
-/***/ "next/config":
-/*!******************************!*\
-  !*** external "next/config" ***!
-  \******************************/
-/*! no static exports found */
+        /***/ "next/config":
+        /*!******************************!*\
+          !*** external "next/config" ***!
+          \******************************/
+        /*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = require("next/config");

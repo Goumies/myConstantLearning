@@ -83,27 +83,41 @@
 /******/ 				request.send(null);
 /******/ 			} catch (err) {
 /******/ 				return reject(err);
-/******/ 			}
-/******/ 			request.onreadystatechange = function() {
-/******/ 				if (request.readyState !== 4) return;
-/******/ 				if (request.status === 0) {
-/******/ 					// timeout
-/******/ 					reject(
-/******/ 						new Error("Manifest request to " + requestPath + " timed out.")
-/******/ 					);
-/******/ 				} else if (request.status === 404) {
-/******/ 					// no update available
-/******/ 					resolve();
-/******/ 				} else if (request.status !== 200 && request.status !== 304) {
-/******/ 					// other failure
-/******/ 					reject(new Error("Manifest request to " + requestPath + " failed."));
-/******/ 				} else {
-/******/ 					// success
-/******/ 					try {
-/******/ 						var update = JSON.parse(request.responseText);
-/******/ 					} catch (e) {
-/******/ 						reject(e);
 /******/
+            }
+            /******/
+            request.onreadystatechange = function () {
+                /******/
+                if (request.readyState !== 4) return;
+                /******/
+                if (request.status === 0) {
+                    /******/ 					// timeout
+                    /******/
+                    reject(
+                        /******/                        new Error("Manifest request to " + requestPath + " timed out.")
+                        /******/);
+                    /******/
+                } else if (request.status === 404) {
+                    /******/ 					// no update available
+                    /******/
+                    resolve();
+                    /******/
+                } else if (request.status !== 200 && request.status !== 304) {
+                    /******/ 					// other failure
+                    /******/
+                    reject(new Error("Manifest request to " + requestPath + " failed."));
+                    /******/
+                } else {
+                    /******/ 					// success
+                    /******/
+                    try {
+                        /******/
+                        var update = JSON.parse(request.responseText);
+                        /******/
+                    } catch (e) {
+                        /******/
+                        reject(e);
+                        /******/
                         return;
                         /******/
                     }
@@ -123,7 +137,7 @@
     var hotApplyOnUpdate = true;
     /******/ 	// eslint-disable-next-line no-unused-vars
     /******/
-    var hotCurrentHash = "bd4ab17042cdb6a5ef5a";
+    var hotCurrentHash = "b8ee0f00348fe833b789";
     /******/
     var hotRequestTimeout = 10000;
     /******/
@@ -140,26 +154,43 @@
     /******/ 	// eslint-disable-next-line no-unused-vars
     /******/
     function hotCreateRequire(moduleId) {
-/******/ 		var me = installedModules[moduleId];
-/******/ 		if (!me) return __webpack_require__;
-/******/ 		var fn = function(request) {
-/******/ 			if (me.hot.active) {
-/******/ 				if (installedModules[request]) {
-/******/ 					if (installedModules[request].parents.indexOf(moduleId) === -1) {
-/******/ 						installedModules[request].parents.push(moduleId);
-/******/ 					}
-/******/ 				} else {
-/******/ 					hotCurrentParents = [moduleId];
-/******/ 					hotCurrentChildModule = request;
-/******/ 				}
-/******/ 				if (me.children.indexOf(request) === -1) {
-/******/ 					me.children.push(request);
-/******/ 				}
-/******/ 			} else {
-/******/ 				console.warn(
-/******/ 					"[HMR] unexpected require(" +
-/******/ 						request +
-/******/ 						") from disposed module " +
+        /******/
+        var me = installedModules[moduleId];
+        /******/
+        if (!me) return __webpack_require__;
+        /******/
+        var fn = function (request) {
+            /******/
+            if (me.hot.active) {
+                /******/
+                if (installedModules[request]) {
+                    /******/
+                    if (installedModules[request].parents.indexOf(moduleId) === -1) {
+                        /******/
+                        installedModules[request].parents.push(moduleId);
+                        /******/
+                    }
+                    /******/
+                } else {
+                    /******/
+                    hotCurrentParents = [moduleId];
+                    /******/
+                    hotCurrentChildModule = request;
+                    /******/
+                }
+                /******/
+                if (me.children.indexOf(request) === -1) {
+                    /******/
+                    me.children.push(request);
+                    /******/
+                }
+                /******/
+            } else {
+                /******/
+                console.warn(
+                    /******/                    "[HMR] unexpected require(" +
+                    /******/                        request +
+                    /******/                        ") from disposed module " +
 /******/ 						moduleId
 /******/ 				);
 /******/ 				hotCurrentParents = [];
