@@ -176,3 +176,60 @@ Stereotypes
 ```
 
 ### XML configuration method
+Why use XML
+    First historical approach
+    Simpler
+    Separation of concerns
+
+applicationContext.xml
+    Standard name associated with Spring
+    Root of application in Spring
+    Spring context sort of a HashMap
+    Can simply be a registry
+    Namespaces aid in configuration / validation
+    
+Namespaces
+    beans : dictionary for the properties that we can use
+        to create a bean inside our application
+        = POJOs
+        
+XML Setter injection (better for existing code)
+    Name-based
+    ```
+        <bean name="speakerService"
+              class="org.goumiesland.service.SpeakerServiceImpl">
+            <property name="speakerRepository"
+                ref="speakerRepository" />
+        </bean>
+    ```
+    
+XML Constructor injection
+    Guaranteed contract
+    Constructor defined for each situation
+    Can be used together with setter injection
+    Index-based
+    
+    ```
+        <bean name="speakerService"
+              class="org.goumiesland.service.SpeakerServiceImpl"
+            autowire="constructor"
+        >
+            <!-- Constructor injection-->
+            <constructor-arg index="0" ref="speakerRepository" />
+        </bean>
+    ```
+    
+Autowiring
+    4 types of autowiring
+        byType (by default, if no name. Fatal error when multiple similar types)
+        byName
+        constructor (constructor-arg)
+        no (none for autowiring)
+    
+    ```
+        <bean name="speakerService"
+              class="org.goumiesland.service.SpeakerServiceImpl"
+            autowire="constructor"
+        >
+        </bean>
+    ```
