@@ -69,11 +69,110 @@ Now everything is available to be configured via Java
     makes the bean available through the application
     
 No convention for class or method names, annotations only matter for Spring
-Setter Injection, all beans are singletons
+Setter Injection, all beans are singletons per default
     and they will only execute methods the first time that it's called
 Constructor Injection works just like Setter Injection
 
 Creates and wires java objects
 
+### Spring Scopes and Autowiring
+Scopes
+    Go hand in hand with Pattern
+    BUT Scope != Pattern
+    Spring uses design patterns
+    
+5 scopes
+    Valid in any configuration
+        Singleton
+        Prototype (new bean per request)
+    Valid only in web-aware Spring projects
+        Request
+        Session
+        Global
+        => Spring MVC, Microservices, SPA
+        
+SINGLETON
+    Default bean scope
+    Single instance per Spring container (a JVM can contain several Spring container)
+    
+    @Scope("singleton")
+    = Maven transitive dependency of Spring
+    
+        @Scope(value = BeanDefinition.SCOPE_SINGLETON)`
+        
+        ```
+        org.goumiesland.service.SpeakerServiceImpl@483f6d77
+        Romy
+        org.goumiesland.service.SpeakerServiceImpl@483f6d77
+        ```
+
+PROTOTYPE
+    Instance per request
+    Guaranteed unique
+    Opposite of Singleton
+
+        @Scope(value = BeanDefinitionSCOPE_PROTOTYPE)``
+
+        ```
+        org.goumiesland.service.SpeakerServiceImpl@1b1426f4
+        Romy
+        org.goumiesland.service.SpeakerServiceImpl@581ac8a8
+        ```
+        
+Web Scopes
+    Spring MVC
+    Request : bean per HTTP request
+        like a kind of Prototype bean for the lifecycle of a bean Request
+    Session : bean per HTTP session
+        alive as long as a user session is alive on a website
+    GlobalSession : bean per application
+        alive until the application is not deployed anymore or the server is rebooted
+
+Autowired
+    Great technique to reduce the wiring up and configuration of an app
+    Convention over configuration
+    @ComponentScan(Where to look for autowired annotations)
+    ```@ComponentScan({"org.goumiesland"})```
+        + @Bean
+        + Autowired By Name / Instance Type
+        `@Autowired`
+            ```
+                SpeakerServiceImpl()
+                SpeakerServiceImpl repository constructor
+                SpeakerServiceImpl setter
+           ```
+
 ### Annotations in Spring
+Stereotypes
+    @Component ( = @Bean BUT class level annotation)
+    @Repository
+    @Service ( = Business Logic)
+    @Controller (Spring MVC, web or Micro services for app)
+
+```
+    @Autowired
+    public void setRepository(SpeakerRepository repository) {
+        System.out.println("SpeakerServiceImpl setter");
+        this.repository = repository;
+    }
+
+    SpeakerServiceImpl()
+    SpeakerServiceImpl setter
+    org.goumiesland.service.SpeakerServiceImpl@2e385cce
+    Romy
+    org.goumiesland.service.SpeakerServiceImpl@2e385cce
+```
+```
+    @Autowired
+    public SpeakerServiceImpl(SpeakerRepository speakerRepository) {
+        System.out.println("SpeakerServiceImpl repository constructor");
+        repository = speakerRepository;
+    }
+
+    SpeakerServiceImpl repository constructor
+    org.goumiesland.service.SpeakerServiceImpl@2c1b194a
+    Romy
+    org.goumiesland.service.SpeakerServiceImpl@2c1b194a
+```
+
 ### XML configuration method

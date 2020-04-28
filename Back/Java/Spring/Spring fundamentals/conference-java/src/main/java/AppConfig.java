@@ -1,15 +1,14 @@
-import org.goumiesland.repository.HibernateSpeakerRepositoryImpl;
-import org.goumiesland.repository.SpeakerRepository;
-import org.goumiesland.service.SpeakerService;
-import org.goumiesland.service.SpeakerServiceImpl;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ComponentScan({"org.goumiesland"})
 public class AppConfig {
 
-    @Bean(name = "speakerService")
+    /*@Bean(name = "speakerService")
+    @Scope(value = BeanDefinition.SCOPE_SINGLETON)
     SpeakerService getSpeakerService() {
+        SpeakerServiceImpl service = new SpeakerServiceImpl();
         //SpeakerServiceImpl service = new SpeakerServiceImpl();
         //service.setRepository(getSpeakerRepository());
         return new SpeakerServiceImpl(getSpeakerRepository());
@@ -18,5 +17,5 @@ public class AppConfig {
     @Bean(name = "speakerRepository")
     SpeakerRepository getSpeakerRepository() {
         return new HibernateSpeakerRepositoryImpl();
-    }
+    }*/
 }
