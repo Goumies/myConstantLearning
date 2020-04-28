@@ -233,3 +233,66 @@ Autowiring
         >
         </bean>
     ```
+
+## Advanced Bean Configuration
+Bean Lifecycle
+    Instantiation
+        |
+        Populate Properties
+        |
+        BeanNameAware
+        |
+        BeanFactoryAware
+        |
+        Pre Initialization - BeanPostProcessors
+        |
+        InitializeBean
+        |
+        initMethod
+        |
+        Post Initialization - BeanPostProcessors
+
+            
+### BeanPostProcessor
+    Annotations recommended for configuration related methods
+    Not for logging or handling connections (Spring does it for us)
+    ```
+        // SpeakerServiceImpl
+        @PostConstruct
+        private void initialize() {
+            System.out.println("We're called after the constructors");
+        }
+        
+        // SpeakerServiceImpl
+        @PreDestroy
+        private void initialize() { ... }
+    ```
+    
+### FactoryBean (create Spring Bean as static method out of it)
+Builds on initMethod concept
+Factory Method Pattern
+Integrate Legacy code in a application
+Contract without Constructor
+Static methods
+
+### SpEL (Spring Expression Language)
+Typically used in libraries but can be used to modify application
+Manipulate Object Graph
+Evaluate at Runtime
+Configuration
+
+### Proxies
+Spring AOP (Aspect Oriented Programming) Proxies
+    Spring utilizes Proxies
+    When doing something framework or library based
+    @Transactional : starting point of the codebase in which
+        you want the following code tob be surrounded with a transaction
+
+### Profiles (used in devOps / configuration per environment scenario)
+Bean profiles
+    Set up specific code for a dedicated environment
+    Swap configuration at runtime
+    @Profile("dev") : chosen name
+        + Edit configs > VM options : -Dspring.profiles.active=dev
+        = Make the bean available on required profile option submission
+        = Allow specific code on specific environment
