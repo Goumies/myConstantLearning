@@ -3064,19 +3064,19 @@ var Speaker = /*#__PURE__*/function (_Component) {
   Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Speaker, [{
     key: "render",
     value: function render() {
-      if (this.state.isLoading) {
-        return __jsx("div", null, "...isLoading");
-      }
+        if (this.state.isLoading) {
+            return __jsx("div", null, "...isLoading");
+        }
 
-      return __jsx("div", {
-        className: "container"
-      }, __jsx("div", {
-        className: "row"
-      }, __jsx("h2", {
-        className: "margintopbottom20"
-      }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
-        className: "margintopbottom20"
-      }, this.props.speakerDataOne.bio)));
+        return __jsx("div", {
+            className: "container"
+        }, __jsx("div", {
+            className: "row"
+        }, __jsx("h2", {
+            className: "margintopbottom20"
+        }, this.props.speakerDataOne.firstName, " ", this.props.speakerDataOne.lastName), __jsx("p", {
+            className: "margintopbottom20"
+        }, this.props.speakerDataOne.bio)));
     }
   }], [{
     key: "GetSpeakerUrl",
@@ -3109,43 +3109,47 @@ var Speaker = /*#__PURE__*/function (_Component) {
 
             case 3:
             case "end":
-              return _context.stop();
+                return _context.stop();
           }
         }
       }, null, null, null, Promise);
     }
   }]);
 
-  return Speaker;
+    return Speaker;
 }(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
 
-Speaker.defaultProps = {};
-/* harmony default export */ __webpack_exports__["default"] = (Speaker);
+        Speaker.defaultProps = {};
+        /* harmony default export */
+        __webpack_exports__["default"] = (Speaker);
 
-/***/ }),
+        /***/
+    }),
 
-/***/ 4:
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+    /***/ 4:
+    /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+      !*** multi next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js ***!
+      \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js!./");
+        module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fspeaker&absolutePagePath=%2FUsers%2Fromyalula%2FIdeaProjects%2FGoumies%2FmyConstantLearning%2FBack%2FJavascript%2FBuilding%20Server-side%20Rendered%20React%20Apps%20for%20Beginners%2Fsrc%2Ffundamentals%2FBuilding%20a%20server-side%20rendered%20digital%20clock%2FMyApp%2Fpages%2Fspeaker.js!./");
 
 
-/***/ }),
+        /***/
+    }),
 
-/***/ "dll-reference dll_2adc2403d89adc16ead0":
-/*!*******************************************!*\
-  !*** external "dll_2adc2403d89adc16ead0" ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+    /***/ "dll-reference dll_2adc2403d89adc16ead0":
+    /*!*******************************************!*\
+      !*** external "dll_2adc2403d89adc16ead0" ***!
+      \*******************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports) {
 
-module.exports = dll_2adc2403d89adc16ead0;
+        module.exports = dll_2adc2403d89adc16ead0;
 
-/***/ })
+        /***/
+    })
 
-},[[4,"static/runtime/webpack.js"]]]);
+}, [[4, "static/runtime/webpack.js"]]]);
 //# sourceMappingURL=speaker.js.map

@@ -4662,131 +4662,176 @@ try {
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MyApp; });
-/* harmony import */ var _babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _src_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../src/Layout */ "./src/Layout.js");
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return MyApp;
+        });
+        /* harmony import */
+        var _babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+        /* harmony import */
+        var _babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+        /* harmony import */
+        var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
+        /* harmony import */
+        var _babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
+        /* harmony import */
+        var _babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+        /* harmony import */
+        var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+        /* harmony import */
+        var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+        /* harmony import */
+        var next_app__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
+        /* harmony import */
+        var next_app__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_6__);
+        /* harmony import */
+        var _src_Layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../src/Layout */ "./src/Layout.js");
 
 
+        var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
+
+        function _createSuper(Derived) {
+            return function () {
+                var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived),
+                    result;
+                if (_isNativeReflectConstruct()) {
+                    var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor;
+                    result = Reflect.construct(Super, arguments, NewTarget);
+                } else {
+                    result = Super.apply(this, arguments);
+                }
+                return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result);
+            };
+        }
+
+        function _isNativeReflectConstruct() {
+            if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+            if (Reflect.construct.sham) return false;
+            if (typeof Proxy === "function") return true;
+            try {
+                Date.prototype.toString.call(Reflect.construct(Date, [], function () {
+                }));
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
 
 
+        var MyApp = /*#__PURE__*/function (_App) {
+            Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(MyApp, _App);
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement;
+            var _super = _createSuper(MyApp);
 
-function _createSuper(Derived) { return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, result); }; }
+            function MyApp() {
+                Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MyApp);
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+                return _super.apply(this, arguments);
+            }
 
+            Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(MyApp, [{
+                key: "render",
+                value: function render() {
+                    var _this$props = this.props,
+                        Component = _this$props.Component,
+                        pageProps = _this$props.pageProps;
+                    return __jsx(_src_Layout__WEBPACK_IMPORTED_MODULE_7__["Layout"], null, __jsx(Component, pageProps));
+                }
+            }]);
 
-
-
-
-var MyApp = /*#__PURE__*/function (_App) {
-  Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__["default"])(MyApp, _App);
-
-  var _super = _createSuper(MyApp);
-
-  function MyApp() {
-    Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MyApp);
-
-    return _super.apply(this, arguments);
-  }
-
-  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(MyApp, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          Component = _this$props.Component,
-          pageProps = _this$props.pageProps;
-      return __jsx(_src_Layout__WEBPACK_IMPORTED_MODULE_7__["Layout"], null, __jsx(Component, pageProps));
-    }
-  }]);
-
-  return MyApp;
-}(next_app__WEBPACK_IMPORTED_MODULE_6___default.a);
+            return MyApp;
+        }(next_app__WEBPACK_IMPORTED_MODULE_6___default.a);
 
 
+        /***/
+    }),
 
-/***/ }),
+    /***/ "./public/SVCClogo.png":
+    /*!*****************************!*\
+      !*** ./public/SVCClogo.png ***!
+      \*****************************/
+    /*! no static exports found */
+    /***/ (function (module, exports) {
 
-/***/ "./public/SVCClogo.png":
-/*!*****************************!*\
-  !*** ./public/SVCClogo.png ***!
-  \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+        module.exports = "data:image/png;base64,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"
 
-module.exports = "data:image/png;base64,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"
+        /***/
+    }),
 
-/***/ }),
+    /***/ "./src/Footer.js":
+    /*!***********************!*\
+      !*** ./src/Footer.js ***!
+      \***********************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
-/***/ "./src/Footer.js":
-/*!***********************!*\
-  !*** ./src/Footer.js ***!
-  \***********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return Footer;
+        });
+        /* harmony import */
+        var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+        /* harmony import */
+        var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+        var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Footer; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+        function Footer() {
+            return __jsx("div", {
+                className: "jumbotron text-center"
+            }, __jsx("h7", null, __jsx("b", null, "Silicon Valley Code Camp 2018"), " is Hosted by PayPal in San Jose at their Town Hall location. 2121 North First Street. ", __jsx("b", null, "October 13-14 2018")));
+        }
 
-function Footer() {
-  return __jsx("div", {
-    className: "jumbotron text-center"
-  }, __jsx("h7", null, __jsx("b", null, "Silicon Valley Code Camp 2018"), " is Hosted by PayPal in San Jose at their Town Hall location. 2121 North First Street. ", __jsx("b", null, "October 13-14 2018")));
-}
+        /***/
+    }),
 
-/***/ }),
+    /***/ "./src/Header.js":
+    /*!***********************!*\
+      !*** ./src/Header.js ***!
+      \***********************/
+    /*! exports provided: default */
+    /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
-/***/ "./src/Header.js":
-/*!***********************!*\
-  !*** ./src/Header.js ***!
-  \***********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "default", function () {
+            return Header;
+        });
+        /* harmony import */
+        var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+        /* harmony import */
+        var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+        /* harmony import */
+        var _public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../public/SVCClogo.png */ "./public/SVCClogo.png");
+        /* harmony import */
+        var _public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1__);
+        var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Header; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../public/SVCClogo.png */ "./public/SVCClogo.png");
-/* harmony import */ var _public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1__);
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+        function Header() {
+            return __jsx("div", {
+                className: "jumbotron"
+            }, __jsx("div", {
+                className: "row"
+            }, __jsx("div", {
+                className: "col-12 col-sm-4 text-center"
+            }, __jsx("h6", {
+                className: "text-uppercase"
+            }, "October 13-14\xA0\xA02018"), __jsx("h6", {
+                className: "text-uppercase"
+            }, "San Jose, California")), __jsx("div", {
+                className: "col-12 col-sm-8 text-lg-right"
+            }, __jsx("div", null, __jsx("img", {
+                src: _public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1___default.a
+            })), __jsx("h2", null, "Silicon Valley Code Camp 2018"))));
+        }
 
-function Header() {
-  return __jsx("div", {
-    className: "jumbotron"
-  }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-12 col-sm-4 text-center"
-  }, __jsx("h6", {
-    className: "text-uppercase"
-  }, "October 13-14\xA0\xA02018"), __jsx("h6", {
-    className: "text-uppercase"
-  }, "San Jose, California")), __jsx("div", {
-    className: "col-12 col-sm-8 text-lg-right"
-  }, __jsx("div", null, __jsx("img", {
-    src: _public_SVCClogo_png__WEBPACK_IMPORTED_MODULE_1___default.a
-  })), __jsx("h2", null, "Silicon Valley Code Camp 2018"))));
-}
-
-/***/ }),
+        /***/
+    }),
 
 /***/ "./src/Layout.js":
 /*!***********************!*\
@@ -4844,7 +4889,7 @@ var Layout = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var children = this.props.children;
-      return __jsx(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, __jsx(_Header__WEBPACK_IMPORTED_MODULE_8__["default"], null), __jsx(_Menu__WEBPACK_IMPORTED_MODULE_9__["default"], null), children, __jsx(_Footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
+        return __jsx(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, __jsx(_Header__WEBPACK_IMPORTED_MODULE_8__["default"], null), __jsx(_Menu__WEBPACK_IMPORTED_MODULE_9__["default"], null), children, __jsx(_Footer__WEBPACK_IMPORTED_MODULE_10__["default"], null));
     }
   }]);
 
@@ -4872,32 +4917,32 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 function Menu() {
   return __jsx("nav", {
-    className: "navbar navbar-expand-sm bg-dark navbar-dark"
+      className: "navbar navbar-expand-sm bg-dark navbar-dark"
   }, __jsx("div", {
-    className: "navbar"
+      className: "navbar"
   }, __jsx("ul", {
-    className: "navbar-nav"
+      className: "navbar-nav"
   }, __jsx("li", {
-    className: "nav-item"
+      className: "nav-item"
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/"
+      href: "/"
   }, __jsx("a", {
     className: "nav-link",
-    href: "#"
+      href: "#"
   }, "Home"))), __jsx("li", {
-    className: "nav-item"
+      className: "nav-item"
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/speakers"
+      href: "/speakers"
   }, __jsx("a", {
     className: "nav-link",
-    href: "#"
+      href: "#"
   }, "Speakers"))), __jsx("li", {
-    className: "nav-item"
+      className: "nav-item"
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/sessions"
+      href: "/sessions"
   }, __jsx("a", {
     className: "nav-link",
-    href: "#"
+      href: "#"
   }, "Sessions"))))));
 }
 
