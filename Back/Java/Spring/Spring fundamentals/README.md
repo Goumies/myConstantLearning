@@ -49,3 +49,31 @@ and make repeatable processes. But made code brittle and unrepeatable
 WORA : Write Once Run Anywhere
 
 No hardcoded configuration in the project
+Spring removes configuration code from the project
+
+## Configuration
+### Java configuration in Spring approach (most popular config)
+No applicationContext.xml
+Earlier versions of Spring required too much XML
+Later versions included Namespaces
+Now everything is available to be configured via Java
+
+@Configuration
+    replaces applicationContext.xml
+    class level annotation
+    
+@Bean
+    defines Spring Beans
+    method level annotation
+    registers the bean inside Spring
+    makes the bean available through the application
+    
+No convention for class or method names, annotations only matter for Spring
+Setter Injection, all beans are singletons
+    and they will only execute methods the first time that it's called
+Constructor Injection works just like Setter Injection
+
+Creates and wires java objects
+
+### Annotations in Spring
+### XML configuration method
