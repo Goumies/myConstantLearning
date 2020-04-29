@@ -1,0 +1,183 @@
+# Spring Boot Fundamentals
+[Plralsight](https://app.pluralsight.com/library/courses/spring-boot-fundamentals)
+[Repo](https://gitlab.com/videolearning/spring-fundamentals)
+Extension of Spring framework to create an app quickly with less code
+
+Makes it super easy to set up configure and run your application
+
+____________________________________   Spring   ____________________________________
+
+                                      Spring Boot
+                                      
+            Spring MVC                Spring Data           Spring Security
+                                      
+          Spring Session              Spring AMQP           Spring Batch
+____________________________________________________________________________________
+
+Configuration challenges
+    XML config files
+    Configuration needed
+    Annotation based
+    
+Structure
+    Application > Controller > Services > Repository > Database + Servlet Container
+        |
+    XML Configuration
+    
+Spring Boot emphasis Convention over Configuration
+
+Simple Deployment
+
+Features of Spring Boot
+    Automatic config
+    Starter dependencies
+    Command line interface
+    Actuator
+## Spring Boot starters
+Starter dependency
+    Included in the pom file
+        spring-boot-starter-web
+            (minimum dependency required to create a web app)
+            Automatically adds web app dev lib :
+                Spring MVC, REST, Tomcat, Jackson
+        spring-boot-starter-test
+            Includes testing libraries :
+                JUnit, Mockito, Hamcrest, Spring Core, Spring test
+        spring-boot-starter-data-jpa
+            Includes needed libraries for Spring Data JPA and Hibernate :
+                JDBC, Entity Manager, Transaction API, Spring Data JPA, Aspects
+        spring-boot-starter-thymeleaf
+    Starter pack including all of the lib that we need
+
+## Automatic configuration
+Time saving feature
+Configures application based on libraries and adds it to project classpath
+Maven dependencies configured automatically
+
+## Spring Boot CLI
+Application can be entirely written using Groovy scripts
+Rapid prototyping
+
+## Actuator
+Allows us to see what's going on inside the running Spring application
+    Monitor running application
+    Manage via HTTP endpoints or JMX
+    
+We will be able to see :
+    Health status
+    metrics
+    loggers
+    audit events
+    HTTP trace    
+
+Bootstrapping an application
+## Spring Initializr
+[Spring Initializr](https://start.spring.io)
+pom.xml
+    ```
+        <parent>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-parent</artifactId>
+            <version>2.2.6.RELEASE</version>
+            <relativePath/> <!-- lookup parent from repository -->
+        </parent>
+    ```
+    artifact = parent for all spring boot projects
+        Allows management of dependencies for multiple child modules at once
+        = default config for several projects
+        = no version tags required on dependencies
+
+FundamentalsApplication
+    ```
+        @SpringBootApplication
+        public class FundamentalsApplication {
+        
+        	public static void main(String[] args) {
+        
+        		SpringApplication.run(FundmentalsApplication.class, args);
+        		System.out.println("Hello Pluralsight !");
+        	}
+        
+        }
+    ```
+## Spring Boot CLI
+Generates a project using the CLI
+Some prefers it over Spring Initializr
+
+```shell script
+    spring init fundamentals2
+    spring init --dependencies=web,data-jpa fundamentals3
+```
+    /!\ Default name = demo in pom.xml
+    
+```shell script
+  cd cli
+  spring run app.groovy 
+```
+    + go to localhost:8080
+
+Automatic config
+    Convention over configuration approach
+    How it Works
+        Process
+            Finds JARs on the classpath and auto-configure beans
+            => 
+        Auto-configures
+            Data source for Hibernate (corresponding JAR found on the classpath)
+            or DispatcherServlet for Spring MVC (corresponding JAR found on the classpath)
+        Non invasive
+            If u add ur own beans like datasource bean, the default embedded database support
+            backs away. Auto config is always applied after user defined beans have been registered
+        Insights
+            To check what auto-config is set, start application with --debug switch
+            Or add a simple property to application.properties
+            Or use the Spring Boot Actuator
+    Enabling debug logging
+        src/main/resources/application.properties :
+        ```
+            logging.level.org.springframework: DEBUG
+        ```
+        enables debug logs and reports it to the console
+    Auto config
+    src/main/resources/application.properties :
+        [docs](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+
+
+Annotations
+    @SpringBootApplication annotation
+        Very important annotation
+        Added to the main application class
+        Replaces 3 annotations :
+            @SpringBootConfiguration -> replaces @Configuration and annotates a class as a configuration
+            @EnableAutoConfiguration -> tells Spring Boot to configure beans
+            @ComponentScan -> tells Spring Boot to scan current package and subpackages
+        
+Profiles
+    Fundamentals to the Spring framework
+    Different environments Dev / Test / Production
+    ```
+        spring.profiles.active = dev
+    ```
+        Defines active profile
+    ```
+        applications-{profile}.properties
+    ```
+        Naming format for dedicated application properties file per environment
+    ```
+        applications-dev.properties
+        applications-test.properties
+        applications-prod.properties
+    ```
+        
+
+## Data access 
+
+## Spring MVC
+
+## REST API development
+ 
+## GraphQL servers
+
+## Spring Boot Actuator
+
+## Testing
