@@ -299,7 +299,67 @@ Deploy application to Tomcat
         Manages lifecycle of Spring Boot app and generate build infos that
             can be used by a tool called Actuator (provides app monitor and metrics)
 
-## REST API development
+## Building a RESTful Web Application with Spring Boot
+REST architecture style
+    REpresentational State Transfer :
+        Set of guidelines used to design APIs, 4 principles
+            > Data and functionality are considered resources
+                identified through the URI (Uniform Resource Identifier),
+                access via web links
+            > Resources are manipulated using a fixed set of operations :
+                GET - retrieves a resource
+                POST - creates a resource
+                PUT - updates a resource
+                DELETE - removes it
+            > Resources can be represented in multiple formats :
+                HTML, XML, plain text, JSON... defined by a media type
+            > Communication between the client and the endpoint is stateless :
+                The server will not remember or store any state about the client
+    ```
+        @RestController // Simplifies creating RESTful app
+        // The controller simply return object data written directly to the HTTP response as JSON
+        
+        @RequestMapping("/tza")
+        // Maps HTTP resquest to the correct handler method in the controller
+        // tza wil the root of all requests coming into this API
+    ```
+        @RestController
+        @RequestMapping(...)
+            = Spring MVC annotations
+            
+        @RestController = @Controller + @ResponseBody annotations
+        
+        All methods return ResponseEntity due to the @ResponseBody implicit annotation
+        @ResponseBody in a controller indicates to Spring that the returned value
+            of a method is serialized directly to the boby of the HTTP request
+            
+        ResponseEntity represents the entire HTTP response including status code, headers and response body
+            is generic
+            ```
+            return new ResponseEntity<List<Ticket>>(list, HttpStatus.OK);
+            ```
+
+    To test the endpoints : 
+    ```
+        curl http://localhost:8080/tza/applications
+        curl http://localhost:8080/tza/application/1
+
+    ```
+    
+HTTP response codes
+    HttpStatus.OK - 200
+    HttpStatus.BAD_REQUEST - 400
+    HttpStatus.NOT_FOUND - 404
+    HttpStatus.CONFLICT - 409
+
+Annotations
+Exception Handling
+    ResponseStatusException :
+        Programmatic alternative to @ResponseStatus
+        Base class Exception used for applying a status code to an HTTP response
+        Implementing an instance by providing HTTPStatus + a reason + a cause
+        Exceptions can be created programmatically
+        Provides a default error mapping returning a JSON response with an HTTP status and the exception
  
 ## GraphQL servers
 

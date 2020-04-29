@@ -2,8 +2,10 @@ package org.goumiesland.service;
 
 import org.goumiesland.entity.Release;
 
+import java.util.List;
+
 public interface ReleaseService {
-    Iterable<Release> listReleases();
+    List<Release> listReleases();
 }
 
 
