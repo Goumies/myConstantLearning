@@ -168,9 +168,78 @@ Profiles
         applications-test.properties
         applications-prod.properties
     ```
-        
 
-## Data access 
+## Accessing Data with Spring Boot and H2
+Data access
+    H2 DB, open-source DB written in Java
+        In-memory DB
+        Good for POCs, dev env, simple DB
+        Easily integrated with Spring
+        Administer via the H2 console
+        Spring auto-configures H2 related properties, as declared in the pom file
+    Default configurations
+        H2 defaults :
+        ```
+            spring.datasource.url=jdbc:h2:mem:testdb
+            spring.datasource.driverClassName=org.h2.Driver
+            spring.datasource.username=sa
+            spring.datasource.password=
+            spring.h2.console.enabled=false
+        ```
+        Overridden defaults :
+        ```
+            spring.datasource.url=jdbc:h2:mem:bugtracker
+            spring.datasource.path=/h2
+            spring.h2.console.enabled=true
+        ```
+
+Benefits of Spring with JPA
+    ORM (Object Relation Mapping) with JPA
+        Spring Data JPA (provides repository support for JPA) with
+        Hibernate, implementation required in order for JPA to work
+                   persistence provider
+                    |
+        JPA (Java Persistence API), abstraction on JDBC
+            to map Java obj on relational DBs
+            = just a specification
+            = set of guidelines
+            = set of empty methods and collection of interfaces
+                that only describes Java persistence methodology
+                    |
+        JDBC (Java DB Connectivity)
+                    |
+        Persistence Java Store
+        
+    Spring Data
+        pom : spring-boot-starter-data-jpa
+        = Hibernate, Spring Data JPA, Spring ORM
+    
+    
+Querying using repositories
+    Entities
+        Objects living in a DB with tha ability to be mapped to a DB
+        @Entity, class level annotation for JPA entity
+        Class name = table name to be map with
+        Traditionally JPA entities are specified in a persistence.xml file
+            BUT, with Spring Boot, this file is not necessary and EntityScanning is used
+            All the packages under the Main application class are searched,
+            any classed annotated /w @Entity are included
+    Repository
+        Interfaces extending CrudRepository<ClassToBeManaged, Id>
+            No implementation because Spring provides it via CrudRepository
+            ```
+                public interface ApplicationRepository extends CrudRepository<Application, Long> {
+                }
+            ```
+    On runtime
+    ```
+        2020-04-29 16:47:47.265  INFO 31131 --- [           main] org.goumiesland.FundamentalsApplication  : The application is: Application{id=1, name='Trackzilla', owner=kesha.williams, description='Application for tracking bugs.'}
+        2020-04-29 16:47:47.265  INFO 31131 --- [           main] org.goumiesland.FundamentalsApplication  : The application is: Application{id=2, name='Expenses', owner=mary.jones, description='Application to track expense reports.'}
+        2020-04-29 16:47:47.265  INFO 31131 --- [           main] org.goumiesland.FundamentalsApplication  : The application is: Application{id=3, name='Notifications', owner=karen.kane, description='Application to send alerts and notifications to users.'}
+    ```
+    
+    H2 console
+    http://localhost:8080/h2-console/
 
 ## Spring MVC
 
