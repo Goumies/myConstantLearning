@@ -241,7 +241,63 @@ Querying using repositories
     H2 console
     http://localhost:8080/h2-console/
 
-## Spring MVC
+## Configuring a Spring MVC Application with Spring Boot
+MVC design pattern
+    Spring MVC dependency = spring-boot-starter-web
+    Auto-configuration provides :
+        Dispatcher servlet
+        Error page
+        Servlet container (Tomcat is the default)
+        JARs
+    Model View Control decouples major components to promote faster development cycles
+        and works well for developing large scale web applications that need to be supported
+        by large teams of developers
+    Model = Representation of data in a system
+    View = Responsible for displaying data
+    Controller = Directing incoming user requests
+    ThymeLeaf, templating agent providing support for HTML, Java-based library used to create a web application
+        It provides a good support for serving a XHTML/HTML5 in web applications
+            Fragments : define repeatable chunks of code,
+                reusable in another ThymeLeaf template file
+                Components reused across pages
+    ```
+        spring-boot-starter-thymeleaf
+    ```
+    Service = Business Logic
+    Controller = maps model to the view
+    View
+        /resources/templates/
+        Once thymeleaf is enabled, no extra config necessary
+        For any thymeleaf config > application.properties
+    ```
+        spring.thymeleaf.template-loader-path: classpath:/templates
+        spring.thymeleaf.suffix: .html // suffix appended to page name when building an URL
+        spring.thymeleaf.tcache: false
+    ```
+Useful annotations
+@Controller stereotype = class level annotation considered by Spring
+    whenever an HTTP request arrives
+@EnabledWeb Spring MVC annotation is typically used
+    BUT Spring automatically adds it when it sees the necessary
+    dependencies on the classpath (auto-config)
+@GetMapping = provides routing information
+
+Deploy application to Tomcat
+    Spring Boot application can be traditionally packaged as a web app in a .war file
+        and deployed to a web server OR deployed as an executable .jar file with an embedded server
+    Spring Boot Maven Plugin
+    ```
+        spring-boot-maven-plugin
+    ```
+        Repackages .jar and .war files to be executable
+        For .jar files, it collects the .jar files in the classpath
+            and build them as a single runnable .jar file called an Uber .jar
+        Runs Spring Boot Application and searches for
+            the public static void main method to flag as a runnable class
+        Provides built-in dependency resolver that sets the version number
+            to match Spring Boot dependencies
+        Manages lifecycle of Spring Boot app and generate build infos that
+            can be used by a tool called Actuator (provides app monitor and metrics)
 
 ## REST API development
  
