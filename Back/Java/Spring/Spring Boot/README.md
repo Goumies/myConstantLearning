@@ -361,7 +361,103 @@ Exception Handling
         Exceptions can be created programmatically
         Provides a default error mapping returning a JSON response with an HTTP status and the exception
  
-## GraphQL servers
+## Building a GraphQL Server with Spring Boot
+Allows users to choose the data they want to receive, offering more flexibility
+
+GraphQL, query language for APIs or a syntax that describes how to ask for data
+    Overview
+        REST is the most popular way to expose data from a server
+        REST is very rigid (returning all the data points as designed by the dev)
+        GraphQL offers greater flexibility in the response returned
+        Allows client to specify the exact data needed
+        Aggregation of data from multiple sources in the backend
+        No longer required to call multiple APIs for needed data
+        Sample Query
+        ```
+            {
+            findAllApplications
+                {
+                    id
+                    owner
+                }
+            }
+        ```
+        Response
+        ```
+            {
+                "data":
+                {
+                "findAllApplications":
+                    [{
+                        "id": "1",
+                        "owner": "Kesha"},
+                      { "id": "2",
+                        "owner": "Jane"}]
+                }
+            }
+        ```
+    Dependencies
+        ```
+            graphql-spring-boot-starter // adds and auto-config a GraphQL servlet accessible at /graphql
+            graphql-java-tools // helper library to parse the GraphQL schema
+        ```
+    Schema
+        Defines data points offered via an API
+        Data types and relationships
+        Operations available
+        graphql-java-tools parses schemas ending in .graphqls
+        [more about GraphQL schema](https://graphql.org/learn/schema/)
+    GraphQL server
+    Resolvers, queries and mutations
+        A Query Resolver will use our repository to query the DB
+        src/main/java/org.goumiesland/resolver/Query.java
+        Mutations : update of data stored in the server
+            => Creating, updating, deleting
+            Mutations are Java classes that implements the GraphQLMutationResolver
+                src/main/java/org.goumiesland/mutator/Mutation.java
+                The mutation resolver allows Spring to automatically detect and call the right
+                    method in response to one of the GraphQL mutations declared inside the schema
+                        = 1 method per operation declared in the Mutation part of the schema
+    Exception handling
+        /exception/ApplicationNotFoundException.java
+        ```
+            public class ApplicationNotFoundException extends RuntimeException implements GraphQLError {...}
+        ```
+        GraphQLError provides a field called extensions used to pass additional data to the error obj sent to the client
+    GraphiQL, web app allowing execution of queries and mutations against a GraphQL server
+        [GraphiQL](http://localhost:8080/graphiql)
+        Query : cF Sample Query above
+        Mutations :
+        ```
+        mutation{
+            newApplication(
+                    name: "Scheduler",
+                    owner: "Romy Alula",
+                    description: "An app used to schedule") {
+                        id
+                        name
+                        owner
+                        description
+            }
+        }
+        ```
+        ```
+        mutation{
+            updateApplicationOwner(
+                    newOwner: "Romy Alula",
+                    id: "1") {
+                        id
+                        name
+                        owner
+                        description
+            }
+        }
+        ``````
+        mutation{
+            deleteApplication(id: "1")
+            }
+        }
+        ```
 
 ## Spring Boot Actuator
 
