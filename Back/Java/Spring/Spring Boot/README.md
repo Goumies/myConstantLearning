@@ -482,4 +482,32 @@ Custom metric endpoints
 Health indicators
 Monitoring capabilities
 
-## Testing
+## Testing with Spring Boot
+```
+    spring-boot-starter-test
+```
+Unit tests
+    JUnit, Mockito, Spring test
+    Test individual units of code
+    Mockito, mocking framework
+    @MockBean annotation
+    @WebMVCTest annotation used for controller layer unit testing
+        Can works in combination /w Mockito to mock the dependencies
+        Scans only controllers (@Controller, @Rest Controller)
+        Does not load the full application context
+        Dependent beans must be mocked
+        Speeds up testing by loading small portion of app
+Integration tests
+    Tests entire app
+    Tests all layers
+    Can test without deployment of an app
+    
+@SpringBootTest
+    useful for integration testing
+    preferred over @WebMVCTest because it starts
+        the full Application Context including the server
+        and does not compromise component scanning at all
+    Locates the main configuration class annotated /w @SpringBootApplication
+@WebMVCTest
+Mock environment
+TestRestTemplate

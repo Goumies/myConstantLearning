@@ -1,7 +1,7 @@
-package com.pluralsight.web;
+package org.goumiesland.web;
 
-import com.pluralsight.service.ApplicationService;
-import com.pluralsight.service.TicketService;
+import org.goumiesland.service.ApplicationService;
+import org.goumiesland.service.TicketService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(TzaController.class)
 public class TzaControllerUnitTest {
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mockMvc; // powerful way to quickly test MVC controller without needing to full start an HTTP server
 
     @MockBean
     ApplicationService applicationService;
