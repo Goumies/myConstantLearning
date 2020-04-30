@@ -112,7 +112,84 @@ Or we can make listfiles executable /w
 ```
  
 ## Deprecations & removals
+Many APIs are banished from Java 11
+Removal of Enterprise module (java.se.ee) from the JDK (modularized in java 9)
+6 APIs
+    java.corba - not as much used as the others anymore
+    java.transaction - JTA - 
+    java.xml.ws.annotation - JAX-WS annotations
+    java.xml.ws - JAX-WS - Java XML web services tag
+        This may be used in app to create web services, SOAP endpoints
+    java.xml.bind - JAXB - the most well-known enterprise technology
+        It used to map XML to and from Java objects
+    java.activation - JavaBeans Activation framework
+Any app /w dependencies on those APIs will not compile /w Java 11
 
+Those are still available in the EE application server
 
+Alternatives
+    As of Java 11, if you want to use these technologies, 
+        you need to add an external dependency for these APIs and
+        the implementations of these APIs to the app yourself.
+    JAXB (java.xml.bind) is used in many popular frameworks => Spring
+        -> Maven dependencies
+            artifactId jaxb-api & jaxb-impl
+    [more Java Enhancement Proposal, JEP 320](openjdk.java.net/jeps/320)
+    
+Removed Methods
+    Thread class (deprecated methods because judged dangerous)
+        countStackFrames()
+        destroy() --- removed
+        resume()
+        stop()
+        stop(Throwable obj) --- removed
+        suspend()
+            removing the others would be a too big breaking change
+    +
+    java.lang.System
+    java.lang.Runtime
+        runFinalizerOnExit()
+            Depending on object finalization in Java is discouraged
+            Methods around finalization are being slowly deprecated and removed
+    +
+    SecurityManager, API class, core API of Java
+        checkAwtEventQueueAccess() --- dependency on AWT (desktop technology)
+        checkSystemClipboardAccess()
+        checkTopLevelWindow()
+        checkMemberAccess()
+            |
+            |
+        All these methods should be replaced by
+        checkPermission(java.security.Permission)
+        = more generic
+        
+JavaFX
+    Java 11, no longer bundled
+    Moved out of the JDK to OpenJFX
+    Now JavaFX can develop and release at its own pace
+    JavaFX JARs are released on Maven Central
+        maven dep artifactId javafx
+    Javapackager (native MSI (Win)/DMG (Mac) installers) has been removed as well,
+        No alternative as os right now BUT draft proposal jpackager in the OpenJDK
+    
+Removed & Deprecated technologies
+    Applets, really ancient technology
+        Provided a way to bring Java to the browser /w a Java browser plugin
+            and the Java plugin has been removed to Adobe Flash
+        Alternative : Java 8 commercial support
+    Java Web Start
+        Made easier to start a Java desktop app through a browser
+        Alternative : jlink, jpackager tool maybe
+    Nashorn
+        Javascript engine running on Java
+        You can use it as a stand-alone JS engine to execute JS code as part of your app
+        Deprecated /w Java 11, since JS evolves so quickly Nashorn wasn't
+        maintainable alongside the development of Java
+        Alternative : Graal.js w/ Graal JDK (part of an experimental project), ProjectDetroit (Google V8)
+        
+    /!\ For Desktop client development [Oracle roadmap](bit.ly/clientroadmap)
+        
 ## Language & Library improvements
+
+
 ## Performance & security improvements
