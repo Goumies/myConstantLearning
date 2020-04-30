@@ -459,6 +459,27 @@ GraphQL, query language for APIs or a syntax that describes how to ask for data
         }
         ```
 
-## Spring Boot Actuator
+## Enabling Actuators, Metrics, and Health Indicators
+Spring Boot Actuator
+    Health checks up, auditing
+    Metrics, HTTP tracing
+    Exposes HTTP or JMX (Java Management Extensions) endpoints
+    ```
+        spring-boot-starter-actuator
+    ```
+    Gets a list of useful endpoints that help monitor and manage the app
+
+Actuator endpoints
+        [Actuator endpoints](http://localhost:8080/actuator)
+Custom metric endpoints
+    /actuator/PeopleHealthIndicator
+    ```
+        @Component
+        public class PeopleHealthIndicator implements HealthIndicator {...}
+    ```
+    HealthIndicator :
+        To create a Custom Indicator + override health ()
+Health indicators
+Monitoring capabilities
 
 ## Testing
