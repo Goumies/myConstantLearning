@@ -321,3 +321,38 @@ Dynamic Class-file Constants, purely a JVM change
     for more features in Java
 
 ## Performance & security improvements
+Garbage Collector
+    G1 GC : default since Java 9
+        Several incremental improvements up to Java 11 -> performance up to 60 % better
+    Epsilon GC (experimental feature)
+        Doesn't collect garbage
+        The JVM keep allocating memory space, until it runs out of memory
+        Memory of unused objects cannot be reclaimed
+        Useful for Apps /w predictabe, bounded memory usage
+            just set the Heap size to the maximum amount needed
+            Short-lived programs
+            Performance testing
+                flags to enable it :
+                -XX:+UnlockExperimentalVMOptions
+                -XX:+=useEpsilonGC
+    Z Garbage Collector
+        Pause times under 10 ms
+        No pause time increase with heap size increase
+        Scale to multi-terabyte heaps
+        Coloured pointers - only available on Linux/x64
+            flags to enable it :
+                -XX:+UnlockExperimentalVMOptions
+                -XX:+=useZGC
+                
+Security
+    TLS 1.3 (partially) implemented in the JDK
+    Transport Layer Security
+    Protocol (among other apps) used to deliver secure websites => HTTPS
+        Legacy algorithms pruned
+        All Handshake messages except first encrypted
+        Elliptic curve algorithms in base specification
+    Compatibility risks :
+        Cipher suite mismatches
+        DSA (Digital Signature Algorithm) certificates cannot be used
+        DTLS 1.3 not implemented yet
+        
