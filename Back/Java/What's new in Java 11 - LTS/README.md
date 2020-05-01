@@ -190,6 +190,134 @@ Removed & Deprecated technologies
     /!\ For Desktop client development [Oracle roadmap](bit.ly/clientroadmap)
         
 ## Language & Library improvements
+HttpClient API
+    Bad API java.net.HttpURLConnection is replaced by
+        a reboot of java.net.HttpURLConnection
+            which supports HTTP/2, WebSocket
+            (no more external lib required)
+    Reactive Streams (introduced in Java 9) integration
+        Offers interface to manage asynchronous streams of data,
+            including the notion of back pressure,
+            where consumers of the data can slow down producers
+            to get an optimal flow of data
+    Main Goal : Be easy to use in common cases
+                And powerful enough for the complex cases 
+    Was already available in Java 9 & 10 BUT was marked as an incubating or experimental API
+    +
+    Important Types
+        HttpClient
+            send()
+            sendAsync()
+        HttpClient.Builder (fluent API)
+        +
+        HttpRequest
+            uri
+            headers
+            method
+        HttpRequest.Builder (fluent API)
+        +
+        HttpResponse (immutable object /w all the info returned by the server)
+            uri
+            headers
+            statusCode
+            body
+    
+Library Improvements
+    String
+        repeat(times) = instance method
+            => jshell> "na ".repeat(16) + "Batman"
+               $1 ==> "na na na na na na na na na na na na na na na na Batman"
+        isBlank()
+            var, introduced in Java 10
+            => jshell> "".equals(notext.trim())
+               $4 ==> true
+               +
+               jshell> notext.isBlank()
+               $5 ==> true
+        strip()
+            only keeps the characters. It's based on Character.isWhitespace()
+            => jshell> Character.isWhitespace('\u2005') 
+               $9 ==> true
+            != trim(), not aware of all the Unicode whitespace code points
+            => jshell> var text = "\n\t       text       \u2005"
+               text ==> "\n\t       text        "
+               +
+               jshell> text.strip()
+               $8 ==> "text"
+        lines()
+            creates a stream of lines
+            => jshell> var multiline = "1\n2\n3\n4"
+               multiline ==> "1\n2\n3\n4"
+               +
+               jshell> multiline.lines().forEach(System.out::println)
+               1
+               2
+               3
+               4
+    Files
+        String readString(Path path)
+            returns the String content of the file
+            (opening & closing files streams, converting bytes of a fil to a stream :
+            all done for us)
+            Assuming the file is encoding using UTF-8
+            For other charset use
+        String readString(Path path, Charset cs)
+        Path writeString(Path path, Charsequence cs, OpenOption options)
+        Path writeString(Path path, Charsequence cs, Charset cs, OpenOption options)
+    Optional::isEmpty
+        => jshell> var opt = Optional.ofNullable(null);
+           opt ==> Optional.empty
+           +
+           jshell> opt.isEmpty()
+           $13 ==> true
+    Predicate::not
+        Filters out the elements based on the condition
+        => jshell> Stream<String> strings = Stream.of("  ", "a", "b");
+           strings ==> java.util.stream.ReferencePipeline$Head@4b952a2d
+           +
+           jshell> strings.filter(Predicate.not(String::isBlank)).forEach(System.out::println)
+           a
+           b
 
+            
+jshell, addition of Java 9
+= run `jshell`
+    Unicode 10 alliance
+        Upgrade from Unicode 8 in Java 10
+        Unicode 10, over 16, 000 new characters have been added
+        10 new scripts (collection of related characters)
+            => \u20BF, Bitcoin sign, part of unicode and java
+            jshell> System.out.println(" \u20BF")
+             ₿
+
+        
+Local-variable Syntax for Lambda Parameters
+    Local-variable Type inference introduced in Java 10
+        The compiler infer the type of the variable based on the right-hand side of the assignment
+        Useful for types of parameters of a method or fields in a class
+    At first, when var was introduced in Java 10, it was impossible to use var for lambda parameters
+    Now it's possible
+    => (String a, String b) -> a.concat(b)
+       (a,b) -> a.concat(b)
+       (var a, var b) -> a.concat(b)
+    /!\ WHY would u do that ?
+    => (@Nonnull var a,
+        @Nullable var b) -> a.concat(b)
+        We can't use annotations without a type !
+    Limitations
+        /!\ Forbidden instructions, will fail to compile
+            (var a, b) -> a.concat(b)
+            (var a, String b) -> a.concat(b)
+            var a -> a.toUpperCase()
+
+Nest-based Access Control
+    Change to the  Access Control to the JVM
+    No more bridge method implemented by the compiler
+    New class attributes Host and nest Member
+    Gives more alignment to the Java language and the JVM implementation
+
+Dynamic Class-file Constants, purely a JVM change
+    Goal : Make Class-file more flexible in anticipation
+    for more features in Java
 
 ## Performance & security improvements
