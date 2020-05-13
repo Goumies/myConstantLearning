@@ -1,3 +1,108 @@
 # Spring Framework: Spring MVC Fundamentals
 
-## 
+## What is Spring MVC
+Standard for Java Web development.
+Originally created for frontend development
++ Later, became an alternative to serve services -> REST full support
++ SPA dominating web development -> full support
+Java config, rather than XML
+
+Architecture MVC
+    View => REST service, JSP page
+    Controller => Spring Bean
+    Model => Persistence, with Relational or Non-Relational DB, JPA, Hibernate
+        * NEW * : config through xml
+        
+Vocabulary
+    SPA : Single Page App
+    DispatcherServlet : A Spring MVC Web app begins its config w/ this entry point
+    Controller : Command Pattern Handler implementation (Behavioural Design Pattern)
+    RequestMapping : URL and Request Type
+    ViewResolver : Locates the view and serve it back up, can be used to find a template / HTML / JSP page / RESTful service
+    servlet-config : Configuration file
+    POJO : Plain Old Java Object, no-args constructor + properly named getters and setters
+    Spring Bean : Spring configured POJO
+    
+## Creating your first MVC App
+Java 11 + Maven + Tomcat
+### Spring Boot
+[spring initializr](https://start.spring.io/)
+= Self contained
+Run > localhost:8080 > Whitelabel Error Page because there is no index.html or any config.
+resources > static > + index.html
+
+/!\ For files that have never been deployed to the server, we have to restart and deploy again.
+
+### WAR vs Contained
+Spring Boot doesn't recommend deploying self contained JARs (cf doc)
+
+[Instance of Tomcat](http://tomcat.apache.org/download-90.cgi)
+Configure IntelliJ
+    IntelliJ > Preferences - command +, > Build, Execution, Deployment > Application Servers > + > Tomcat server
+    Change project to be packaged as a WAR :
+        pom.xml > package type associated :
+            ```xml
+                // under version
+                <packaging>war</packaging>
+                
+                // Add Tomcat dependency between starter-web & starter-test
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <scope>provided</scope>
+                </dependency> 
+            ```
+    = standalone Tomcat enabled WAR 
+        + Add configuration > + Tomcat Server > Local > 
+            JRE : 11
+                > Deployment tab > + > Artifact > confernece:war > Application context : /context
+                > Server tab > check + OK
+                
+War apps static files are served from /webapp :
+    /main/webapp
+    
+Run failed > Permission denied >
+    ```shell
+        chmod a+x /Users/romyalula/Documents/dev/tools/apache-tomcat-9.0.35/bin/catalina.sh  
+    ```
+Configuration
+    4 areas:
+        pom.xml > maven dep
+        Config
+        Java files : Config, controllers...
+        View
+        
++ 2 new directories for jsp views :
+    /webapp/WEB-INF/jsp
+    
+    + new file :
+        /jsp/greeting.jsp
+        
+Change config :
+    ConferenceApplication > + extends SpringBootServletInitializer
+    = Launch app w/ the desired config we're used to use inside of a web app :
+        Setup internal View Resource Resolver
+        Resolve JSP pages
+        Setup STL (Standard Template Library) for us
+    + application.properties :
+    ```properties
+        spring.mvc.view.prefix=/WEB-INF/jsp/
+        spring.mvc.view.suffix=.jsp
+    ```
+        prefix = where to look for view
+        suffix = what format
+        
+Java code :
+    main/package > + new controller controller.GreetingController :
+    ```java
+        @Controller
+        public class GreetingController {
+            
+            // URL = method call
+            @GetMapping("greeting")
+            public String greeting(Map<String, Object> model) {
+                model.put("message", "Hello Romy !"); // key = variable to jsp page
+                return "greeting"; // looks for a jsp page called greeting
+            }
+        }
+    ```
