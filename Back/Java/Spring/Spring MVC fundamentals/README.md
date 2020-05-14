@@ -88,6 +88,7 @@ Change config :
     ```properties
         spring.mvc.view.prefix=/WEB-INF/jsp/
         spring.mvc.view.suffix=.jsp
+        // = internal View Resolver
     ```
         prefix = where to look for view
         suffix = what format
@@ -133,5 +134,91 @@ Components
         DB interaction
         One-to-one object mapping
         Often one-to-one DB table mapping
+        
+## Creating Controllers in Spring MVC
+Heart and soul of Sprig MVC
+### What is a Controller
+Separation of duties
+Central concept of the framework
+Chooses what to do based on a user action req
+Responsibility :
+    Interpret and transform
+    Access Business Logic
+    Determines view or response type
+    Interpret exceptions
+Very lightweight
+    @Controller
+    Associated request mapping => @GetMapping(value = "/greeting")
+```java
+    // In RegistrationController
+    @Controller
+    public class RegistrationController {
+    
+        @GetMapping("registration")
+        public String getRegistration(Map<String, Object> model) {
+            
+            return "registration"; // internal lookup to registration.jsp
+                /*
+                    this return allows the Dispatcher Servlet to handle every web req
+                    the string value = value.jsp
+                */
+        }
+    }
+```
 
+```java
+    // In RegistrationController
+    
+    @SpringBootApplication
+    public class ConferenceApplication extends SpringBootServletInitializer {
+        // ...
+    }   
+``` 
+    @SpringBootApplication + SpringBootServletInitializer
+        = tells the app server to create a Dispatcher Servlet (by extending SpringBootServletInitializer) and start serving up things
+            + the @SpringBootApplication makes Spring look for @Controller & @GetMapping
+    To interact w/ the Dispatcher Servlet > application.properties
+    
+### Passing Parameters
+Lib provided by Spring (rather than standard HTML input tags)
+Binding attribute to object approach
+    @ModelAttribute
+    HTTP Get / @Get
+    HTTP Post / @Post
+    POJO based
+    Validated binding result
+    
+Adding POST method to registration.jsp :
+    ```jsp
+        <%-- + import form lib --%> 
+        <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+    ```
+    Unknown path "name" >
+        New class model.Registration
+        + in RegistrationController, change getRegistration parameter to :
+```java
+@Controller
+public class RegistrationController {
+
+    @GetMapping("registration")
+    public String getRegistration(@ModelAttribute ("registration")Registration registration) {
+    // = binding (by our model) the Registration object to the model attribute  
+
+        return "registration";
+    }
+}
+```
+        + in registration.jsp :
+        ```
+                <form:form modelAttribute="registration">
+        ```
+        + support POST method :
+        ```
+            @PostMapping("registration")
+            public String addRegistration(@ModelAttribute ("registration")Registration registration) {
+                System.out.println("Registration: " + registration.getName()); // Registration: Romy A
+                return "registration";
+            }
+        ```
 
