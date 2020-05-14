@@ -106,3 +106,32 @@ Java code :
             }
         }
     ```
+
+## Understanding the Structure of Spring MVC Applications
+Model-View-Controller pattern, n-tier application
+Presentation Layer > Business Logic > Data Layer > Business Logic > Presentation Layer
+    Separation of concerns (things in the right layer so it can be re-architectured later)
+    Reusable layers (a purpose and a point that we trying to drive)
+    Maintenance / Refactoring
+Components
+    Controller :
+        No business logic
+        Handles req/res
+        Coordinate w/ service and repo
+        @Controller
+        Handles exceptions and view routing
+    Service :
+        @Service
+        Business Logic belongs here
+        Describes verbs/actions of system
+        Ensure business obj state
+        Transactional
+        Often same methods as repo but a different focus
+    Repository (DAO, Data Access Object) :
+        @Repository
+        Nouns (data) of the system
+        DB interaction
+        One-to-one object mapping
+        Often one-to-one DB table mapping
+
+
