@@ -274,7 +274,7 @@ ViewResolver
     
     Various ViewResolvers are provided by Spring,
     and we can create custom ViewResolver (= extending ViewResolver interface).
-        Some of these ViewResolvers are used for templating tools like TimeLeaf or FreeMarker
+        Some of these ViewResolvers are used for templating tools like ThymeLeaf or FreeMarker
                                               or templating layouts for internationalization purpose
 
 ### Resolving Static Files
@@ -414,3 +414,5 @@ public class RegistrationController {
 }
 ```
     "redirect:" = 
+
+## Using Java Server Pages with Spring MVC View
