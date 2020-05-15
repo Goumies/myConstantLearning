@@ -38,7 +38,7 @@ Easier for the clients, everything handled the same way
 
 Can overly simplify system, harder to restrict
 Implementation can be costly
-Composite (hierarchy) != Composition (one object containing aanother)
+Composite (hierarchy) != Composition (one object containing another)
 
 ## Decorator (SimpleSandwich)
 Hierarchical pattern building functionality at each level
@@ -54,7 +54,6 @@ Adding behavior through creation = Structural Pattern
 
 ```
 Sandwich sandwich = new DressingDecorator(new MeatDecorator(new SimpleSandwich()));
-
 ```
 
 Utilizes Composition and Inheritance

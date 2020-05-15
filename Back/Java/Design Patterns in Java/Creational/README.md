@@ -18,6 +18,7 @@ Lazy load it
 
 Forbid any Reflection
 ```
+// In the constructor
 if(instance != null) {
     throw new RuntimeException("Use getInstance() method to create");
 }
