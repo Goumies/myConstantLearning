@@ -535,3 +535,123 @@ public class ConferenceConfig implements WebMvcConfigurer {
     > http://localhost:8080/conference/thyme
     = OK
     But <- + Click on Greeting link = KO HTTP 500
+
+## Validating Objects in Spring MVC Applications
+### JSR Bean Validation
+[Réf JMDoudoux - La validation des données](https://www.jmdoudoux.fr/java/dej/chap-validation_donnees.htm)
+JSR 303 (Java 5)
+JSR 349 (Java 7)
+JSR 380 (Java 8 and later)
+
+Another approach (not discussed in this course) could be :
+    Validator Interface
+        Used before JSR 303
+        Very programmatic
+        Not deprecated
+        Separation of concerns is made hazy, Business Logic get scripted in the interface
+        More advanced validation -> Service tier : Custom class to handle it properly there
+    
+Dependency
+The Bean Validator reference implementation is an instance of Hibernate Validator.
+Even though we're not using Hibernate ORM, the Validator has nothing to do with DB
+```xml
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.1.5.Final</version>
+</dependency>
+```
+
+What object do we want to validate :
+```java
+    public class Registration {
+    
+        @NotEmpty
+        private String name;
+    
+        public String getName() {
+            return name;
+        }
+    
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+```
+= + @NotEmpty annotation on the property to validate
+
+In RegistrationController :
+```java
+@Controller
+public class RegistrationController {
+
+    // ...
+
+    @PostMapping("registration")
+    public String addRegistration(@Valid @ModelAttribute("registration")
+                                              Registration registration,
+                                  BindingResult result) {
+        if (result.hasErrors()) {
+            System.out.println("There were errors !");
+            return "registration";
+        }
+        return "redirect:registration";
+    }
+}
+```
+= + @Valid annotation on the passed object constrains it to be a valid Registration
+    + BindingResult result to handle errors 
+    
+BindingResult reference
+    contains
+        any error
+        and a flag that notifies us that was a validation error
+            so we can direct to the correct view
+
++ Notify the user, in case of error. In registration.jsp :
+```
+    <style>
+        .error {
+            color: #ff0000;
+        }
+
+        .error-block {
+            color: #000;
+            background-color: #ffEEEE;
+            border: 3px solid #ff0000;
+            padding: 8px;
+            margin: 16px;
+        }
+    </style>
+
+    <%-- ... + --%>
+    <form:form modelAttribute="registration">
+        <form:errors path="*" cssClass="error-block" element="div" />
+```
+    > http://localhost:8080/conference/registration
+        Registration
+        ne doit pas être vide
+        Nom:	
+
+### Custom Error Messages
+In registration.jsp, field specific validation :
+```jsp
+    <td>
+        <form:input path="name"/>
+    </td>
+    <td>
+        <form:errors path="name" cssClass="error" />
+    </td>
+```
++ In messages.properties :
+```properties
+# validations
+NotEmpty.registration.name=Le nom ne peut pas être vide. Merci de le renseigner
+```
++ In messages.es.properties :
+```properties
+
+# validations
+NotEmpty.registration.name=El nombre no se puede ser vacío. Por favor rellenarlo
+```
+
