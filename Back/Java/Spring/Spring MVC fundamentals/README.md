@@ -299,7 +299,7 @@ public class ConferenceConfig implements WebMvcConfigurer {
 ```
 Restart server > http://localhost:8080/conference/files/AI%20interview-consent.pdf
 
-## Using Java Server Pages with Spring MVC View
+## Using Java Server Pages with Spring MVC Views
 I18N - Internationalization
 
 ### Interceptors (middelware)
@@ -415,4 +415,123 @@ public class RegistrationController {
 ```
     "redirect:" = 
 
-## Using Java Server Pages with Spring MVC View
+## Using ThymeLeaf Spring MVC Views
+Lightweight View framework
+Minor setup required in our app
+If the app is a self contained JAR, this is the recommended templating framework
+
+Dependency
+```xml
+    <dependency>
+        <groupId>org.thymeleaf</groupId>
+        <artifactId>thymeleaf-spring5</artifactId>
+        <version>3.0.11.RELEASE</version>
+    </dependency>
+```
+/!\ order is important because it determines the loading order of dep in the classpath
+= After spring-boot-starter-tomcat
++ Before spring-boot-starter-test
+
+### Template Resolver
+Configures where the template files should be located and their extension
++ the View Resolver sets the order and references these templates
+
+In ConferenceConfig, we define the  Template Resolver:
+```java
+@Configuration
+public class ConferenceConfig implements WebMvcConfigurer {
+
+    // On top
+    @Autowired
+    private ApplicationContext applicationContext;
+    
+ 
+    @Bean
+    public SpringResourceTemplateResolver templateResolver() {
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setApplicationContext(applicationContext);
+        templateResolver.setPrefix("/WEB-INF/views/");
+        templateResolver.setSuffix(".html");
+        return templateResolver;
+    }
+}
+```
+### Template Engine
+Spring Template Engine = pretty unique to ThymeLeaf
+= Will process the project > Substitute the model values from Spring into our pages to be displayed  
+```java
+@Configuration
+public class ConferenceConfig implements WebMvcConfigurer {
+    
+    @Bean
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setEnableSpringELCompiler(true);
+        return templateEngine;
+    }
+}
+```
+
+### View Resolver
+Takes whichever loaded template (after the Template Resolver looked up the actual template)
+    + Returns that based off the name
+=  Template Resolver & View Resolver work in conjunction
+/!\ To work with JSP & ThymeLeaf together (not common),
+    We must reorder the View Resolver lookup for files : 1st ThymeLeaf then JSP
+```java
+@Configuration
+public class ConferenceConfig implements WebMvcConfigurer {
+    
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver bean = new InternalResourceViewResolver();
+        bean.setPrefix("/WEB-INF/jsp/");
+        bean.setSuffix(".jsp");
+        bean.setOrder(1);
+        return bean;
+    }
+
+    @Bean
+    public ViewResolver thymeleafViewResolver() {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setOrder(0);
+        return viewResolver;
+    }
+}
+```
+    + New file /WEB-INF/views/thyme.html
+    ```html
+        <!DOCTYPE html>
+        <!--
+            xml name space makes it a ThymeLeaf page and allows us to utilize
+            elements described in there => th:text below
+        -->
+        <html xmlns:th="http://www.thymeleaf.org">
+            <head>
+                <title>Template</title>
+            </head>
+            <body>
+                <h1>Thymeleaf Integration</h1>
+                <p th:text="${message}"></p>
+            </body>
+        </html>
+    ```
+    + In GreetingController
+    ```java
+    @Controller
+    public class GreetingController {
+    
+        // ...
+    
+        @GetMapping("thyme")
+        public String thyme(Map<String, Object> model) {
+            model.put("message", "Hello ThymeLeaf !");
+            return "thyme";
+        }
+    }
+    ```
+    > http://localhost:8080/conference/thyme
+    = OK
+    But <- + Click on Greeting link = KO HTTP 500
