@@ -16,6 +16,19 @@ public class RegistrationController {
 
     @PostMapping("registration")
     public String addRegistration(@ModelAttribute("registration") Registration registration) {
-        return "registration";
+        return "redirect:registration";
     }
+    /*
+        @GetMapping("old-registration")
+        public String getOldRegistration(@ModelAttribute("registration") Registration registration) {
+            return "registration";
+        }
+
+
+        @PostMapping("old-registration")
+        public String addOldRegistration(@ModelAttribute("registration") Registration registration) {
+            return "registration"; // keeps old input
+        }
+    */
+
 }

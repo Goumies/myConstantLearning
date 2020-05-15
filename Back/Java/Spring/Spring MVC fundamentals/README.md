@@ -299,4 +299,118 @@ public class ConferenceConfig implements WebMvcConfigurer {
 ```
 Restart server > http://localhost:8080/conference/files/AI%20interview-consent.pdf
 
+## Using Java Server Pages with Spring MVC View
+I18N - Internationalization
 
+### Interceptors (middelware)
+Usages :
+    Logging
+    Security
+    I18N
+    Performance Monitoring
+    
+### I18N
+SessionLocaleResolver
+    Ties our current session to a locale
+```java
+@Configuration
+public class ConferenceConfig implements WebMvcConfigurer {
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+        sessionLocaleResolver.setDefaultLocale(Locale.FRANCE);
+        return sessionLocaleResolver;
+    }
+}
+```
+
+LocaleChangeInterceptor
+    Looks for a parameter either through a hidden element / on an URL string as a query parameter / ...
+    Sees if it should intercept that change
+```java
+@Configuration
+public class ConferenceConfig implements WebMvcConfigurer {
+    
+    @Bean
+        public LocaleChangeInterceptor localeChangeInterceptor() {
+            LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+            localeChangeInterceptor.setParamName("lang"); // what parameter we're looking for
+            return localeChangeInterceptor;
+    }
+}
+```
+
+Add Interceptor to the InterceptorRegistry
+```java
+@Configuration
+public class ConferenceConfig implements WebMvcConfigurer {
+ 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+}
+```
+    Good practice : Overriden methods on top
+    
+Add 2 new properties :
+    resources/messages.properties
+        ```
+        # labels
+        name=Nom
+        
+        # buttons
+        save.changes=Enregistrer Modifications
+        ```
+    resources/messages_es.properties
+        ```
+        # labels
+        name=Nombre
+        
+        # buttons
+        # save.changes=Save Changes
+        save.changes=Guardar cambios
+        ```
+    In registration.jsp :
+    ```jsp
+        <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+        <%-- ... --%>
+        <%-- Name: becomes --%>
+        <spring:message code="name"/>:
+
+    ```
+    > http://localhost:8080/conference/registration
+        Registration
+        Nom:	
+    > http://localhost:8080/conference/registration?lang=es
+        Registration
+        Nombre:
+    
+### PRG - Post-Redirect-Get pattern
+= Technique to eliminate form resubmission
+= User posts to Controller
+    > Controller does the intended requested action
+        > Before returning the View back to User,
+            ViewResolver is told by Controller to internally redirect
+            Clears out the form
+            And does a GET to /registration
+In RegistrationController :
+```java
+@Controller
+public class RegistrationController {
+
+    // ...
+
+    @PostMapping("old-registration")
+    public String addRegistration(@ModelAttribute("registration") Registration registration) {
+        return "registration"; // keeps old input ?
+    }
+    
+    @PostMapping("registration")
+    public String addRegistration(@ModelAttribute("registration") Registration registration) {
+        return "redirect:registration"; // add "redirect:"
+    }
+}
+```
+    "redirect:" = 
