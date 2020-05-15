@@ -222,3 +222,81 @@ public class RegistrationController {
             }
         ```
 
+## Creating Views in Spring MVC
+Standard convention :
+    Views are located in /webapp/WEB-INF/
+
+= From self contained to executed WAR file addition
+= Serves up the jsp files and route them to the final user
+
+### Resolving a View
+```java
+    @Controller
+    public class RegistrationController {
+    
+        @GetMapping("registration")
+        public String getRegistration(@ModelAttribute("registration") Registration registration) {
+            return "registration"; // used by the View Resolver to find the jsp page with this title
+        }
+    }
+```
+
+ViewResolver
+    application.properties > prefix + returned title + suffix
+    @SpringBootApplication + SpringBootServletInitializer
+        = Configures the ViewResolver
+    /!\ This can be overridden w/ a new config => ConferenceConfig.java
+```java
+    // How it internally works with @SpringBootApplication + SpringBootServletInitializer
+    @Configuration
+    public class ConferenceConfig {
+    
+        @Bean
+        public ViewResolver viewResolver() {
+            InternalResourceViewResolver bean = new InternalResourceViewResolver();
+            bean.setPrefix("/WEB-INF/jsp/");
+            bean.setSuffix(".jsp");
+            bean.setOrder(0);
+            return bean;
+        }
+    }
+```
+    @SpringBootApplication has a component scanner that tells it to go look for any other class labeled @Configuration
+        = In those config, tells it to load up the beans
+    
+    In Spring MVC, Views are resolved :
+        Controller
+            builds a Model
+            passes the Model to a View Resolver
+        View Resolver
+            determines the correct View
+            chooses the appropriate View based off of that req
+    
+    Various ViewResolvers are provided by Spring,
+    and we can create custom ViewResolver (= extending ViewResolver interface).
+        Some of these ViewResolvers are used for templating tools like TimeLeaf or FreeMarker
+                                              or templating layouts for internationalization purpose
+
+### Resolving Static Files
+Why do we wanna host up static files from inside of our Spring MVC app :
+    Implement security on them
+    Make sure they're logged in
+    For caching purpose
+    
+Adding new resource handlers :
+```java
+@Configuration
+public class ConferenceConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/files/**")
+                .addResourceLocations("/WEB-INF/pdf/");
+    }
+    
+    // ...
+}
+```
+Restart server > http://localhost:8080/conference/files/AI%20interview-consent.pdf
+
+
