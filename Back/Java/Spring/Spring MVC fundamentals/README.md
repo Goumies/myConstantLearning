@@ -655,3 +655,30 @@ NotEmpty.registration.name=Le nom ne peut pas être vide. Merci de le renseigner
 NotEmpty.registration.name=El nombre no se puede ser vacío. Por favor rellenarlo
 ```
 
+## Using Client-side JavaScript in Spring MVC Applications
+### Spring config to serve REST (all about AJAX)
+New Model User
++ New Controller UserController annotated with @RestController
+```java
+    
+```
+
+The @RestController
+    Makes sure that every call going in and out of here looks at the content type
+    and the except headers to see how and what it should return
+
+    > http://localhost:8080/conference/user
+    {"firstName":"Romy","lastName":"Alula","age":70}
+    = Response in JSON
+    
+    > http://localhost:8080/conference/user?firstname=Pimprenelle&lastname=Mazette
+    {"firstName":"Pimprenelle","lastName":"Mazette","age":70}
+    
+    For POST call, Postman allows us to easily set the POST body
+    Or curl commands :
+    `curl -d "firstName=Pimprenelle&lastName=Mazette&age=43" -X POST http://localhost:8080/conference/user`
+        = {"firstName":"Pimprenelle","lastName":"Mazette","age":43}
+        
+### jQuery
++ main/resources/static/user.js
++ main/resources/static/user.html
