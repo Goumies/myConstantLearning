@@ -26,7 +26,7 @@ Vocabulary
 ## Creating your first MVC App
 Java 11 + Maven + Tomcat
 ### Spring Boot
-[spring initializr](https://start.spring.io/)
+[spring initializr](https://start.spring.io/) + Spting Web
 = Self contained
 Run > localhost:8080 > Whitelabel Error Page because there is no index.html or any config.
 resources > static > + index.html
@@ -55,7 +55,7 @@ Configure IntelliJ
     = standalone Tomcat enabled WAR 
         + Add configuration > + Tomcat Server > Local > 
             JRE : 11
-                > Deployment tab > + > Artifact > confernece:war > Application context : /context
+                > Deployment tab > + > Artifact > conference:war > Application context : /context
                 > Server tab > check + OK
                 
 War apps static files are served from /webapp :
@@ -659,9 +659,6 @@ NotEmpty.registration.name=El nombre no se puede ser vacío. Por favor rellenarl
 ### Spring config to serve REST (all about AJAX)
 New Model User
 + New Controller UserController annotated with @RestController
-```java
-    
-```
 
 The @RestController
     Makes sure that every call going in and out of here looks at the content type

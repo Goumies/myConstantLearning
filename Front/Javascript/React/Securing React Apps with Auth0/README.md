@@ -469,7 +469,51 @@ setSession = authResult => {
 ```
 [jwt-decode](https://www.npmjs.com/package/jwt-decode)
 
+## Implement Logout
+In Auth.js :
+```js
+logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+
+    this.history.push("/");
+  };
+```
+= Soft Logout
+= on login, automatic connection
+= useful on SSO scenarios
+    + session still valid for other apps using Auth0 tenant
+
+Auth0 checks ths session cookie on our Auth0 domain to determine if the user is logged in
+cF https://reactjs-goumies-dev.eu.auth0.com/.well-known/jwks.json capture
+On the link above(JSON Web Key address on your Auth0 domain), in Application > Cookies :
+    `auth0` = session cookie = if present, session still active on the server
+
+In Auth.js :
+```js
+logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+    
+    // this breaks the app because we need to set parameters on the Auth0 Dashboard
+    this.auth0.logout({
+      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+      returnTo: "http://localhost:3000"
+    });
+};
+```
+
 ### Auth0 Dashboard
+Apps > reactjs-goumies-dev :
+Allowed Logout URLs : http://localhost:3000
+
+## Implement Signup
+
+
+## Display User Profile
+
 
 ### 
 

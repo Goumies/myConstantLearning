@@ -1,4 +1,4 @@
-@RestController
+Pro
 class app{
     @RequestMapping("/")
     String home() {

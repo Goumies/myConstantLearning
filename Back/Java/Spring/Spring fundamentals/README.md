@@ -42,6 +42,29 @@ Spring = kind of glorified HashMap
 
 POJOs + HashMap (Application context, Spring configured container /w all its dependencies wired to it) + Registry
 
+STOMP Streaming Text Oriented Messaging Protocol :
+    protocole, basé sur du texte, utilisé par Spring pour envoyer des messages par Websockets
+
+Spring Framework - [AOP] Pointcut :
+    ```java
+        @Pointcut("execution(public * find*(..))")
+        private void someOperation() {}
+    ```
+    Méthodes vont être interceptées par ce pointcut :
+    public String findName()
+    public char[] findPassword(boolean cache)
+
+Spring Framework - [Security] OAuth2 :
+    Annotation de Spring Boot permettant d'activer le SSO (Single Sign On) avec un provider OAuth2
+    déclaré au niveau de propriétés externes :
+        @OAuth2ClientAutoConfiguration
+    Cette annotation a été introduite par Spring Boot 2.0.0.
+
+Spring Framework - [Rest] RestTemplate :
+    Classe de Spring Framework utilisée pour appeler un service Rest :
+        RestTemplate
+        org.springframework.web.client.RestTemplate
+
 ## Why Spring
 Make existing tasks easier. Earlier design patterns were based on JEE Blueprints to help establish better code
 and make repeatable processes. But made code brittle and unrepeatable
