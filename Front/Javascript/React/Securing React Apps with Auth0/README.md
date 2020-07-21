@@ -510,7 +510,8 @@ Apps > reactjs-goumies-dev :
 Allowed Logout URLs : http://localhost:3000
 
 ## Implement Signup
-
+cF Signup screenshots
+By default, Auth0 stores users in its DB. We can add storage to our own DB as well. (cF Database Connections screenshot)
 
 ## Display User Profile
 
