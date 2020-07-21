@@ -182,7 +182,7 @@ Summary
     Use Access Tokens to access APIs (Scpoes)
 
 Tools :
-[create-react-app](github.com/facebook/create-react-app)
+[create-react-app](http://github.com/facebook/create-react-app)
 [React Router](https://reactrouter.com/web/guides/quick-start)
 On the shell :
     `npx create-react-app react-auth0`
@@ -198,3 +198,98 @@ Deps :
     npm install auth0-js@9.13.4 auth0-lock@11.25.1 express@4.17.1 express-jwt@5.3.1 express-jwt-authz@1.0.0 jwks-rsa@1.3.0 npm-run-all@4.1.5 react-router-dom@5.2.0
     npm install auth0-js auth0-lock express express-jwt express-jwt-authz jwks-rsa npm-run-all react-router-dom
 ```
+
+## Time to code
+Course versions used :
+auth0-js 9
+Lock 11
+
+### Sign up for Auth0
+[auth0](https://auth0.com/)
+Tenant domain :
+Logical isolation unit (no tenant can access data in another tenant)
++- like a software development environment
+
+auth0 recommends 1 tenant per environment => dev/prod/qa -> -dev
+
+My tenant : reactjs-goumies-dev.eu.auth0.com
+
+### Key decisions
+OAuth Flow
+    Implicit Flow
+        1) The App directs the browser to the Auth0 sign-in
+        2) Auth0 redirects to the App, at the specified callback URL (w/ access & ID tokens as hash fragments in the URI)
+        3) The App extracts these tokens from the URI & stores the relevant authentication data in local storage
+--
+Login/Signup integration
+    AuthO options :
+        Universal, hosted by Auth0 = the most secured since it avoids cross domain issues > uses the Lock Widget*
+        Embedded Lock, embedded within our App. The Login form is placed inside our React App > uses the Lock Widget*
+            /!\ Embedded Lock requires  cross domain calls between Auth0 and our app
+                = Less secure. It's recommended to set up a custom domain for optimal security 
+        Custom UI, built by ourselves > uses Auth0 APIs (Auth0 provides a SDK + a variety of APIs)
+    -
+    *Lock Widget :
+        Easily integrates with Auth0
+        Adapts to your config
+        Looks great on any device
+        Remembers the last used connection
+        Automatic internationalization
+        Detailed password policy check
+        Customizable
+    -
+    Universal Advantages :
+        Recommended by Auth0
+        Most secure
+        Single, centralized login for SSO > a single consistent login approach
+            if we're implementing Single Sign On accross multiple apps
+        Less maintenance work > a single login can serve all our apps
+        => Google centralized login page regardless of which Google property we're using
+
+### Create Auth0 app
+Getting started > Create application >
+    name: react-auth0-pluralsight + app type: Single Page Web Apps (implicit grant automatically configured by auth0) 
+Apps > react-auth0-pluralsight > settings > Allowed Callback URLs :
+    http://localhost:3000/callback
+
+[authO lib docs](http://auth0.github.io/auth0.js/index.html)
+    
+### Configure .env vars
+create-react-app automatically exposes vars starting w/ "REACT_APP_" to our app
+```dotenv
+REACT_APP_AUTH0_DOMAIN=reactjs-goumies-dev.eu.auth0.com
+```
+
+### Create Auth Object
+// src/Auth/Auth.js :
+```js
+import auth0 from 'auth0-js';
+
+export default class Auth {
+    constructor(history) { // React Router's history is passed to perform redirects
+    this.history = history;
+            this.auth0 = new auth0.WebAuth({
+                domain: process.env.REACT_APP_AUTH0_DOMAIN,
+                clientID: process.env.REACT_APP_AUTH0_CLIENTID,
+                redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+                responseType: "token id_token", // 1) access token allowing API calls 2) authenticate the user
+                scope: "openid profile email" // **
+/*
+                = openID for authentication > JWT returned = standard openID claims*
+                    + profile > basic User data cF Auth.js capture
+                    + email > we want it
+*/
+            });
+    }
+}
+```
+*standard openID claims :
+    iss Issuer
+    sub Subject
+    aud Audience
+    exp Expiration Time
+    nbf Not before
+    iat Issued At
+    
+**scope :
+    When the user signs up, they'll be presented w/ a consent to us using this data
