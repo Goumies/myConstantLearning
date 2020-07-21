@@ -514,7 +514,107 @@ cF Signup screenshots
 By default, Auth0 stores users in its DB. We can add storage to our own DB as well. (cF Database Connections screenshot)
 
 ## Display User Profile
+In Auth.js :
+```js
+constructor(history) {
+    this.history = history;
+    this.auth0 = new auth0.WebAuth({
+      domain: process.env.REACT_APP_AUTH0_DOMAIN,
+      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+      redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+      responseType: "token id_token",
+      scope: "openid profile",
+    });
+    // new variable instance initialisation
+    this.userProfile = null;
+  }
+```
 
+```js
+  getAccessToken = () => {
+    const accessToken = localStorage.getItem("access_token");
+    if (!accessToken) {
+      throw new Error("No access token found");
+    }
+    return accessToken;
+  };
+
+  getProfile = cb => { // cb = callback
+    if(this.userProfile) return cb(this.userProfile);
+    // userInfo = common on every identity provider + endpoint part of Auth0 standard
+    this.auth0.client.userInfo(this.getAccessToken(), (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+        cb(profile, err);
+      }
+    });
+  };
+```
+Alternatively, we could get the user's profile from the ID token via jwt-decode
+
+```js
+logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+
+    this.userProfile = null;
+    
+    this.auth0.logout({
+      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+      returnTo: "http://localhost:3000"
+    });
+  };
+```
+
+In App.js :
+```jsx harmony
+<Route
+    path="/profile"
+    render={(props) =>
+      this.auth.isAuthenticated()
+        ? <Profile auth={this.auth} {...props} />
+        : <Redirect to="/" />
+    }
+/>
+```
+
+In Profile.js :
+```js
+class Profile extends Component {
+  state = {
+    profile: null,
+    error: "",
+  };
+
+  componentDidMount() {
+    this.loadUserProfile();
+  }
+
+  loadUserProfile = () => {
+    this.props.auth.getProfile((profile, error) =>
+      this.setState({ profile, error })
+    );
+  };
+
+  render() {
+    const { profile } = this.state;
+    if(!profile) return null;
+    return (
+      <>
+        <h1>Profile</h1>
+        <p>{profile.nickname}</p>
+        <img
+          style={{ maxWidth: 50, maxHeight: 50 }}
+          src={profile.picture}
+          alt="profile pic"
+        />
+        <pre>{JSON.stringify(profile, null, 2)}</pre>
+      </>
+    );
+  }
+}
+```
 
 ### 
 
