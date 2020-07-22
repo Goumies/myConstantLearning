@@ -616,6 +616,267 @@ class Profile extends Component {
 }
 ```
 
-### 
+## API Authorization Fundamentals
+In .env, for API work :
+Identifier of the API we're about to create
+```dotenv
+REACT_APP_AUTH0_AUDIENCE=http://localhost:3001
+```
+URL where we're going to host the API on locally
+```
+REACT_APP_AUTH0_API_URL=http://localhost:3001
+```
+/!\ Those 2 vars aren't supposed to match. Here it's just for clarity
 
-### 
+### Integrate APIs w/ create-react-app
+Node + Express API
+In react-auth0/server.js :
+```js
+const express = require('express');
+require('dotenv').config();
+
+const app = express();
+
+app.get('/public', function (req, res) {
+  res.json({
+    message: "Hello from a public API !"
+  })
+});
+
+app.listen(3001);
+console.log(`>>> API server listening on ${process.env.REACT_APP_AUTH0_API_URL}`);
+```
+
+In package.json :
+```json
+{
+    "scripts": {
+        "start": "run-p start:client start:server",
+        "start:client": "react-scripts start",
+        "start:server": "node server.js",
+    }
+}
+```
+`run-p` = command that comes with `npm-run-all` [dev dependency](https://www.npmjs.com/package/npm-run-all)
+            + tells node to run the following scripts in parallel
+            => in `package.json` : `"npm-run-all": "^4.1.5",`
+
+### Create multiple API endpoints
+Public - anyone can call
+Private - login required
+
+In src/public.js :
+```js
+import React, {Component} from 'react';
+
+class Public extends Component {
+  state = {
+    message: ""
+  };
+
+  componentDidMount() {
+    fetch('/public').then(response => { // relative path so it leads to localhost:3000*
+      if (response.ok) return response.json();
+      throw new Error('Network response was not OK');
+    })
+      .then(response => this.setState({message: response.message}))
+      .catch(error => this.setState({message: error.message}))
+  }
+
+  render() {
+    return (
+      <p>
+        {this.state.message}
+      </p>
+    );
+  }
+}
+
+export default Public;
+```
+
+*To make it leads to `localhost:3001`, we can use the proxy feature of create-react-app
+--> In `package.json`, we add :
+```json
+{
+    "proxy": "http://localhost:3001"
+}
+```
+This line tells create-react-app to [proxy](https://create-react-app.dev/docs/proxying-api-requests-in-development/) any calls to `http://localhost:3000` to `http://localhost:3001`
+/!\ This avoids cross-origin resource sharing issues and error messages in dev
+
+## Securing API calls
+Create Auth0 API
+`auth.com > dashboard > APIs` [APIs](https://manage.auth0.com/dashboard/eu/reactjs-goumies-dev/apis):
+--> + Create API :
+1 API for multiple endpoints
+= Single Authorization request giving the user an access token that works for multiple APIs 
+
+1 environment = 1 tenant = 1 API identifier
+=> dev : https://dev.myapi.com
+   QA : https://qa.myapi.com
+   Prod : https://myapi.com
+   
+Default signing algorithm : RS256
+
+---
+
+Tell the Auth class about the API configured on auth0.com, by adding te audience to the options :
+In `Auth.js`: 
+```js
+constructor(history) {
+    this.history = history;
+    this.auth0 = new auth0.WebAuth({
+      domain: process.env.REACT_APP_AUTH0_DOMAIN,
+      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+      redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+      audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+      responseType: "token id_token",
+      scope: "openid profile",
+    });
+    this.userProfile = null;
+  }
+```
+
+### Configure Express to parse JWTs
+In `server.js`, add :
+```js
+const jwt = require("express-jwt"); // Validate JWT and set req.user
+const jwksRsa = require("jwks-rsa"); // Retrieve RSA keys from a JSON Web Key set (JWKS) endpoint
+
+// To validate our JWTs :
+const checkJwt = jwt({
+  // Dynamically provide a signing key based on the kind in the header
+  // and the signing keys provided by the JWKS endpoint.
+  secret: jwksRsa.expressJwtSecret({
+    cache: true, // cache the signing key
+    rateLimit: true,
+    jwksRequestsPerMinute: 5, // prevent attackers from requesting more than 5 per minute
+    jwksUri: `https://${
+      process.env.REACT_APP_AUTH0_DOMAIN
+    }/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+  issuer: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/`,
+
+  // This must match the algorithm selected in the Auth0 dashboard under your app's advanced settings under the OAuth tab
+  algorithms: ["RS256"]
+});
+```
+
+## Validating a JWT:
+### Verify Signature
+Auth0 exposes a JSON Web Key Set (JWKS*) at a dedicated URL for our domain
+=> https://reactjs-goumies-dev.eu.auth0.com/.well-known/jwks.json
+
+*JSON Web Key Set / [JWKS](http://auth0.com/docs/jwks) : 
+a JSON object that represents a cryptographic key.
+The members of the object represent properties of the key including its value.
+=>
+{keys: [{alg: "RS256", kty: "RSA", use: "sig",…}, {alg: "RS256", kty: "RSA", use: "sig",…}]}
+    keys: [{alg: "RS256", kty: "RSA", use: "sig",…}, {alg: "RS256", kty: "RSA", use: "sig",…}]
+        0: {alg: "RS256", kty: "RSA", use: "sig",…}
+            alg: "RS256"
+            kty: "RSA"
+            use: "sig"
+            n: "15GXaf3kbelwSSEEVF0DLquOoESdNSgdr3UYOZQzxaafzX5O1xzW_LLDsPZSqgYaPpdJEz4tnnBEzkIS6woDx1-osh5QaULZ8rAcsr8W7TGM9wyscTxhezNrrA6Cl89i6SV9Wzq7fNrHpYQaAysm03NmLpdiQp1ngM2-gqG2Q7OCsjl_csA0QbSi3P_VPhC_loVXVHkm2j2dr-sihUQNvOezbd9tdCnqWOFaOZRS-CdjEQ7eumt434TOP94SE7iv1N1fyeYJdXyohjtHEa_jfRDUur15rheNgtAGsKKbbQ8rditaEhMi1Q2PV_-hJl8tMYFXoz-Y6FtyhnXociVVyQ"
+            e: "AQAB"
+            kid: "GS43Wq5vGalisryDto8hL"
+            x5t: "h6-VjhjISBtrqF1niH0qT5HrCzU"
+            x5c: [,…]
+        1: {alg: "RS256", kty: "RSA", use: "sig",…}
+            alg: "RS256"
+            kty: "RSA"
+            use: "sig"
+            n: "wgOF06yYAhXOxuBEHyfEy_en_mkxaGpikAdbPQuoJpXo10I4KC_ip9bLjMqS_pxSNhEGmiSaGRx5KsSj4KuONa2e0WSLoPPyDQ_LL3fN_wviAdC6UjDZWRWcL23s8EuAMe6Fgm3k9FURPa67l7XpuTm4XTPj_ke2h-J-2tCaH98o09VBSF5KEw2jHBnkWfaQU-hakVG-5kEyXteP6rzTGSduSCc7KumJTXO24zx5mtZG8eD30bMmrVvepAG7M0KcxvA26n-dYDCPTX7TGIg-BgngPhYQL0K-1dELn6zadXzt144RNd-u8k8XhuVE7fu0dar4Nbis5ITcOOnWlm0fQw"
+            e: "AQAB"
+            kid: "8zHoYPLClL8hSeMXLNqO5"
+            x5t: "oKwC2pTOqeLuxj9jsToUlJiw-NA"
+            x5c: [,…]
+
+### Validate Claims
+exp Expiration Time     Confirm it hasn't expired
+iss Issued by           Confirm it matches our Auth0 domain
+aud Audience            Confirm it matches our client ID
+
+---
+
+In `server.js` :
+```js
+app.get('/private', checkJwt, function (req, res) {
+  res.json({
+    message: "Hello from a private API !"
+  })
+});
+```
+Express supports declaring multiple arguments here to validate the request.
+If any declared checks fail, then the request will fail.
+
+Let's call this new endpoint in React :
+In `private.js` :
+```js
+import React, {Component} from 'react';
+
+class Private extends Component {
+  state = {
+    message: ""
+  };
+
+  componentDidMount() {
+    // fetch(path, configuration object )
+    fetch('/private', {
+          headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
+        }).then(response => {
+          if (response.ok) return response.json();
+          throw new Error('Network response was not OK');
+        })
+          .then(response => this.setState({message: response.message}))
+          .catch(error => this.setState({message: error.message}))
+  }
+
+  render() {
+    return (
+      <p>
+        {this.state.message}
+      </p>
+    );
+  }
+}
+
+export default Private;
+```
+
+In `App.js`: 
+```jsx harmony
+  <Route
+    path="/private"
+    render={(props) => <Private auth={this.auth} {...props} />}
+  />
+```
+auth is required to check authentication for logged in users
+
+
+In `Nav.js`: 
+```html
+    {isAuthenticated() && (
+     <li>
+       <Link to="/private">Private</Link>
+     </li>
+    )}
+```
+
+In `App.js`: 
+```jsx harmony
+    <Route
+      path="/private"
+      render={(props) =>
+        this.auth.isAuthenticated() ? (
+          <Private auth={this.auth} {...props} />
+        ) : (
+          this.auth.login() // will redirect the user to login
+        )
+      }
+    />
+```
