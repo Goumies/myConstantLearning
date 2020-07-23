@@ -880,3 +880,17 @@ In `App.js`:
       }
     />
 ```
+
+## API Authorization with Scopes, Rules and Roles
+### OAuth2 scopes
+
+### Create scopes
+
+
+### Check scopes in Express
+
+
+### Apply role via an Auth0 rule
+
+
+### Compare authorization approaches
