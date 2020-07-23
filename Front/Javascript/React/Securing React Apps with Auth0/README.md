@@ -558,6 +558,7 @@ logout = () => {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
 
+    // Unnecessary, should be removed since the auth0 logout will clear it
     this.userProfile = null;
     
     this.auth0.logout({
@@ -1166,3 +1167,461 @@ JWT w/ Roles
         = Abstraction layer of scopes
     + More maintainable : No need to modify code
     
+## Customization and Enhancements
+### React Enhancements
+1) Redirect to previous page after login
+    Store current location in localStorage
+    In `Auth.js` :
+```js
+    // after imports
+    const REDIRECT_ON_LOGIN = "redirect_on_login";
+        
+      login = () => {
+        console.log('>>> this.history.location = ');
+        console.table(this.history.location);
+          localStorage.setItem(
+          REDIRECT_ON_LOGIN,
+          JSON.stringify(this.history.location)
+        );
+        this.auth0.authorize();
+      };
+    
+      handleAuthentication = () => {
+        this.auth0.parseHash((err, authResult) => {
+          if (err) {
+            this.history.push("/");
+            alert(`Error: ${err.error}. Check the console for further details`);
+            console.log(
+              `Error: ${err.error}. Check the console for further details`
+            );
+          }
+          if (authResult && authResult?.accessToken && authResult?.idToken) {
+            this.setSession(authResult);
+            const redirectLocation =
+              localStorage.getItem(REDIRECT_ON_LOGIN) === "undefined"
+                ? "/"
+                : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
+              // This ternary is just a safety check
+            this.history.push(redirectLocation); // programmatically tells React Router to redirect to Home
+          }
+          localStorage.removeItem(REDIRECT_ON_LOGIN);
+        });
+      };
+
+```
+
+2) Create PrivateRoute component
+In `src/PrivateRoute.js`, we centralise our logic for private routes :
+```js
+import React from 'react';
+import { Route } from "react-router-dom";
+import PropTypes from "prop-types";
+
+function PrivateRoute({ component: Component, auth, scopes, ...rest }){
+  // component: Component = Aliasing the component to semantically use it correctly below
+  return (
+    <Route
+      {...rest}
+      render={ props => {
+        // 1) Redirect to login if not logged in
+        if(!auth.isAuthenticated()) return auth.login;
+
+        // 2a) Display message if user lacks required scope(s)
+        if (scopes.length > 0 && !auth.userHasScopes(scopes)) {
+          return (
+            <h1>
+              Unauthorized - You need the following scope(s) to view this page :{" "}
+              { scopes.join(", ") }.
+            </h1>
+          )
+        }
+
+        // 2b) We could enhance this component by validating roles as well
+
+        // 3) Render component
+        return <Component auth={auth} {...props} />
+      }}
+    />
+  );
+}
+
+PrivateRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  // any because .object is deprecated, see .shape / .exact docs below
+  auth: PropTypes.any.isRequired,
+  scopes: PropTypes.array
+};
+
+PrivateRoute.defaultProps = {
+  scopes: []
+};
+
+export default PrivateRoute;
+```
+[.shape / .exact](https://www.npmjs.com/package/prop-types)
+
+In `App.js` :
+```js
+render() {
+    return (
+      <>
+        <Nav auth={this.auth} />
+        <div className="body">
+          <Route
+            path="/"
+            exact
+            render={(props) => <Home auth={this.auth} {...props} />}
+          />
+          <Route
+            path="/callback"
+            render={(props) => <Callback auth={this.auth} {...props} />}
+          />
+          <PrivateRoute
+            path="/profile"
+            component={ Profile }
+            auth={this.auth}
+          />
+          <Route path="/public" component={Public} />
+          <PrivateRoute
+            path="/private"
+            component={ Private }
+            auth={this.auth}
+          />
+          <PrivateRoute
+            path="/courses"
+            component={ Courses }
+            auth={this.auth}
+            scopes={["read:courses"]}
+          />
+        </div>
+      </>
+    );
+  }
+```
+
+3) Share auth object via React's context
+Redux
+    + Powerful & popular
+    - Lots of moving parts
+--> cF [Cory House course, Building apps w/ React and Redux](https://app.pluralsight.com/library/courses/react-redux-react-router-es6)
+
+Context
+    + Simple
+    + Built into React (from the beginning but considered unstable  and not recommended for years)
+        /!\ This has changed w/ React 16.3 when they added the new ContextAPI (hooks added in 16.8)
+    + Apps can have multiplpe contexts
+        /!\ It's recommended to place related data in the same context
+    ---
+    To configure context :
+        1. Declare context, in `src/AuthContext.js` :
+```js
+    import React from 'react';
+    
+    const AuthContext = new React.createContext();
+    
+    export default AuthContext;
+```
+---
+        2. Declare provider (provides data / funcs)
+        Typically, the provider is declared near the app's entry point
+        so all child components can consume the data and functions it provides.
+            In `App.js` :
+```js
+    class App extends Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          auth: new Auth(this.props.history)
+        };
+      }
+      render() {
+        const { auth } = this.state;
+        return (
+          <AuthContext.Provider value={auth}>
+            <Nav auth={auth} />
+            <div className="body">
+              <!-- Possible enhancement = PublicRoute -->
+              <Route
+                path="/"
+                exact
+                render={(props) => <Home {...props} />}
+              />
+              <Route
+                path="/callback"
+                render={(props) => <Callback {...props} />}
+              />
+              <PrivateRoute
+                path="/profile"
+                component={ Profile }
+              />
+              <Route path="/public" component={Public} />
+              <PrivateRoute
+                path="/private"
+                component={ Private }
+              />
+              <PrivateRoute
+                path="/courses"
+                component={ Courses }
+               
+                scopes={["read:courses"]}
+              />
+            </div>
+          </AuthContext.Provider>
+        );
+      }
+    }
+```
+        
+        3. Declare consumer (consumes data / funcs)
+        In `PrivateRoute.js` :
+```js
+import AuthContext from "./AuthContext";
+
+function PrivateRoute({ component: Component, scopes, ...rest }) {
+  // component: Component = Aliasing the component to semantically use it correctly below
+  return (
+    <AuthContext.Consumer>
+      <!--
+        Context consumers expect us to declare a render prop and pass us whatever data
+        was passed on value from the provider.
+        Here, Route becomes the render prop of our consumer through function as a child*
+      -->
+      {(auth) => (
+        <Route
+          {...rest}
+          render={(props) => {
+            // 1) Redirect to login if not logged in
+            if (!auth.isAuthenticated()) return auth.login;
+
+            // 2a) Display message if user lacks required scope(s)
+            if (scopes.length > 0 && !auth.userHasScopes(scopes)) {
+              return (
+                <h1>
+                  Unauthorized - You need the following scope(s) to view this
+                  page : {scopes.join(", ")}.
+                </h1>
+              );
+            }
+
+            // 2b) We could enhance this component by validating roles as well
+
+            // 3) Render component
+            return <Component auth={auth} {...props} />;
+          }}
+        />
+      )}
+    </AuthContext.Consumer>
+  );
+}
+```
+/!\ Context.Consumer is to use in functional component
+[More information on Context.Consumer](https://en.reactjs.org/docs/context.html#contextconsumer)
+*function as a child : prop whose value is a function
+[More information on function as a child, render props](https://en.reactjs.org/docs/render-props.html)
+
+/!\ Other context syntax can be considered :
+    1) Convert to class and declare contextType
+    2) Use React Hook [useContext](https://en.reactjs.org/docs/hooks-reference.html#usecontext)
+        /!\ [react hooks linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+        /!\ Hooks are a new addition in React 16.8. They let you use state
+            and other React features without writing a class.
+        [Hooks API reference](https://en.reactjs.org/docs/hooks-reference.html)
+
+4) Store tokens in memory
+Until this point, we've only used the localStorage for simplicity
+    /!\ When using the implicit flow, it's recommended to store the tokens in memory
+        to reduce the attack vector for a cross-site scripting attack.
+    In `Auth.js` :
+```js
+const REDIRECT_ON_LOGIN = "redirect_on_login";
+
+// Stored outside class since private
+// eslint-disable-next-line
+let _idToken = null;
+let _accessToken = null;
+let _scopes = null;
+let _expiresAt = null;
+// /!\ underscore convention to convey intent of privacy but still public
+```
+[More info on JS naming convention](https://www.robinwieruch.de/javascript-naming-conventions)
+
+```js
+// Use of the "private fields"
+etSession = (authResult) => {
+    // Set the expiration tome of the access token for local storage
+    _expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+
+    // If there is a value on the `scope` param from the authResult,
+    // use it to set scopes in the session for the user. Otherwise
+    // use the scopes as requested. If no scopes were requested,
+    // set it to nothing
+    _scopes = authResult.scope || this.requestedScopes || "";
+
+    _accessToken = authResult.accessToken;
+    _idToken = authResult.idToken;
+  };
+
+  isAuthenticated = () => {
+    return new Date().getTime() < _expiresAt;
+  };
+
+  // ...
+
+  getAccessToken = () => {
+    if (!_accessToken) {
+      throw new Error("No access token found");
+    }
+    return _accessToken;
+  };
+
+  // ...
+
+  userHasScopes(scopes) {
+    const grantedScopes = (_scopes || "").split(" ");
+    return scopes.every((scope) => grantedScopes.includes(scope));
+  }
+```
+
+/!\ If the app was running and we were still logged in,
+    let's manually delete items in local storage in browser > Application > Local Storage > local URL
+
+/!\ Since our tokens are in memory, my session doesn't persist across tabs ! Inconvenient, solution = Silent auth and token renewal
+
+5) Silent auth and token renewal
+By default, Auth0 JWTs expire in 10 hours (36000 seconds) on application settings page
+Silent Authentication :
+HTTP call to tenantDomain/authorize?params
+```dotenv
+https://reactjs-goumies-dev.eu.auth0.com/authorize?
+    client_id=secret
+    &
+    response_type=token%20id_token
+    &
+    redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback
+    &
+    scope=openid%20profile%20email%20read%3Acourses
+    &
+    audience=ttp%3A%2F%2Flocalhost%3A3001
+    &
+    state=0F_pNqbYtYk-G49zJqDiyGt6P-9Q4ZAC
+    &
+    nonce=3XJODZJaLCJJulDT9qmx3`TILD``7XNKiJxrd
+    &
+    response_mode=web_message
+    &
+    prompt=none
+    &
+    auth0Client=secret
+```
+
+In `Auth.js`:
+```js
+renewToken(cb) {
+    this.auth0.checkSession({}, (err, result) => {
+      if (err) {
+        console.log(`Error: ${err.error} -  ${err.error_description}`)
+      }
+      this.setSession(result);
+      // Callback called after the response has been received
+      if(cb) cb(err, result);
+    });
+}
+/*
+*     /!\
+*     this.auth0.checkSession(to specify audience and scope BUT can be omitted
+*      because it defaults to the audience declared in our Auth object, (err, result) => {
+*/
+}
+```
+
+In `App.js`:
+```js
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: new Auth(this.props.history),
+      tokenRenewalComplete: false
+    };
+  }
+
+  componentDidMount() {
+    this.state.auth.renewToken(() => {
+      this.setState({tokenRenewalComplete: true })
+    });
+  }
+
+  render() {
+    const { auth } = this.state;
+    // Show loading message until the token renewal is completed
+    if(!this.state.tokenRenewalComplete) return "Loading...";
+    return (
+      // ...
+    );
+  }
+}
+```
+
++ Auth0.com > Apps > react-auth0-pluralsight settings > Allowed web origin : http://localhost:3000
+
+In `PrivateRoute.js` :
+```js
+PrivateRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  scopes: PropTypes.array,
+};
+```
+/!\ Perf tweak: We could write a value to localStorage when the user logs in
+    and clear it when the user logs out to avoid needlessly making this call.
+
+Caveats :
+    - Setting up a third party cookie via an iFrame ! Safari blocks them by default.
+    /!\ To resolve, set up a custom Auth0 domain.
+    - Any login w/ Google attempts will fail : On refresh, the user is considered as logged out
+    /!\ Silent auth doesn't work w/ identity provider by default.
+        We need to configure our own keys w/ each provider.
+        [auth0 > connections > social]
+        Before going to production, we need to configure
+            our identity provider keys anyway(topic not covered in this course).
+            --> The default Google config that we've used throughout this course is configured
+                with the development key from Auth0 that you will need to replace before publishing
+                our app to production.
+                
+Silent token renewal :
+This way our app can request new tokens automatically when our current tokens expire.
+In `Auth.js` :
+```js
+// his will call renewToken when our token expires.
+scheduleTokenRenewal() {
+    const delay = _expiresAt - Date.now();
+    if (delay > 0) setTimeout(() => this.renewToken(), delay);
+}
+```
+When the user is authenticated, in `Auth.js` :
+we should call scheduleTokenRenewal()
+```js
+setSession = (authResult) => {
+    // Set the expiration tome of the access token for local storage
+    _expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+
+    // If there is a value on the `scope` param from the authResult,
+    // use it to set scopes in the session for the user. Otherwise
+    // use the scopes as requested. If no scopes were requested,
+    // set it to nothing
+    _scopes = authResult.scope || this.requestedScopes || "";
+
+    _accessToken = authResult.accessToken;
+    _idToken = authResult.idToken;
+    this.scheduleTokenRenewal();
+  };
+```
+This will ask Auth0 for a new token when our current token expires.
+So, this will keep the user logged in while the tab is open until their Auth0 session actually expires.
+
+### Auth0 customizations
+1) Identity providers
+2) Custom login and signup
+3) Emails
+4) Database integration
+5) Hooks
+6) Extensions
