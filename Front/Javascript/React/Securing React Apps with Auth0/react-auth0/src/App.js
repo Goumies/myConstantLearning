@@ -8,6 +8,7 @@ import Auth from "./Auth/Auth";
 import Callback from "./Callback";
 import Public from "./public";
 import Private from "./private";
+import Courses from "./Courses";
 
 /*
   React Router uses partial matching and returns the first match
@@ -51,6 +52,21 @@ class App extends Component {
             render={(props) =>
               this.auth.isAuthenticated() ? (
                 <Private auth={this.auth} {...props} />
+              ) : (
+                this.auth.login()
+              )
+            }
+          />
+          <Route
+            path="/courses"
+            render={(props) =>
+              // checks are for user experience only, not security
+              // /!\ Never trust the user /!\
+              // the server validates the user authorization on API calls
+              this.auth.isAuthenticated() &&
+                this.auth.userHasScopes(["read:courses"
+                ])? (
+                <Courses auth={this.auth} {...props} />
               ) : (
                 this.auth.login()
               )

@@ -883,14 +883,286 @@ In `App.js`:
 
 ## API Authorization with Scopes, Rules and Roles
 ### OAuth2 scopes
+OAuth 2
+    Gives permission without sharing credentials
+    Each permission we grant is called scope
 
 ### Create scopes
+auth0.com > dashboard > APIs > Demo API > Permissions >
+Permission	    Description	
+read:courses	permission to read the current user's courses
 
+In `Auth.js` :
+```js
+{
+  constructor(history) {
+      this.history = history;
+      this.userProfile = null;
+      this.requestedScopes = "openid profile email read:courses";
+      this.auth0 = new auth0.WebAuth({
+        domain: process.env.REACT_APP_AUTH0_DOMAIN,
+        clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+        redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+        audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+        responseType: "token id_token",
+        scope: this.requestedScopes, // <--
+      });
+    }
+}
+```
+```js
+{
+  setSession = authResult => {
+      // Set the expiration tome of the access token for local storage
+      const expiresAt = JSON.stringify(
+        authResult.expiresIn * 1000 + new Date().getTime()
+      );
+  
+      // If there is a value on the `scope` param from the authResult,
+      // use it to set scopes in the session for the user. Otherwise
+      // use the scopes as requested. If no scopes were requested,
+      // set it to nothing
+      const scopes = authResult.scope || this.requestedScopes || ""; // <--
+  
+      localStorage.setItem("access_token", authResult.accessToken);
+        localStorage.setItem("id_token", authResult.idToken);
+        localStorage.setItem("expires_at", expiresAt);
+        localStorage.setItem("scopes", JSON.stringify(scopes)); // <--
+        /*
+        *   We're storing expires_at & scopes in local storage for convenience.
+        *   This way, we don't have to parse the JWT on the client to use this data for UI-related logic.
+        *   The server validates these claims.
+        *
+        *   /!\ No security issue here because our API calls will receive the access_token
+        *       & parse it to determine the user's authorization.
+        *
+        */
+    };
+}
+```
+```js
+{
+  logout = () => {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("id_token");
+      localStorage.removeItem("expires_at");
+      localStorage.removeItem("scopes"); // <--
+  
+      this.userProfile = null;
+  
+      this.auth0.logout({
+        clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+        returnTo: "http://localhost:3000"
+      });
+    };
+}
+```
+```js
+{
+  userHasScopes (scopes) {
+    const grantedScopes = (
+      JSON.parse(localStorage.getItem("scopes")) || ""
+    ).split(" ");
+    return scopes.every(scope => grantedScopes.includes(scope));
+  }
+}
+```
 
 ### Check scopes in Express
+In `server.js`:
+```js
+const checkScope = require('express-jwt-authz'); // Validate JWT scopes
+// ...
+app.get("/courses", checkJwt, checkScope(["read:courses"]), function(req, res) {
+  res.json({
+    courses: [
+      {id: 1, title: "Building Apps with React and Redux"},
+      {id: 2, title: "Creating reusable React Components"},
+    ]
+    /*
+    *   In real world, it would read the sub(subscriber ID) from the access token
+    *   and use it to query the DB for the author's courses.
+    */
+  });
+});
+```
 
+### Create React Page that validates scopes
+In `src/Courses.js`:
+```js
+import React, {Component} from 'react';
+
+class Courses extends Component {
+  state = {
+    courses: []
+  };
+
+  componentDidMount() {
+    fetch('/course', {
+      headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
+    }).then(response => {
+      if (response.ok) return response.json();
+      throw new Error('Network response was not OK');
+    })
+      .then(response => this.setState({courses: response.courses}))
+      .catch(error => this.setState({message: error.message}))
+  }
+
+  render() {
+    return (
+      <ul>
+        {this.state.courses.map(course => {
+          return <li key={course.id}>{course.title}</li>
+        })}
+      </ul>
+    );
+  }
+}
+
+export default Courses;
+```
+
+In `App.js`:
+```js
+    <Route
+        path="/courses"
+        render={(props) =>
+          // checks are for user experience only, not security
+          // /!\ Never trust the user /!\
+          // the server validates the user authorization on API calls
+          this.auth.isAuthenticated() &&
+            this.auth.userHasScopes(["read:courses"
+            ])? (
+            <Courses auth={this.auth} {...props} />
+          ) : (
+            this.auth.login()
+          )
+        }
+    />
+```
+
+In `Nav.js`:
+```js
+  {isAuthenticated() && (
+      <li>
+        <Link to="/private">Private</Link>
+      </li>
+    )}
+    {isAuthenticated() &&
+      userHasScopes(["read:courses"]) &&
+    (
+      <li>
+        <Link to="/courses">Courses</Link>
+      </li>
+    )}
+```
 
 ### Apply role via an Auth0 rule
+auth0.com > rules > create rule > Pick a rule template :
+    Rules are written in JS & they run as part of the authentication process
+    auth0 allows us to customize the authentication pipeline's behavior
+    -
+    There is a lot of templates ! => Force email verification / Multi-factor...
+    -
+    > Set role to a user (Not very scalable. We can look at other rules that allow us to call out our own DB to store this data)
+    -
+    [More info on rules](auth0.comdocs/rules/current)
+    -
+    To test a rule : `Try this rule` = debug
+    + we can add console logs in the rule
+    + we can install real-time logs
+        (where we can re-order/test all our rules => try all rules with... [select an identity provider])
+        > Extensions > real-time webtask logs
+        > rules > edit selected rule > debug rule cF Real-time webtask logs screenshot 
+        /!\ WARNING : debugging rules changes real data in the tenant => user details > app_metadata (read-only for user)
+        user_metadata user (specific data) can be changed by the user (color preference, blog url...)        
 
+What about applying the newly created rule on an API endpoint :
+/!\ We have to add the Role claim (which is a custom claim, and present in the ID) to the access token
+auth0.com > rules > create rule :
+Pick a rule template :
+    Empty rule > Tell auth0 that each time a user logs in, we add the custom claim to the access token
+```js
+function (user, context, callback) {
+  if(user.app_metadata && user.app_metadata.roles) {
+    context.accessToken['http://localhost:3000/roles'] = user.app_metadata.roles;
+  }
+  callback(null, user, context);
+}
+```
+
+In `server.js` :
+```js
+function checkRole(role) {
+  return function (req, res, next) {
+    const assignedRoles = req.user["http://localhost:3000/roles"];
+    if (Array.isArray(assignedRoles) && assignedRoles.includes(role)) {
+      return next();
+    }
+    return res.status(401).send("Insufficient role");
+  }
+}
+
+app.get('/admin', checkJwt, checkRole("admin"), function (req, res) {
+  res.json({
+    message: "Hello from an admin private API !"
+  })
+});
+```
+
+In `Courses.js` :
+```js
+componentDidMount() {
+fetch('/course', {
+      headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
+    }).then(response => {
+      if (response.ok) return response.json();
+      throw new Error('Network response was not OK');
+    })
+      .then(response => this.setState({courses: response.courses}))
+      .catch(error => this.setState({message: error.message}));
+    
+    fetch('/admin', {
+      headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
+    }).then(response => {
+      if (response.ok) return response.json();
+      throw new Error('Network response was not OK');
+    })
+      .then(response => console.log(response))
+      .catch(error => this.setState({message: error.message}));
+}
+```
 
 ### Compare authorization approaches
+Session Cookie
+=> elkjfmzfjkfhnelzkjeflnkejhf=p53S...
+    + Simple
+    + Secure (w/ http-only cookies over https)
+    - Not an identifier : it handles authentication but no authorization data included
+        => Like an ID that you carry around
+    - Performance : It's up to the server to check for authorization on every single call
+        DB queries required to lookup the user's rights on every call
+        /!\ This downside can be mitigated by storing user sessions in an in-memory cache to avoid tha DB call overhead
+
+JWT with Scopes
+=> edit:user
+    /!\ Scopes were designed to specify what an app is allowed to do with a third party on a user's behalf
+        BUT over time, people have tried to use custom scopes to handle general authorization within their app
+        AND auth0 does support this
+    -    
+        + Performance : JWTs are cryptographically secure SO we can trust the scopes provided within the user's access token.
+            Avoiding DB call to check on a user'sright for each API call
+        - Bloated JWTs (w/ 12s of scopes) > works for simple apps > avoid w/ e-commerce site
+        - scope alone doesn't convey the user's exact rights
+        
+JWT w/ Roles
+=> role:admin
+    + Simple : Roles group users by permissions. Different permissions to each role
+        /!\ + We can include role information within our access tokens
+        Single line to check
+    + Scalable : A single role encapsulates a long list of permissions
+    + Fast : Roles are specified in a JWT we ca trust since it's cryptographically secured
+        -> No need to call a DB
+        = Abstraction layer of scopes
+    + More maintainable : No need to modify code
+    
