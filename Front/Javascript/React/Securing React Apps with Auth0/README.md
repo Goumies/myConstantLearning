@@ -1619,9 +1619,57 @@ This will ask Auth0 for a new token when our current token expires.
 So, this will keep the user logged in while the tab is open until their Auth0 session actually expires.
 
 ### Auth0 customizations
+auth0.com > SSO integrations
+= popular third part
+
 1) Identity providers
+auth0.com > Connections > Social
+
 2) Custom login and signup
+auth0.com > Connections > DB > Settings
+We can specify user name and password  policy (cF Databases Connections captures)
+
+auth0.com > Connections > DB > Password Policy
+
+auth0.com > Connections > Enterprise
+    = users can log using enterprise credentials
+    
+auth0.com > Connections > Passwordless
+    = one-time code by SMS / Email, on each login, fully cutomizable
+
+Multifactor Auth With Guardian
+    = push notifications / SMS
+    
+Hosted Pages
+ = Login / Password reset / Guardian Multifactor pages customization
+
+Embedded Login
+
 3) Emails
+auth0.com > Emails > Templates
+    = Email templates fir various events
+auth0.com > Emails > Provider
+    = Select the provider that will send those emails
+
 4) Database integration
+auth0.com > Connections > DB > Custom DB
+
+---
+auth0.com > Logs
+Auth0 provides detailed logs of actions performed in the Dashboard and authentication by users
+
+auth0.com > Anomaly Detection 
+= brute-force protection (enabled by default) to limit the number of signups and failed logins
+from a given IP address
+---
+
 5) Hooks
+auth0.com > Hooks
+Customize auth0 behaviour w/ nodeJS
+During Client Credentials / Pre User Registration / Post User Registration
+
 6) Extensions
+auth0.com > Extensions
+    = custom social connections, sending logs to Logstash or Azure, GitHub, GitLab, or GitBucket deployments
+    and a powerful authorization extension that adds granular support for groups, roles, and permissions.
+
