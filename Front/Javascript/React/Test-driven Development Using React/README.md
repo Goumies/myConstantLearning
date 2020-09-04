@@ -185,7 +185,162 @@ describe('mapChooser', () => {
 ```
 
 ## Discovering the need for React
+DOM - Document Object Model :
+Programming API to manipulate the content of Web pages using javascript.
+The DOM exposes certain methods and properties that allow you to select elements and change them.
+= enables dynamic web pages, changes in place rather than reload
+
+DOM Manipulation is based on DOM methods. Every methods in JQuery or Angular makes calls to DOM methods.
+
+Imperative vs Declarative
+Imperative = step by step approach => JQuery, Angular
+Declarative = focus on the outcome => React
+
+React DOM Manipulation = telling React what I want the part of the page controlled by React to look like
+                            + React handles the rest
+                       = Declarative
+                       
+React Elements
+Built-in element for each HTML element
+`React.createElement(...)`
+
+React Components
+Every component = extension of the React.Component class
+                = render() method returning some piece of the UI is responsible for
+                
+JSX = XML syntax extension to Javascript
+    = sort of templating mechanism
+    
+Composition
+Each component in the UI will be built from some combination of other custom components and HTML components.
+And all of them will build into a single root component that will be rendered in the browser
+using the reactDOM.render() method.
 
 
-## 
+React Data Flow
+From the root component to sub-components and children.
+The ReactDOM module manages the communication between the React app root and the browser DOM.
+= using the Virtual DOM
 
+## Understanding the Virtual DOM
+Virtual DOM :
+Abstraction of the browser DOM
+React holds 2 Virtual DOMs in memory at any point
+    Current state of the piece of the browser DOM
+    Ideal state as determined by the rendered components using React
+
+Change > Does it affect the display of the component ?
+            > the ideal state of the virtual DOM is updated
+                > React calculates the difference between the 2 virtual DOMs
+                  This difference = what needs to be changed in the actual DOM to match this ideal state
+                /!\ What makes React fast is that it can figure out optimized ways to update only the parts of the DOM
+                    that need to be updated at any one point
+
+React Development Process
+[Thinkin in React](https://reactjs.org/docs/thinkin-in-react)
+Recommended steps to build React apps :
+    1) Mock
+    2) Break up the UI in components hierarchy
+    3) Build a static version
+    4) Identify the minimal UI State
+    5) Identify where the State should live
+    6) Add inverse data flow
+    
+DEMO
+----
+3) Build a static version
+/containers/__tests__/StoreLocator.test.js
+Smoke test : testing if it can render without crashing
+
+Without Enzyme :
+```jsx harmony
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import StoreLocator from '../StoreLocator';
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<StoreLocator/>, div);
+});
+```
+
+In TDD, we want to test isolated component without its children.
+= Shallow Rendering :
+    `npm install --save enzyme enzyme-adapter-react-16 react-test-renderer`
+    [To install Enzyme with create-react-app](https://create-react-app.dev/docs/running-tests/)
+    Enzyme : testing utility by Airbnb
+    +
+    /src/setupTests.js
+```jsx harmony
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
+```
+
+/!\ Installing Enzyme makes ReactDOM crashes
+    Delete /node_modules + run `npm i`
+    If all the tests keep failing (Cannot find module 'react' from 'ReactSixteenAdapter.js') :
+        run  `npm i --save enzyme-adapter-react-16`
+
+With Enzyme :
+```jsx harmony
+import React from 'react';
+import {shallow} from "enzyme";
+
+import StoreLocator from '../StoreLocator';
+
+it('renders without crashing', () => {
+  let mountedStoreLocator = shallow(<StoreLocator/>);
+});
+```
+
+1) Shallow testing on every single component
+2) Shallow testing on the root component to check for the StoreLocator in App.js
+3) Shallow testing every child component is rendered in its parent
+    Refactor of every tests to a tests suite with describe(...)
+= Organised structure
+4) Testing every single component to make sure they have the right content
+5) Adding styles
+    /public/images
+    /!\ To import assets, React recommends to use JS imports:
+    In Header.test.js
+```jsx harmony
+   import React from 'react';
+   import Header from '../Header';
+   import {shallow} from "enzyme";
+   
+   import importedLogoImage from '../../images/wired-brain-coffee-logo.png';
+   
+   let mountedHeader;
+   beforeEach(() => {
+     mountedHeader = shallow(<Header/>);
+   });
+   
+   describe('Header', () => {
+     //...
+   
+     it('renders a logo', () => {
+       const logoImage = mountedHeader.find('img').prop('src');
+       expect(logoImage).toBe(importedLogoImage);
+     });
+   });
+```
+    In Header.js
+```jsx harmony
+   import React from 'react';
+   import logo from '../images/wired-brain-coffee-logo.png';
+   
+   const Header = () => {
+     return (
+       <div className="Header">
+         <img src={logo} alt="Wired brain logo"/>
+       </div>
+     );
+   };
+   export default Header;
+
+```
+    /!\ To make create-react-app to compile, we have to move /images in /src.
+        Due to create-react-app restrictions on outside /src files
